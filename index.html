@@ -1,0 +1,2484 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0a0a0f">
+<meta name="supported-color-schemes" content="dark">
+<title>Артём — Мастер-план 2026–2027</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  /* Принудительная тёмная тема — игнорируем force-dark/light режимы браузера */
+  :root {
+    color-scheme: dark only;
+    forced-color-adjust: none;
+  }
+  html { color-scheme: dark only; background: #0a0a0f; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --card: #1a1a26;
+    --card-hover: #22222f;
+    --border: #2a2a3d;
+    --border-light: #3a3a50;
+    --accent: #00d4aa;
+    --accent2: #7c5cfc;
+    --accent3: #ff6b6b;
+    --accent4: #ffd93d;
+    --text: #e8e8f0;
+    --muted: #6b6b8a;
+    --green: #00d4aa;
+    --purple: #7c5cfc;
+    --red: #ff6b6b;
+    --yellow: #ffd93d;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* Блокируем force-light / reader mode на iOS/Android */
+  @media (prefers-color-scheme: light) {
+    html, body {
+      background: #0a0a0f !important;
+      color: #e8e8f0 !important;
+    }
+  }
+  @media screen and (forced-colors: active) {
+    * {
+      forced-color-adjust: none;
+    }
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg) !important;
+    color: var(--text) !important;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-text-fill-color: var(--text);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text);
+    -webkit-text-fill-color: var(--text);
+  }
+
+  /* HEADER */
+  .header {
+    padding: 40px 32px 28px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -150px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(124,92,252,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -200px; left: 20%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,212,170,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .header h1 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+    position: relative;
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
+  }
+  .header h1 span {
+    color: var(--accent);
+    -webkit-text-fill-color: var(--accent);
+  }
+  .header p {
+    color: var(--muted);
+    font-size: 14px;
+    max-width: 600px;
+    position: relative;
+  }
+
+  /* PROGRESS BAR */
+  .progress-bar {
+    background: var(--surface);
+    padding: 16px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .progress-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: nowrap;
+  }
+  .progress-track {
+    flex: 1;
+    min-width: 150px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.6s ease;
+  }
+  .progress-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  /* NAV TABS */
+  .nav {
+    padding: 0 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    background: var(--surface);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: 'Inter', sans-serif;
+  }
+  .nav-tab:hover { color: var(--text); }
+  .nav-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* MAIN */
+  .main { padding: 28px 32px; max-width: 1600px; margin: 0 auto; }
+
+  /* SECTION */
+  .section { display: none; animation: fadeIn 0.3s; }
+  .section.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    margin-bottom: 24px;
+  }
+  .section-header h2 {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
+  }
+  .section-header p {
+    font-size: 13px;
+    color: var(--text);
+    opacity: 0.75;
+  }
+
+  /* ==================== */
+  /* КАЛЕНДАРЬ           */
+  /* ==================== */
+
+  .calendar-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    background: var(--surface);
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .view-switcher {
+    display: flex;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .view-btn {
+    padding: 7px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    background: none;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s;
+  }
+  .view-btn:hover { color: var(--text); }
+  .view-btn.active {
+    background: var(--accent);
+    color: #000;
+    font-weight: 600;
+  }
+
+  .nav-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+
+  .current-period {
+    flex: 1;
+    min-width: 180px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .current-period .period-phase {
+    display: block;
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin-top: 2px;
+    font-weight: 400;
+  }
+  .current-period .period-phase.p1 { color: var(--accent); }
+  .current-period .period-phase.p2 { color: var(--yellow); }
+  .current-period .period-phase.p3 { color: var(--purple); }
+  .current-period .period-phase.p4 { color: var(--red); }
+
+  .today-btn {
+    padding: 7px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+  }
+  .today-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* YEAR VIEW */
+  .year-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 900px) { .year-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 700px) { .year-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .month-tile {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .month-tile::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .month-tile.p1::before { background: var(--accent); }
+  .month-tile.p2::before { background: var(--yellow); }
+  .month-tile.p3::before { background: var(--purple); }
+  .month-tile.p4::before { background: var(--red); }
+  .month-tile:hover {
+    background: var(--card-hover);
+    transform: translateY(-2px);
+    border-color: var(--border-light);
+  }
+  .month-tile.key-month {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px rgba(0,212,170,0.2);
+  }
+  .month-tile .month-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .month-tile .month-name {
+    font-size: 17px;
+    font-weight: 700;
+    margin: 4px 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .month-tile .month-focus {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.4;
+    margin-bottom: 10px;
+    min-height: 30px;
+  }
+  .month-tile .month-stats {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .month-stat {
+    padding: 2px 7px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 4px;
+    color: var(--muted);
+  }
+  .month-stat.key {
+    background: rgba(0,212,170,0.15);
+    color: var(--accent);
+  }
+
+  /* MONTH VIEW */
+  .month-calendar {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .weekdays-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .weekday {
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 6px 0;
+  }
+  .weekday.weekend { color: var(--accent); }
+
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+  }
+  .day-cell {
+    aspect-ratio: 1;
+    min-height: 70px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .day-cell:hover {
+    background: var(--surface);
+    border-color: var(--border-light);
+    transform: scale(1.02);
+  }
+  .day-cell.empty {
+    background: transparent;
+    border: 1px dashed var(--border);
+    opacity: 0.3;
+    cursor: default;
+  }
+  .day-cell.empty:hover { transform: none; }
+  .day-cell.today {
+    border-color: var(--accent);
+    background: rgba(0,212,170,0.05);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+  .day-cell.key-day {
+    background: linear-gradient(135deg, rgba(255,107,107,0.1), rgba(124,92,252,0.1));
+    border-color: var(--red);
+  }
+  .day-cell .day-num {
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .day-cell.weekend .day-num { color: var(--accent); }
+  .day-cell .day-dot {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    display: flex;
+    gap: 3px;
+  }
+  .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+  .dot.gym { background: var(--red); }
+  .dot.english { background: var(--yellow); }
+  .dot.content { background: var(--purple); }
+  .dot.study { background: var(--accent); }
+  .day-cell .day-tag {
+    font-size: 9px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--muted);
+    margin-top: auto;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+  .day-cell.key-day .day-tag {
+    color: var(--red);
+    font-weight: 700;
+  }
+
+  @media (max-width: 700px) {
+    .day-cell { min-height: 55px; padding: 4px; }
+    .day-cell .day-num { font-size: 12px; }
+    .day-cell .day-tag { font-size: 8px; }
+  }
+
+  /* WEEK VIEW */
+  .week-grid-v2 {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 1100px) { .week-grid-v2 { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 700px) { .week-grid-v2 { grid-template-columns: repeat(2, 1fr); } }
+
+  .day-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .day-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.3);
+    border-color: var(--border-light);
+  }
+  .day-card.today {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+  .day-header {
+    padding: 12px 14px 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .day-card.weekend .day-header { background: rgba(0,212,170,0.04); }
+  .day-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .day-label {
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .day-card.weekend .day-label { color: var(--accent); }
+  .day-body { padding: 10px; }
+
+  .time-block {
+    padding: 7px 9px;
+    border-radius: 7px;
+    margin-bottom: 5px;
+    border-left: 3px solid;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+  .time-block:last-child { margin-bottom: 0; }
+  .time-block .time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    opacity: 0.6;
+    margin-bottom: 2px;
+  }
+  .time-block .activity { font-weight: 600; font-size: 11px; }
+  .time-block .detail {
+    font-size: 10px;
+    opacity: 0.75;
+    margin-top: 2px;
+  }
+
+  .block-commute { background: rgba(124,92,252,0.1); border-color: var(--purple); }
+  .block-work { background: rgba(107,107,138,0.1); border-color: var(--muted); }
+  .block-study { background: rgba(0,212,170,0.1); border-color: var(--accent); }
+  .block-gym { background: rgba(255,107,107,0.1); border-color: var(--red); }
+  .block-english { background: rgba(255,217,61,0.1); border-color: var(--yellow); }
+  .block-freelance { background: rgba(0,212,170,0.15); border-color: var(--accent); }
+  .block-content { background: rgba(124,92,252,0.12); border-color: var(--purple); }
+  .block-free { background: rgba(107,107,138,0.05); border-color: var(--border); }
+
+  /* DAY VIEW */
+  .day-view {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 900px) { .day-view { grid-template-columns: 1fr; } }
+
+  .day-view-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .day-view-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .day-view-title {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .day-view-subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .day-view-hero {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .day-view-hero.key-day {
+    background: linear-gradient(135deg, rgba(255,107,107,0.08), rgba(124,92,252,0.08));
+    border-color: var(--red);
+  }
+  .day-view-focus {
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .day-view-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .time-block-full {
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    border-left: 3px solid;
+    font-size: 13px;
+  }
+  .time-block-full .time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    opacity: 0.7;
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+  .time-block-full .activity { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
+  .time-block-full .detail {
+    font-size: 12px;
+    opacity: 0.85;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  .day-tasks {
+    list-style: none;
+  }
+  .day-tasks li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 13px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    line-height: 1.45;
+  }
+  .day-tasks li:last-child { border-bottom: none; }
+  .day-tasks li.done { opacity: 0.4; text-decoration: line-through; }
+  .day-tasks .check-box {
+    width: 17px; height: 17px;
+    border: 1.5px solid var(--border-light);
+    border-radius: 4px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+    transition: all 0.2s;
+  }
+  .day-tasks li.done .check-box {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .day-tasks .check-box::after { content: '✓'; font-size: 11px; color: #000; display: none; font-weight: bold; }
+  .day-tasks li.done .check-box::after { display: block; }
+
+  .close-day-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 16px;
+    transition: all 0.2s;
+  }
+  .close-day-btn:hover {
+    color: var(--text);
+    border-color: var(--border-light);
+  }
+
+  /* PHASE CARDS */
+  .phases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .phase-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .phase-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .phase-card.p1::before { background: var(--accent); }
+  .phase-card.p2::before { background: var(--yellow); }
+  .phase-card.p3::before { background: var(--purple); }
+  .phase-card.p4::before { background: var(--red); }
+
+  .phase-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .p1 .phase-num { color: var(--accent); }
+  .p2 .phase-num { color: var(--yellow); }
+  .p3 .phase-num { color: var(--purple); }
+  .p4 .phase-num { color: var(--red); }
+
+  .phase-title { font-size: 18px; font-weight: 800; margin-bottom: 3px; letter-spacing: -0.01em; }
+  .phase-dates { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
+  .phase-goal {
+    font-size: 12px;
+    padding: 9px 11px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    background: rgba(255,255,255,0.04);
+    line-height: 1.45;
+  }
+
+  /* CHECKLIST */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 12.5px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    line-height: 1.45;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li.done { opacity: 0.4; text-decoration: line-through; }
+  .check-box {
+    width: 17px; height: 17px;
+    border: 1.5px solid var(--border-light);
+    border-radius: 4px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px;
+    transition: all 0.2s;
+  }
+  .checklist li.done .check-box {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .check-box::after { content: '✓'; font-size: 11px; color: #000; display: none; font-weight: bold; }
+  .checklist li.done .check-box::after { display: block; }
+
+  /* RESOURCES */
+  .resources-section { margin-bottom: 32px; }
+  .resources-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 10px;
+  }
+  .resource-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    text-decoration: none;
+    color: var(--text);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    transition: all 0.2s;
+  }
+  .resource-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,212,170,0.08);
+  }
+  .resource-icon {
+    width: 34px; height: 34px;
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .resource-info { flex: 1; min-width: 0; }
+  .resource-name { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+  .resource-desc { font-size: 11px; color: var(--muted); line-height: 1.35; }
+  .resource-badge {
+    font-size: 9px;
+    padding: 2px 7px;
+    border-radius: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+    align-self: flex-start;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .badge-free { background: rgba(0,212,170,0.15); color: var(--accent); }
+  .badge-cert { background: rgba(124,92,252,0.15); color: var(--purple); }
+  .badge-paid { background: rgba(255,107,107,0.15); color: var(--red); }
+  .badge-daily { background: rgba(255,217,61,0.15); color: var(--yellow); }
+
+  /* ENGLISH */
+  .english-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .english-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+  }
+  .english-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .english-card .subtitle {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 11px; color: var(--muted);
+  }
+  .legend-dot {
+    width: 9px; height: 9px;
+    border-radius: 2px;
+  }
+
+  /* TIPS */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .tip-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .tip-icon { font-size: 22px; margin-bottom: 6px; }
+  .tip-title { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+  .tip-text { font-size: 11px; color: var(--muted); line-height: 1.45; }
+
+  /* HIGHLIGHT */
+  .highlight-box {
+    background: rgba(0,212,170,0.08);
+    border: 1px solid rgba(0,212,170,0.25);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--text);
+    -webkit-text-fill-color: var(--text);
+  }
+  .highlight-box strong {
+    color: var(--accent);
+    -webkit-text-fill-color: var(--accent);
+  }
+  .highlight-box.warning {
+    background: rgba(255,217,61,0.08);
+    border-color: rgba(255,217,61,0.3);
+  }
+  .highlight-box.warning strong {
+    color: var(--yellow);
+    -webkit-text-fill-color: var(--yellow);
+  }
+
+  a { color: inherit; }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  .tag {
+    display: inline-block;
+    font-size: 9px;
+    padding: 2px 7px;
+    border-radius: 16px;
+    margin-left: 5px;
+    vertical-align: middle;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.5px;
+  }
+  .tag-audio { background: rgba(255,107,107,0.15); color: var(--red); }
+  .tag-video { background: rgba(124,92,252,0.15); color: var(--purple); }
+  .tag-read { background: rgba(0,212,170,0.15); color: var(--accent); }
+  .tag-practice { background: rgba(255,217,61,0.15); color: var(--yellow); }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 20px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -26px;
+    top: 4px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  .timeline-month {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .timeline-content {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .timeline-content h4 { font-size: 14px; margin-bottom: 6px; }
+  .timeline-tasks { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-tag">// Мастер-план — Артём — 2026–2027</div>
+  <h1>Дорожная карта<br><span>к США & $3k/мес</span></h1>
+  <p>Полный календарь на 12 месяцев · клик по месяцу → неделе → дню · всё интерактивно</p>
+</div>
+
+<div class="progress-bar">
+  <span class="progress-label">Прогресс всех задач</span>
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <span class="progress-count" id="progressCount">0 / 0 выполнено</span>
+</div>
+
+<div class="nav">
+  <button class="nav-tab active" data-section="calendar">📅 Календарь</button>
+  <button class="nav-tab" data-section="phases">🗺 Фазы</button>
+  <button class="nav-tab" data-section="english">🇺🇸 Английский</button>
+  <button class="nav-tab" data-section="certs">🎓 Сертификаты</button>
+  <button class="nav-tab" data-section="resources">🔗 Ресурсы</button>
+  <button class="nav-tab" data-section="visa">✈️ Виза/GC</button>
+</div>
+
+<div class="main">
+
+<!-- ===== КАЛЕНДАРЬ ===== -->
+<div class="section active" id="calendar">
+  <div class="section-header">
+    <h2>Интерактивный календарь</h2>
+    <p>Год → Месяц → Неделя → День. Содержимое адаптируется под фазу плана.</p>
+  </div>
+
+  <div class="calendar-controls">
+    <div class="view-switcher">
+      <button class="view-btn active" data-view="year">Год</button>
+      <button class="view-btn" data-view="month">Месяц</button>
+      <button class="view-btn" data-view="week">Неделя</button>
+      <button class="view-btn" data-view="day">День</button>
+    </div>
+    <button class="nav-btn" id="navPrev">←</button>
+    <div class="current-period" id="currentPeriod">
+      Апрель 2026 — Март 2027
+      <span class="period-phase">// Весь план</span>
+    </div>
+    <button class="nav-btn" id="navNext">→</button>
+    <button class="today-btn" id="todayBtn">Сегодня</button>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div>Учёба / Nexford</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>Контент / LinkedIn</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--yellow)"></div>Английский</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>Зал</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--red); opacity:0.5"></div>Ключевая дата</div>
+  </div>
+
+  <div id="calendarContent"></div>
+</div>
+
+<!-- ===== ФАЗЫ ===== -->
+<div class="section" id="phases">
+  <div class="section-header">
+    <h2>Фазы плана</h2>
+    <p>Апрель 2026 — Март 2027 · 4 фазы · все треки параллельно</p>
+  </div>
+
+  <div class="phases-grid">
+    <div class="phase-card p1">
+      <div class="phase-num">// Фаза 1</div>
+      <div class="phase-title">Фундамент</div>
+      <div class="phase-dates">Апрель — Июнь 2026</div>
+      <div class="phase-goal">🎯 Появиться онлайн, первые сертификаты, первые $500 с фриланса</div>
+      <ul class="checklist" id="phase1">
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Создать LinkedIn профиль на английском</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Завести Medium аккаунт</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Вступить в AMA (ama.org) — $49/год</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Начать Google Digital Garage</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Установить Anki — 10 слов/день</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Зарегистрироваться на Upwork</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Написать 4 первые статьи на Medium</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Начать курс Nexford (первый модуль)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Получить первый отзыв на Upwork</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>HubSpot Content Marketing сертификат</span></li>
+      </ul>
+    </div>
+
+    <div class="phase-card p2">
+      <div class="phase-num">// Фаза 2</div>
+      <div class="phase-title">Доказательства</div>
+      <div class="phase-dates">Июль — Сентябрь 2026</div>
+      <div class="phase-goal">🎯 Первые кейсы с цифрами, упоминание в медиа, $1.5k/мес</div>
+      <ul class="checklist" id="phase2">
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>1–2 платных клиента из США через Upwork</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>1 pro-bono проект с цифрами</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Зарегистрироваться на HARO</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Первое упоминание в англомедиа</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Подать заявку ментором на Product Hunt</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Сертификат Google Analytics (GA4)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Закрыть 2 курса Nexford</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Достичь $1–1.5k/мес дохода</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>12 статей на Medium</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Английский: тест EF SET</span></li>
+      </ul>
+    </div>
+
+    <div class="phase-card p3">
+      <div class="phase-num">// Фаза 3</div>
+      <div class="phase-title">Масштаб</div>
+      <div class="phase-dates">Октябрь — Декабрь 2026</div>
+      <div class="phase-goal">🎯 $2–3k/мес, DV регистрация, 3 критерия O-1A закрыты</div>
+      <ul class="checklist" id="phase3">
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>🎲 Зарегистрироваться на DV Lottery</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Консультация с O-1A адвокатом</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>3–5 рек. писем от клиентов</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>2–3 упоминания в англомедиа</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>$2–3k/мес стабильно</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>HubSpot Digital Marketing сертификат</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Закрыть 4 курса Nexford (6+ всего)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Раздел "As Seen In" на LinkedIn</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Английский: B2/C1 (EF SET)</span></li>
+      </ul>
+    </div>
+
+    <div class="phase-card p4">
+      <div class="phase-num">// Фаза 4</div>
+      <div class="phase-title">Подача</div>
+      <div class="phase-dates">Январь — Март 2027</div>
+      <div class="phase-goal">🎯 Подать O-1A или дождаться DV результата (май 2027)</div>
+      <ul class="checklist" id="phase4">
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Нанять O-1A адвоката</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Подготовить пакет документов O-1A</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Проверить результаты DV (май 2027)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Финансовый резерв $12–20k</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Закрыть 8+ курсов Nexford</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Английский: Advanced (C1)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>$3k+/мес стабильно</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-header" style="margin-top:8px">
+    <h2>Временная шкала</h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-month">Апрель–Май 2026</div>
+      <div class="timeline-content">
+        <h4>🚀 Старт</h4>
+        <div class="timeline-tasks">
+          LinkedIn + Medium созданы · Google Digital Garage · Anki 10 слов/день · первый курс Nexford · Upwork профиль
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-month">Июнь 2026</div>
+      <div class="timeline-content">
+        <h4>📜 Первые сертификаты</h4>
+        <div class="timeline-tasks">
+          Google Digital Marketing · HubSpot Content Marketing · 4 статьи на Medium · первый платный клиент
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-month">Июль–Август 2026</div>
+      <div class="timeline-content">
+        <h4>📊 Первые кейсы с цифрами</h4>
+        <div class="timeline-tasks">
+          HARO активно · GA4 сертификат · pro-bono с цифрами · $500–1k/мес
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-month">Сентябрь 2026</div>
+      <div class="timeline-content">
+        <h4>📰 Медиа упоминания</h4>
+        <div class="timeline-tasks">
+          Первое упоминание · заявка ментором Product Hunt · EF SET тест
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-month">Октябрь 2026 🔑</div>
+      <div class="timeline-content">
+        <h4>🎲 DV Lottery регистрация</h4>
+        <div class="timeline-tasks">
+          dvprogram.state.gov · паспорт + фото по требованиям · страна рождения Украина · консультация с O-1A адвокатом
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-month">Ноябрь–Декабрь 2026</div>
+      <div class="timeline-content">
+        <h4>💰 Масштаб дохода</h4>
+        <div class="timeline-tasks">
+          $2–3k/мес · 3+ рек. письма · HubSpot Digital Marketing · 6+ курсов Nexford
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-month">Январь–Март 2027</div>
+      <div class="timeline-content">
+        <h4>✈️ Финальная подготовка</h4>
+        <div class="timeline-tasks">
+          Оценка O-1A кейса · пакет документов · $12k+ резерв · 8+ курсов Nexford
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-month">Май 2027 🏆</div>
+      <div class="timeline-content">
+        <h4>🎉 Развязка</h4>
+        <div class="timeline-tasks">
+          Результаты DV Lottery · если выиграл → DS-260 + интервью · если нет → подача O-1A · $3k+/мес доход · Advanced английский
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== АНГЛИЙСКИЙ ===== -->
+<div class="section" id="english">
+  <div class="section-header">
+    <h2>Английский: Intermediate → Advanced</h2>
+    <p>Цель: B1 → C1 за 12 месяцев · ~18 часов/неделю через аудио + активная практика</p>
+  </div>
+
+  <div class="highlight-box">
+    💡 <strong>Твоя стратегия:</strong> У тебя уже выше среднего (B1–B2). До C1 нужно ~600–800 часов практики. С твоим графиком (дорога + зал + суббота) это <strong>реально за 10–12 месяцев</strong> если делать это системно каждый день.
+  </div>
+
+  <div class="english-grid">
+    <div class="english-card">
+      <h3>🎧 Подкасты (дорога + зал)</h3>
+      <div class="subtitle">Ежедневно · 1–2 часа · только English</div>
+      <ul class="checklist">
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><a href="https://marketingschool.io" target="_blank" style="color:var(--accent)">Marketing School</a> — 10 мин/день <span class="tag tag-audio">аудио</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><a href="https://www.npr.org/podcasts/510313/how-i-built-this" target="_blank" style="color:var(--accent)">How I Built This (NPR)</a> <span class="tag tag-audio">аудио</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><a href="https://www.bbc.co.uk/learningenglish" target="_blank" style="color:var(--accent)">BBC Learning English</a> — уровень B2 <span class="tag tag-audio">аудио</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><a href="https://allinpodcast.co" target="_blank" style="color:var(--accent)">All-In Podcast</a> — AI и новости США <span class="tag tag-audio">аудио</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><a href="https://www.mfmpod.com" target="_blank" style="color:var(--accent)">My First Million</a> <span class="tag tag-audio">аудио</span></span></li>
+      </ul>
+    </div>
+
+    <div class="english-card">
+      <h3>📺 Видео и сериалы</h3>
+      <div class="subtitle">Воскресенье · 1.5 часа · субтитры на англ.</div>
+      <ul class="checklist">
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><a href="https://ted.com" target="_blank" style="color:var(--accent)">TED.com</a> — видео + транскрипт <span class="tag tag-video">видео</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Suits — деловой английский <span class="tag tag-video">видео</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Silicon Valley — tech слэнг <span class="tag tag-video">видео</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><a href="https://www.youtube.com/@EnglishwithLucy" target="_blank" style="color:var(--accent)">English with Lucy</a> — грамматика B2–C1 <span class="tag tag-video">видео</span></span></li>
+      </ul>
+    </div>
+
+    <div class="english-card">
+      <h3>📖 Чтение (обед + утро)</h3>
+      <div class="subtitle">15–20 мин/день · без переводчика</div>
+      <ul class="checklist">
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><a href="https://www.morningbrew.com/marketing" target="_blank" style="color:var(--accent)">Marketing Brew</a> <span class="tag tag-read">чтение</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><a href="https://medium.com/tag/digital-marketing" target="_blank" style="color:var(--accent)">Medium — Digital Marketing</a> <span class="tag tag-read">чтение</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><a href="https://blog.hubspot.com" target="_blank" style="color:var(--accent)">HubSpot Blog</a> <span class="tag tag-read">чтение</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><a href="https://techcrunch.com" target="_blank" style="color:var(--accent)">TechCrunch</a> — AI, стартапы США <span class="tag tag-read">чтение</span></span></li>
+      </ul>
+    </div>
+
+    <div class="english-card">
+      <h3>✍️ Активная практика</h3>
+      <div class="subtitle">Каждый день · письмо и говорение</div>
+      <ul class="checklist">
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><a href="https://ankiweb.net" target="_blank" style="color:var(--accent)">Anki</a> — 10 слов/день <span class="tag tag-practice">практика</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>LinkedIn — только на английском <span class="tag tag-practice">практика</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><a href="https://www.efset.org" target="_blank" style="color:var(--accent)">EF SET</a> — тест каждые 3 мес <span class="tag tag-practice">практика</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><a href="https://italki.com" target="_blank" style="color:var(--accent)">iTalki</a> — разговоры с носителем <span class="tag tag-practice">практика</span></span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <h2>Книги (аудио)</h2>
+    <p>Слушай в зале и дороге — деловой English + знания для работы</p>
+  </div>
+  <div class="resource-grid">
+    <a href="https://www.audible.com/pd/This-Is-Marketing-Audiobook/B07GSNM871" target="_blank" class="resource-card">
+      <div class="resource-icon" style="background:rgba(0,212,170,0.1)">📘</div>
+      <div class="resource-info">
+        <div class="resource-name">This Is Marketing</div>
+        <div class="resource-desc">Seth Godin · маркетинг-мышление</div>
+      </div>
+      <span class="resource-badge badge-cert">Аудио</span>
+    </a>
+    <a href="https://www.audible.com/pd/Positioning-Audiobook/B002VA3HT8" target="_blank" class="resource-card">
+      <div class="resource-icon" style="background:rgba(124,92,252,0.1)">📙</div>
+      <div class="resource-info">
+        <div class="resource-name">Positioning</div>
+        <div class="resource-desc">Al Ries & Jack Trout · стратегия бренда</div>
+      </div>
+      <span class="resource-badge badge-cert">Аудио</span>
+    </a>
+    <a href="https://www.audible.com/pd/Building-a-StoryBrand-Audiobook/B072J7K3GS" target="_blank" class="resource-card">
+      <div class="resource-icon" style="background:rgba(255,217,61,0.1)">📕</div>
+      <div class="resource-info">
+        <div class="resource-name">Building a StoryBrand</div>
+        <div class="resource-desc">Donald Miller · сторителлинг</div>
+      </div>
+      <span class="resource-badge badge-cert">Аудио</span>
+    </a>
+    <a href="https://www.audible.com/pd/Influence-Audiobook/B01BMIQDUC" target="_blank" class="resource-card">
+      <div class="resource-icon" style="background:rgba(255,107,107,0.1)">📗</div>
+      <div class="resource-info">
+        <div class="resource-name">Influence</div>
+        <div class="resource-desc">Robert Cialdini · психология убеждения</div>
+      </div>
+      <span class="resource-badge badge-cert">Аудио</span>
+    </a>
+  </div>
+</div>
+
+<!-- ===== СЕРТИФИКАТЫ ===== -->
+<div class="section" id="certs">
+  <div class="section-header">
+    <h2>Сертификаты</h2>
+    <p>Все бесплатные · все работают на LinkedIn и O-1A кейс · порядок важен</p>
+  </div>
+
+  <div class="highlight-box">
+    📌 <strong>Порядок:</strong> Google Digital Marketing → HubSpot Content → GA4 → HubSpot Social Media → HubSpot Digital Marketing. Каждый = строчка в LinkedIn + доказательство для O-1A.
+  </div>
+
+  <div class="resources-section">
+    <div class="resources-title">// Приоритет 1 — Апрель–Июнь</div>
+    <div class="resource-grid">
+      <a href="https://skillshop.google.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(66,133,244,0.15)">🎓</div>
+        <div class="resource-info">
+          <div class="resource-name">Google Digital Marketing</div>
+          <div class="resource-desc">~40 часов · главный сертификат</div>
+        </div>
+        <span class="resource-badge badge-free">Бесплатно</span>
+      </a>
+      <a href="https://academy.hubspot.com/courses/content-marketing" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(255,122,0,0.15)">🎓</div>
+        <div class="resource-info">
+          <div class="resource-name">HubSpot Content Marketing</div>
+          <div class="resource-desc">~6 часов · контент-стратегия</div>
+        </div>
+        <span class="resource-badge badge-free">Бесплатно</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="resources-section">
+    <div class="resources-title">// Приоритет 2 — Июль–Сентябрь</div>
+    <div class="resource-grid">
+      <a href="https://skillshop.google.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(249,171,0,0.15)">📊</div>
+        <div class="resource-info">
+          <div class="resource-name">Google Analytics (GA4)</div>
+          <div class="resource-desc">~5 часов · аналитика</div>
+        </div>
+        <span class="resource-badge badge-free">Бесплатно</span>
+      </a>
+      <a href="https://academy.hubspot.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(255,122,0,0.15)">📱</div>
+        <div class="resource-info">
+          <div class="resource-name">HubSpot Social Media</div>
+          <div class="resource-desc">~4 часа · соц.сети</div>
+        </div>
+        <span class="resource-badge badge-free">Бесплатно</span>
+      </a>
+      <a href="https://skillshop.google.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(66,133,244,0.15)">🎯</div>
+        <div class="resource-info">
+          <div class="resource-name">Google Ads Search</div>
+          <div class="resource-desc">~3 часа · платный трафик</div>
+        </div>
+        <span class="resource-badge badge-free">Бесплатно</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="resources-section">
+    <div class="resources-title">// Приоритет 3 — Октябрь–Декабрь</div>
+    <div class="resource-grid">
+      <a href="https://academy.hubspot.com/courses/digital-marketing" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(255,122,0,0.15)">🚀</div>
+        <div class="resource-info">
+          <div class="resource-name">HubSpot Digital Marketing</div>
+          <div class="resource-desc">Комплексный курс</div>
+        </div>
+        <span class="resource-badge badge-free">Бесплатно</span>
+      </a>
+      <a href="https://learn.deeplearning.ai" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(0,212,170,0.15)">🤖</div>
+        <div class="resource-info">
+          <div class="resource-name">ChatGPT for Marketers</div>
+          <div class="resource-desc">AI + маркетинг, для O-1A кейса</div>
+        </div>
+        <span class="resource-badge badge-free">Бесплатно</span>
+      </a>
+      <a href="https://www.coursera.org/learn/ai-for-everyone" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(0,119,181,0.15)">🧠</div>
+        <div class="resource-info">
+          <div class="resource-name">AI for Everyone (Andrew Ng)</div>
+          <div class="resource-desc">Бесплатный аудит · понимание AI</div>
+        </div>
+        <span class="resource-badge badge-free">Бесплатно</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="resources-section">
+    <div class="resources-title">// Nexford University — курсы по порядку</div>
+    <div class="resource-grid">
+      <a href="https://nexford.edu" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(124,92,252,0.15)">🎓</div>
+        <div class="resource-info">
+          <div class="resource-name">Marketing Fundamentals</div>
+          <div class="resource-desc">Первый курс специализации</div>
+        </div>
+        <span class="resource-badge badge-cert">Nexford</span>
+      </a>
+      <a href="https://nexford.edu" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(124,92,252,0.15)">🎓</div>
+        <div class="resource-info">
+          <div class="resource-name">Digital Marketing Fundamentals</div>
+          <div class="resource-desc">Ландшафт диджитал-маркетинга</div>
+        </div>
+        <span class="resource-badge badge-cert">Nexford</span>
+      </a>
+      <a href="https://nexford.edu" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(124,92,252,0.15)">🎓</div>
+        <div class="resource-info">
+          <div class="resource-name">Content & Social Media</div>
+          <div class="resource-desc">Контент-стратегия и соцсети</div>
+        </div>
+        <span class="resource-badge badge-cert">Nexford</span>
+      </a>
+      <a href="https://nexford.edu" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(124,92,252,0.15)">🎓</div>
+        <div class="resource-info">
+          <div class="resource-name">Marketing Analytics</div>
+          <div class="resource-desc">GA4, KPI, атрибуция</div>
+        </div>
+        <span class="resource-badge badge-cert">Nexford</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== РЕСУРСЫ ===== -->
+<div class="section" id="resources">
+  <div class="section-header">
+    <h2>Все ресурсы</h2>
+    <p>Кликай — переходишь сразу на нужный ресурс</p>
+  </div>
+
+  <div class="resources-section">
+    <div class="resources-title">// Фриланс и доход</div>
+    <div class="resource-grid">
+      <a href="https://upwork.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(20,196,140,0.15)">💼</div>
+        <div class="resource-info">
+          <div class="resource-name">Upwork</div>
+          <div class="resource-desc">Основная платформа для клиентов из США</div>
+        </div>
+        <span class="resource-badge badge-free">Старт</span>
+      </a>
+      <a href="https://fiverr.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(26,182,89,0.15)">🎯</div>
+        <div class="resource-info">
+          <div class="resource-name">Fiverr</div>
+          <div class="resource-desc">Быстрые проекты, пакеты</div>
+        </div>
+        <span class="resource-badge badge-free">Старт</span>
+      </a>
+      <a href="https://www.connectively.us" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(0,212,170,0.15)">📰</div>
+        <div class="resource-info">
+          <div class="resource-name">HARO (Connectively)</div>
+          <div class="resource-desc">Журналисты → упоминание в СМИ → O-1A</div>
+        </div>
+        <span class="resource-badge badge-free">Бесплатно</span>
+      </a>
+      <a href="https://linkedin.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(0,119,181,0.15)">💼</div>
+        <div class="resource-info">
+          <div class="resource-name">LinkedIn</div>
+          <div class="resource-desc">Профиль + посты на англ.</div>
+        </div>
+        <span class="resource-badge badge-free">Ежедневно</span>
+      </a>
+      <a href="https://medium.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(255,255,255,0.05)">✍️</div>
+        <div class="resource-info">
+          <div class="resource-name">Medium</div>
+          <div class="resource-desc">Статьи → O-1A критерий #6</div>
+        </div>
+        <span class="resource-badge badge-free">2х/мес</span>
+      </a>
+      <a href="https://www.producthunt.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(255,88,0,0.15)">🏹</div>
+        <div class="resource-info">
+          <div class="resource-name">Product Hunt</div>
+          <div class="resource-desc">Ментор/судья → O-1A критерий #4</div>
+        </div>
+        <span class="resource-badge badge-free">Фаза 2</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="resources-section">
+    <div class="resources-title">// Иммиграция</div>
+    <div class="resource-grid">
+      <a href="https://dvprogram.state.gov" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(0,60,136,0.3)">🇺🇸</div>
+        <div class="resource-info">
+          <div class="resource-name">DV Lottery — Официальный</div>
+          <div class="resource-desc">Регистрация октябрь 2026</div>
+        </div>
+        <span class="resource-badge badge-cert">Октябрь</span>
+      </a>
+      <a href="https://travel.state.gov/content/travel/en/us-visas/immigrate/diversity-visa-program-entry/diversity-visa-instructions.html" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(0,60,136,0.2)">📋</div>
+        <div class="resource-info">
+          <div class="resource-name">DV Lottery — Инструкции</div>
+          <div class="resource-desc">Требования к фото и документам</div>
+        </div>
+        <span class="resource-badge badge-cert">Читать</span>
+      </a>
+      <a href="https://www.uscis.gov/working-in-the-united-states/temporary-workers/o-1-visa-individuals-with-extraordinary-ability-or-achievement" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(0,212,170,0.1)">⭐</div>
+        <div class="resource-info">
+          <div class="resource-name">O-1A Виза — USCIS</div>
+          <div class="resource-desc">Критерии extraordinary ability</div>
+        </div>
+        <span class="resource-badge badge-cert">Изучить</span>
+      </a>
+      <a href="https://www.ama.org" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(255,107,107,0.1)">🏛️</div>
+        <div class="resource-info">
+          <div class="resource-name">AMA</div>
+          <div class="resource-desc">$49/год студент · O-1A критерий #2</div>
+        </div>
+        <span class="resource-badge badge-paid">$49/год</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="resources-section">
+    <div class="resources-title">// Учёба</div>
+    <div class="resource-grid">
+      <a href="https://skillshop.google.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(66,133,244,0.1)">🎓</div>
+        <div class="resource-info">
+          <div class="resource-name">Google Skillshop</div>
+          <div class="resource-desc">Analytics, Ads, Digital Marketing</div>
+        </div>
+        <span class="resource-badge badge-free">Бесплатно</span>
+      </a>
+      <a href="https://academy.hubspot.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(255,122,0,0.1)">🎓</div>
+        <div class="resource-info">
+          <div class="resource-name">HubSpot Academy</div>
+          <div class="resource-desc">Content, Social Media, Digital</div>
+        </div>
+        <span class="resource-badge badge-free">Бесплатно</span>
+      </a>
+      <a href="https://nexford.edu" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(124,92,252,0.1)">🏫</div>
+        <div class="resource-info">
+          <div class="resource-name">Nexford University</div>
+          <div class="resource-desc">BBA Digital Marketing</div>
+        </div>
+        <span class="resource-badge badge-paid">Платно</span>
+      </a>
+      <a href="https://learn.deeplearning.ai" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(0,212,170,0.1)">🤖</div>
+        <div class="resource-info">
+          <div class="resource-name">DeepLearning.AI</div>
+          <div class="resource-desc">AI для маркетологов</div>
+        </div>
+        <span class="resource-badge badge-free">Бесплатно</span>
+      </a>
+      <a href="https://ankiweb.net" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(255,217,61,0.1)">🧠</div>
+        <div class="resource-info">
+          <div class="resource-name">Anki</div>
+          <div class="resource-desc">Флеш-карты · 10 слов/день</div>
+        </div>
+        <span class="resource-badge badge-free">Ежедневно</span>
+      </a>
+      <a href="https://www.efset.org/free-english-test/" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(0,119,181,0.1)">📊</div>
+        <div class="resource-info">
+          <div class="resource-name">EF SET</div>
+          <div class="resource-desc">Тест каждые 3 мес · B1→C1</div>
+        </div>
+        <span class="resource-badge badge-free">Каждые 3 мес</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ВИЗА/GC ===== -->
+<div class="section" id="visa">
+  <div class="section-header">
+    <h2>Иммиграционный трек</h2>
+    <p>DV Lottery (основной) + O-1A (страховка) · оба пути параллельно</p>
+  </div>
+
+  <div class="phases-grid">
+    <div class="phase-card p1">
+      <div class="phase-num">// Путь 1 — основной</div>
+      <div class="phase-title">DV Lottery</div>
+      <div class="phase-dates">Регистрация: окт 2026 · Результат: май 2027</div>
+      <div class="phase-goal">🎯 Страна рождения: УКРАИНА ✅</div>
+      <ul class="checklist">
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Получить загранпаспорт</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Фото строго по требованиям</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Напоминание: октябрь 2026 — регистрация</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Регистрация: <a href="https://dvprogram.state.gov" target="_blank" style="color:var(--accent)">dvprogram.state.gov</a></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Сохранить номер подтверждения (скрин x3)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Май 2027: проверить результат</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Если выиграл: адвокат + DS-260</span></li>
+      </ul>
+    </div>
+
+    <div class="phase-card p3">
+      <div class="phase-num">// Путь 2 — страховка</div>
+      <div class="phase-title">O-1A Виза</div>
+      <div class="phase-dates">Подготовка: апр–дек 2026 · Подача: янв 2027</div>
+      <div class="phase-goal">🎯 Нужно 3 из 8 критериев USCIS</div>
+      <ul class="checklist">
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Критерий #2: AMA (<a href="https://www.ama.org" target="_blank" style="color:var(--accent)">ama.org</a>)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Критерий #3: HARO упоминания</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Критерий #4: ментор Product Hunt</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Критерий #5: кейсы с ROI</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Критерий #6: 12+ статей на Medium</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Критерий #7: $3k+/мес = высокая зарплата</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Консультация адвоката</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Бюджет: $3–5k (с фазы 2)</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="resources-section" style="margin-top:16px">
+    <div class="resources-title">// Важные даты</div>
+    <div class="resource-grid">
+      <div class="resource-card" style="cursor:default">
+        <div class="resource-icon" style="background:rgba(255,217,61,0.1)">📅</div>
+        <div class="resource-info">
+          <div class="resource-name">Октябрь 2026</div>
+          <div class="resource-desc">Регистрация DV Lottery 2028. Окно ~5 недель.</div>
+        </div>
+        <span class="resource-badge badge-cert">Критично</span>
+      </div>
+      <div class="resource-card" style="cursor:default">
+        <div class="resource-icon" style="background:rgba(0,212,170,0.1)">📅</div>
+        <div class="resource-info">
+          <div class="resource-name">Май 2027</div>
+          <div class="resource-desc">Результаты DV — только dvprogram.state.gov</div>
+        </div>
+        <span class="resource-badge badge-free">Проверить</span>
+      </div>
+      <div class="resource-card" style="cursor:default">
+        <div class="resource-icon" style="background:rgba(124,92,252,0.1)">📅</div>
+        <div class="resource-info">
+          <div class="resource-name">Январь 2027</div>
+          <div class="resource-desc">Подача O-1A петиции</div>
+        </div>
+        <span class="resource-badge badge-cert">Планово</span>
+      </div>
+      <div class="resource-card" style="cursor:default">
+        <div class="resource-icon" style="background:rgba(255,107,107,0.1)">⚠️</div>
+        <div class="resource-info">
+          <div class="resource-name">30 сентября 2027</div>
+          <div class="resource-desc">Дедлайн DV-2027 — все документы</div>
+        </div>
+        <span class="resource-badge badge-paid">Дедлайн</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+// ============================================================
+// ДАННЫЕ ПЛАНА
+// ============================================================
+
+const MONTHS_RU = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+const WEEKDAYS_RU_SHORT = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+const WEEKDAYS_RU_LONG = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];
+
+// План периода: апрель 2026 → март 2027 (12 месяцев)
+const PLAN_START = new Date(2026, 3, 1); // 1 апреля 2026
+const PLAN_END = new Date(2027, 2, 31);  // 31 марта 2027
+
+// Фазы: [startMonth(0-11), startYear, endMonth, endYear, phaseId, title, focus]
+const PHASES = [
+  { id: 'p1', title: 'Фундамент',    start: {y:2026, m:3}, end: {y:2026, m:5},  accent: 'accent', focus: 'Создать онлайн-присутствие, первые сертификаты' },
+  { id: 'p2', title: 'Доказательства', start: {y:2026, m:6}, end: {y:2026, m:8},  accent: 'yellow', focus: 'Первые кейсы с цифрами, $1.5k/мес, HARO' },
+  { id: 'p3', title: 'Масштаб',      start: {y:2026, m:9}, end: {y:2026, m:11}, accent: 'purple', focus: 'DV регистрация, $2–3k/мес, O-1A консультация' },
+  { id: 'p4', title: 'Подача',       start: {y:2027, m:0}, end: {y:2027, m:2},  accent: 'red',    focus: 'O-1A пакет, подготовка к DV, $3k+/мес' }
+];
+
+function getPhaseForDate(year, month) {
+  for (const ph of PHASES) {
+    const startAbs = ph.start.y * 12 + ph.start.m;
+    const endAbs = ph.end.y * 12 + ph.end.m;
+    const curAbs = year * 12 + month;
+    if (curAbs >= startAbs && curAbs <= endAbs) return ph;
+  }
+  return null;
+}
+
+// Данные по месяцам: фокус, ключевые задачи, ключевые даты
+const MONTH_DATA = {
+  '2026-3': { // Апрель 2026
+    focus: 'СТАРТ. LinkedIn + Medium профили. Начало Google Digital Marketing.',
+    keyTasks: [
+      'Создать LinkedIn профиль полностью на английском (фото, headline, about, 3 опыта)',
+      'Создать Medium аккаунт, выбрать нишу (AI + marketing)',
+      'Начать курс Google Digital Marketing (skillshop.google.com)',
+      'Установить Anki, настроить деку на 10 слов/день',
+      'Зарегистрироваться на Upwork, заполнить профиль',
+      'Начать первый курс Nexford'
+    ],
+    keyDates: []
+  },
+  '2026-4': { // Май 2026
+    focus: 'Первые статьи на Medium. Первые отклики на Upwork.',
+    keyTasks: [
+      'Написать 2 статьи на Medium (800–1200 слов)',
+      'Отправить 20+ откликов на Upwork',
+      'Продолжать Google Digital Marketing',
+      'Вступить в AMA (ama.org, $49/год)',
+      'Ежедневно LinkedIn посты на английском'
+    ],
+    keyDates: []
+  },
+  '2026-5': { // Июнь 2026
+    focus: 'Google Digital Marketing получен. HubSpot Content Marketing.',
+    keyTasks: [
+      'Получить сертификат Google Digital Marketing',
+      'Пройти HubSpot Content Marketing',
+      'Первый платный клиент на Upwork',
+      '4 статьи на Medium опубликованы (суммарно)',
+      'EF SET тест №1 — baseline'
+    ],
+    keyDates: []
+  },
+  '2026-6': { // Июль 2026
+    focus: 'ФАЗА 2. HARO регистрация. GA4 сертификат.',
+    keyTasks: [
+      'Зарегистрироваться на HARO (connectively.us)',
+      'Отвечать на 3–5 HARO запросов в день',
+      'Начать GA4 сертификат',
+      'Закрыть первый курс Nexford',
+      'Pro-bono проект — найти и начать (бесплатно, но с правом показать цифры)'
+    ],
+    keyDates: []
+  },
+  '2026-7': { // Август 2026
+    focus: 'GA4 получен. 2-й клиент на Upwork. Первое упоминание в медиа.',
+    keyTasks: [
+      'Получить сертификат GA4',
+      '2-й платный клиент на Upwork',
+      'Первое упоминание в англомедиа через HARO',
+      'Pro-bono проект с цифрами завершён (скриншоты аналитики)',
+      '8 статей на Medium суммарно'
+    ],
+    keyDates: []
+  },
+  '2026-8': { // Сентябрь 2026
+    focus: 'Заявка ментором Product Hunt. $1.5k/мес достигнут.',
+    keyTasks: [
+      'Подать заявку ментором на Product Hunt',
+      'Закрыть 2-й курс Nexford',
+      'HubSpot Social Media сертификат',
+      'Достичь $1–1.5k/мес дохода стабильно',
+      'EF SET тест №2 — проверить прогресс'
+    ],
+    keyDates: []
+  },
+  '2026-9': { // Октябрь 2026 — КЛЮЧЕВОЙ
+    focus: '🔑 DV LOTTERY. Регистрация. Консультация с O-1A адвокатом.',
+    keyTasks: [
+      '🎲 Подготовить документы для DV (паспорт, фото 2x2")',
+      '🎲 Зарегистрироваться на dvprogram.state.gov',
+      '🎲 Сохранить номер подтверждения (3+ резервных копии)',
+      'Консультация с O-1A адвокатом (~$200–300)',
+      'Начать Google Ads сертификат'
+    ],
+    keyDates: [
+      { day: 7, label: 'DV старт', desc: 'Ожидаемое открытие регистрации DV Lottery 2028' },
+      { day: 15, label: 'DV подача', desc: 'Целевая дата подачи заявки — не откладывай' }
+    ]
+  },
+  '2026-10': { // Ноябрь 2026
+    focus: '3 рек. письма от клиентов. $2k/мес.',
+    keyTasks: [
+      'Попросить 3 рекомендательных письма от текущих клиентов',
+      '3-й/4-й платный клиент на Upwork',
+      'Достичь $2k/мес',
+      'Начать HubSpot Digital Marketing',
+      'Закрыть 3-й курс Nexford'
+    ],
+    keyDates: []
+  },
+  '2026-11': { // Декабрь 2026
+    focus: 'Итоги года. $2.5–3k/мес. Оценка O-1A кейса.',
+    keyTasks: [
+      'HubSpot Digital Marketing сертификат',
+      '2-е упоминание в англомедиа',
+      'Достичь $2.5–3k/мес',
+      'Собрать первый черновик O-1A пакета',
+      'Повторная консультация O-1A адвоката: готов ли кейс?',
+      'EF SET тест №3 — цель B2+'
+    ],
+    keyDates: []
+  },
+  '2027-0': { // Январь 2027
+    focus: 'ФАЗА 4. Подготовка O-1A пакета.',
+    keyTasks: [
+      'Нанять O-1A адвоката (если кейс готов)',
+      'Собрать доказательства по 3+ критериям O-1A',
+      'Перевести документы на английский',
+      'Финансовый резерв: $8k+ накоплено',
+      'Закрыть 6-й курс Nexford'
+    ],
+    keyDates: []
+  },
+  '2027-1': { // Февраль 2027
+    focus: 'Финализация O-1A. Апелляция или подача.',
+    keyTasks: [
+      'Финализировать O-1A петицию с адвокатом',
+      'Собрать 5+ рекомендательных писем для O-1A',
+      'Подать O-1A (если готов)',
+      '$3k+/мес стабильно',
+      'Финансовый резерв: $10k+'
+    ],
+    keyDates: []
+  },
+  '2027-2': { // Март 2027
+    focus: 'Ожидание результатов. Подготовка к маю.',
+    keyTasks: [
+      'Получить решение по O-1A (если подавал)',
+      'Подготовить все документы на случай DV победы',
+      'Изучить процесс DS-260 и интервью в посольстве',
+      'Финансовый резерв: $12k+',
+      'Закрыть 8-й курс Nexford',
+      'EF SET тест №4 — цель C1'
+    ],
+    keyDates: []
+  }
+};
+
+// Дневной распорядок (тот же что был) но теперь адаптируется под фазу
+function getDayBlocks(weekday, phase) {
+  // weekday: 0=Пн, 6=Вс
+  const commutePodcasts = {
+    0: '🎧 Marketing School (англ.) — 1 эпизод',
+    1: '🎧 All-In Podcast — AI и бизнес',
+    2: '🎧 My First Million — идеи',
+    3: '🎧 Huberman Lab — наука на англ.',
+    4: '🎧 The Marketing Millennials',
+    5: '', // Суббота
+    6: ''  // Воскресенье
+  };
+
+  // Контент вечером — зависит от фазы
+  const eveningContent = {
+    'p1': {
+      0: { activity: 'LinkedIn / Medium', detail: 'Пост на LinkedIn (15 мин) или 1 абзац статьи Medium' },
+      2: { activity: 'Upwork поиск', detail: 'Откликаться на заявки (20+ в неделю), писать cover letters' },
+      4: { activity: 'Итог недели', detail: 'Проверить чекбоксы, план на следующую неделю' }
+    },
+    'p2': {
+      0: { activity: 'LinkedIn пост', detail: 'Пост с кейсом или инсайтом на англ.' },
+      2: { activity: 'HARO ответы', detail: 'Ответить на 2–3 запроса журналистов на connectively.us' },
+      4: { activity: 'Pro-bono работа', detail: 'Час работы на бесплатном проекте — собираешь кейс' }
+    },
+    'p3': {
+      0: { activity: 'LinkedIn + клиент', detail: 'Пост + работа с текущими клиентами' },
+      2: { activity: 'O-1A документы', detail: 'Собирать портфолио, рек. письма, медиа упоминания' },
+      4: { activity: 'Masterclass Nexford', detail: 'Продвинутые модули, подготовка к сдаче курсов' }
+    },
+    'p4': {
+      0: { activity: 'LinkedIn + O-1A', detail: 'Пост + работа с адвокатом над O-1A петицией' },
+      2: { activity: 'O-1A финализация', detail: 'Перевод документов, сбор рек. писем, правки' },
+      4: { activity: 'Итог + планирование', detail: 'Проверить DV/O-1A статус, финансовый план' }
+    }
+  };
+
+  const studyEvening = {
+    'p1': '→ skillshop.google.com · Google Digital Marketing модуль',
+    'p2': '→ HARO ответы + GA4 курс',
+    'p3': '→ HubSpot Digital Marketing + Nexford',
+    'p4': '→ Nexford финальные курсы + O-1A материалы'
+  };
+
+  const studyThursday = {
+    'p1': '→ academy.hubspot.com · Content Marketing сертификат',
+    'p2': '→ GA4 финализация · academy.hubspot.com Social Media',
+    'p3': '→ HubSpot Digital Marketing · DeepLearning.AI',
+    'p4': '→ AI for Everyone · финальные Nexford курсы'
+  };
+
+  const phaseId = phase ? phase.id : 'p1';
+  const content = eveningContent[phaseId] || eveningContent['p1'];
+
+  // ПОНЕДЕЛЬНИК
+  if (weekday === 0) return [
+    { type: 'commute', time: '07:00–08:00', activity: 'Подъём + дорога', detail: commutePodcasts[0] },
+    { type: 'work', time: '09:00–18:00', activity: 'Работа', detail: 'Обед 13:00–14:00 → 1 статья на англ. (HubSpot/Medium)' },
+    { type: 'commute', time: '18:00–19:00', activity: 'Дорога домой', detail: '🎧 Entrepreneurs on Fire или How I Built This' },
+    { type: 'gym', time: '19:00–21:00', activity: '💪 Зал', detail: '🎧 TED Talks на английском' },
+    { type: 'freelance', time: '21:30–22:30', activity: content[0].activity, detail: content[0].detail }
+  ];
+  // ВТОРНИК
+  if (weekday === 1) return [
+    { type: 'commute', time: '07:00–08:00', activity: 'Подъём + дорога', detail: commutePodcasts[1] },
+    { type: 'work', time: '09:00–18:00', activity: 'Работа', detail: 'Обед → Nexford модуль (30 мин)' },
+    { type: 'commute', time: '18:00–19:30', activity: 'Дорога + подготовка', detail: '🎧 Anki повтор слов' },
+    { type: 'english', time: '19:30–21:00', activity: '🇺🇸 Курсы английского', detail: 'Активное участие, новые слова' },
+    { type: 'study', time: '21:15–22:00', activity: 'Google Skillshop', detail: studyEvening[phaseId] || studyEvening['p1'] }
+  ];
+  // СРЕДА
+  if (weekday === 2) return [
+    { type: 'commute', time: '07:00–08:00', activity: 'Подъём + дорога', detail: commutePodcasts[2] },
+    { type: 'work', time: '09:00–18:00', activity: 'Работа', detail: 'Обед → Nexford тест/задание' },
+    { type: 'commute', time: '18:00–19:00', activity: 'Дорога домой', detail: '🎧 This Is Marketing — Seth Godin' },
+    { type: 'gym', time: '19:00–21:00', activity: '💪 Зал', detail: '🎧 BBC Learning English или TED' },
+    { type: 'content', time: '21:30–22:30', activity: content[2].activity, detail: content[2].detail }
+  ];
+  // ЧЕТВЕРГ
+  if (weekday === 3) return [
+    { type: 'commute', time: '07:00–08:00', activity: 'Подъём + дорога', detail: commutePodcasts[3] },
+    { type: 'work', time: '09:00–18:00', activity: 'Работа', detail: 'Обед → HARO 15 мин проверить запросы' },
+    { type: 'commute', time: '18:00–19:30', activity: 'Дорога + Anki', detail: '🎧 Слова + AI подкаст' },
+    { type: 'english', time: '19:30–21:00', activity: '🇺🇸 Курсы английского', detail: 'Разбор сложных тем' },
+    { type: 'study', time: '21:15–22:00', activity: 'HubSpot Academy', detail: studyThursday[phaseId] || studyThursday['p1'] }
+  ];
+  // ПЯТНИЦА
+  if (weekday === 4) return [
+    { type: 'commute', time: '07:00–08:00', activity: 'Подъём + дорога', detail: commutePodcasts[4] },
+    { type: 'work', time: '09:00–18:00', activity: 'Работа', detail: 'Обед → LinkedIn пост на англ. (15 мин)' },
+    { type: 'commute', time: '18:00–19:00', activity: 'Дорога домой', detail: '🎧 Аудиокнига или AI подкаст' },
+    { type: 'gym', time: '19:00–21:00', activity: '💪 Зал', detail: '🎧 Nexford лекция или TED' },
+    { type: 'freelance', time: '21:30–22:30', activity: content[4].activity, detail: content[4].detail }
+  ];
+  // СУББОТА — выходной
+  if (weekday === 5) {
+    const satMain = {
+      'p1': { title: '✍️ Первая статья Medium', detail: 'Пиши 800–1200 слов на англ. про AI в маркетинге' },
+      'p2': { title: '✍️ Кейс-стади', detail: 'Статья на Medium о pro-bono проекте с цифрами' },
+      'p3': { title: '✍️ Thought leadership', detail: 'Статья с твоей экспертизой, для O-1A критерия #6' },
+      'p4': { title: '✍️ Финальные материалы', detail: 'Статьи/контент для O-1A досье' }
+    };
+    const sat = satMain[phaseId] || satMain['p1'];
+    return [
+      { type: 'free', time: '08:00–10:00', activity: 'Утро свободно', detail: 'Отдых, завтрак' },
+      { type: 'study', time: '10:00–12:30', activity: '📚 Глубокая учёба', detail: 'Nexford: полный модуль + задание + тест' },
+      { type: 'content', time: '13:30–16:00', activity: sat.title, detail: sat.detail },
+      { type: 'freelance', time: '16:00–18:00', activity: '💼 Фриланс / клиенты', detail: 'Upwork: отклики, коммуникация, кейсы' },
+      { type: 'free', time: '18:00+', activity: 'Свободное время', detail: 'Отдых от экранов' }
+    ];
+  }
+  // ВОСКРЕСЕНЬЕ
+  const sunPlan = {
+    'p1': 'Google Skillshop или HubSpot — 1–2 модуля',
+    'p2': 'GA4 курс + HARO ответы накопившиеся',
+    'p3': 'HubSpot Digital Marketing + подготовка DV (если октябрь)',
+    'p4': 'O-1A документы + финальные Nexford курсы'
+  };
+  return [
+    { type: 'study', time: '09:00–11:00', activity: '📚 Nexford / Сертификат', detail: sunPlan[phaseId] || sunPlan['p1'] },
+    { type: 'english', time: '11:00–12:30', activity: '🇺🇸 Английский', detail: '1 сериал/фильм на англ. с англ. субтитрами' },
+    { type: 'content', time: '13:30–15:30', activity: 'LinkedIn контент', detail: 'Подготовить 3 поста на следующую неделю' },
+    { type: 'gym', time: '17:00–19:30', activity: '💪 Зал', detail: '🎧 Мотивационный контент на англ.' },
+    { type: 'study', time: '20:00–21:00', activity: 'Планирование недели', detail: 'Цели на неделю, проверка DV статуса (если октябрь+)' }
+  ];
+}
+
+// ============================================================
+// СОСТОЯНИЕ И НАВИГАЦИЯ
+// ============================================================
+
+let currentView = 'year'; // year | month | week | day
+let currentDate = new Date(2026, 3, 1); // стартуем с апреля 2026
+const today = new Date();
+
+function clampDate(d) {
+  if (d < PLAN_START) return new Date(PLAN_START);
+  if (d > PLAN_END) return new Date(PLAN_END);
+  return d;
+}
+
+function isInPlan(d) {
+  return d >= PLAN_START && d <= PLAN_END;
+}
+
+function formatPeriodLabel() {
+  if (currentView === 'year') {
+    return { main: 'Апрель 2026 — Март 2027', sub: '// Весь план', phaseId: null };
+  }
+  if (currentView === 'month') {
+    const ph = getPhaseForDate(currentDate.getFullYear(), currentDate.getMonth());
+    return {
+      main: `${MONTHS_RU[currentDate.getMonth()]} ${currentDate.getFullYear()}`,
+      sub: ph ? `// Фаза: ${ph.title}` : '//',
+      phaseId: ph ? ph.id : null
+    };
+  }
+  if (currentView === 'week') {
+    const mon = getMondayOf(currentDate);
+    const sun = new Date(mon);
+    sun.setDate(sun.getDate() + 6);
+    const ph = getPhaseForDate(mon.getFullYear(), mon.getMonth());
+    return {
+      main: `${mon.getDate()} ${MONTHS_RU[mon.getMonth()].slice(0,3)} — ${sun.getDate()} ${MONTHS_RU[sun.getMonth()].slice(0,3)} ${sun.getFullYear()}`,
+      sub: ph ? `// Фаза: ${ph.title}` : '//',
+      phaseId: ph ? ph.id : null
+    };
+  }
+  // day
+  const ph = getPhaseForDate(currentDate.getFullYear(), currentDate.getMonth());
+  return {
+    main: `${WEEKDAYS_RU_LONG[(currentDate.getDay()+6)%7]}, ${currentDate.getDate()} ${MONTHS_RU[currentDate.getMonth()]}`,
+    sub: ph ? `// Фаза: ${ph.title}` : '//',
+    phaseId: ph ? ph.id : null
+  };
+}
+
+function getMondayOf(date) {
+  const d = new Date(date);
+  const day = d.getDay(); // 0=Вс, 1=Пн
+  const diff = day === 0 ? -6 : 1 - day;
+  d.setDate(d.getDate() + diff);
+  d.setHours(0,0,0,0);
+  return d;
+}
+
+function sameDay(a, b) {
+  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+}
+
+function updatePeriodLabel() {
+  const label = formatPeriodLabel();
+  const el = document.getElementById('currentPeriod');
+  const phaseClass = label.phaseId ? ` ${label.phaseId}` : '';
+  el.innerHTML = `${label.main}<span class="period-phase${phaseClass}">${label.sub}</span>`;
+}
+
+// ============================================================
+// РЕНДЕРИНГ
+// ============================================================
+
+function renderYear() {
+  const container = document.getElementById('calendarContent');
+  let html = '<div class="year-grid">';
+  const months = [
+    {y:2026, m:3}, {y:2026, m:4}, {y:2026, m:5}, {y:2026, m:6},
+    {y:2026, m:7}, {y:2026, m:8}, {y:2026, m:9}, {y:2026, m:10},
+    {y:2026, m:11}, {y:2027, m:0}, {y:2027, m:1}, {y:2027, m:2}
+  ];
+  months.forEach((mm, idx) => {
+    const ph = getPhaseForDate(mm.y, mm.m);
+    const key = `${mm.y}-${mm.m}`;
+    const data = MONTH_DATA[key] || {};
+    const isKey = mm.y === 2026 && mm.m === 9; // октябрь 2026
+    const hasKeyDates = data.keyDates && data.keyDates.length > 0;
+    html += `
+      <div class="month-tile ${ph ? ph.id : ''} ${isKey ? 'key-month' : ''}" data-year="${mm.y}" data-month="${mm.m}">
+        <div class="month-num">M${idx+1} · ${ph ? ph.title : ''}</div>
+        <div class="month-name">${MONTHS_RU[mm.m]} ${mm.y}</div>
+        <div class="month-focus">${data.focus || ''}</div>
+        <div class="month-stats">
+          ${hasKeyDates ? '<span class="month-stat key">★ Ключевой</span>' : ''}
+          <span class="month-stat">${data.keyTasks ? data.keyTasks.length : 0} задач</span>
+        </div>
+      </div>`;
+  });
+  html += '</div>';
+  container.innerHTML = html;
+
+  container.querySelectorAll('.month-tile').forEach(tile => {
+    tile.addEventListener('click', () => {
+      currentDate = new Date(parseInt(tile.dataset.year), parseInt(tile.dataset.month), 1);
+      currentView = 'month';
+      document.querySelectorAll('.view-btn').forEach(b => b.classList.toggle('active', b.dataset.view === 'month'));
+      render();
+    });
+  });
+}
+
+function renderMonth() {
+  const container = document.getElementById('calendarContent');
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth();
+  const key = `${year}-${month}`;
+  const data = MONTH_DATA[key] || {};
+  const ph = getPhaseForDate(year, month);
+
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  const firstWeekday = (firstDay.getDay() + 6) % 7; // 0=Пн
+  const daysInMonth = lastDay.getDate();
+
+  let html = '';
+
+  // Баннер фокуса месяца
+  if (data.focus) {
+    html += `<div class="highlight-box ${ph && ph.id === 'p3' && month === 9 ? 'warning' : ''}">
+      <strong>Фокус месяца:</strong> ${data.focus}
+    </div>`;
+  }
+
+  html += '<div class="month-calendar"><div class="weekdays-header">';
+  WEEKDAYS_RU_SHORT.forEach((w, i) => {
+    html += `<div class="weekday ${i >= 5 ? 'weekend' : ''}">${w}</div>`;
+  });
+  html += '</div><div class="days-grid">';
+
+  // Пустые ячейки до первого дня
+  for (let i = 0; i < firstWeekday; i++) {
+    html += '<div class="day-cell empty"></div>';
+  }
+
+  // Дни месяца
+  for (let d = 1; d <= daysInMonth; d++) {
+    const date = new Date(year, month, d);
+    const weekday = (date.getDay() + 6) % 7;
+    const isWeekend = weekday >= 5;
+    const isToday = sameDay(date, today);
+    const keyDate = data.keyDates ? data.keyDates.find(kd => kd.day === d) : null;
+    const isKey = !!keyDate;
+
+    const dots = [];
+    if ([0,2,4,6].includes(weekday)) dots.push('<span class="dot gym" title="Зал"></span>');
+    if ([1,3].includes(weekday)) dots.push('<span class="dot english" title="Английский"></span>');
+    if ([0,1,2,3,4,5,6].includes(weekday)) dots.push('<span class="dot study" title="Учёба"></span>');
+    if ([0,2,4,5,6].includes(weekday)) dots.push('<span class="dot content" title="Контент"></span>');
+
+    html += `<div class="day-cell ${isWeekend ? 'weekend' : ''} ${isToday ? 'today' : ''} ${isKey ? 'key-day' : ''}" data-day="${d}">
+      <div class="day-num">${d}</div>
+      <div class="day-dot">${dots.slice(0,3).join('')}</div>
+      ${isKey ? `<div class="day-tag">${keyDate.label}</div>` : ''}
+    </div>`;
+  }
+
+  html += '</div></div>';
+
+  // Задачи месяца
+  if (data.keyTasks && data.keyTasks.length > 0) {
+    html += `<div style="margin-top:20px" class="phase-card p1">
+      <div class="phase-num">// Задачи месяца</div>
+      <div class="phase-title">Что нужно сделать в ${MONTHS_RU[month]}</div>
+      <ul class="checklist" data-month-key="${key}">`;
+    data.keyTasks.forEach((t, i) => {
+      html += `<li onclick="toggleCheck(this)" data-task-id="month-${key}-${i}"><div class="check-box"></div><span>${t}</span></li>`;
+    });
+    html += '</ul></div>';
+  }
+
+  container.innerHTML = html;
+
+  container.querySelectorAll('.day-cell:not(.empty)').forEach(cell => {
+    cell.addEventListener('click', () => {
+      const d = parseInt(cell.dataset.day);
+      currentDate = new Date(year, month, d);
+      currentView = 'week';
+      document.querySelectorAll('.view-btn').forEach(b => b.classList.toggle('active', b.dataset.view === 'week'));
+      render();
+    });
+  });
+
+  loadProgress();
+}
+
+function renderWeek() {
+  const container = document.getElementById('calendarContent');
+  const monday = getMondayOf(currentDate);
+  const ph = getPhaseForDate(monday.getFullYear(), monday.getMonth());
+
+  let html = '<div class="week-grid-v2">';
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(monday);
+    d.setDate(d.getDate() + i);
+    const isWeekend = i >= 5;
+    const isToday = sameDay(d, today);
+    const dayPh = getPhaseForDate(d.getFullYear(), d.getMonth());
+    const blocks = getDayBlocks(i, dayPh);
+
+    html += `<div class="day-card ${isWeekend ? 'weekend' : ''} ${isToday ? 'today' : ''}" data-date="${d.toISOString()}">
+      <div class="day-header">
+        <div class="day-name">${isWeekend && i === 5 ? 'выходной' : 'день ' + (i+1)}</div>
+        <div class="day-label">${WEEKDAYS_RU_LONG[i]}, ${d.getDate()} ${MONTHS_RU[d.getMonth()].slice(0,3)}</div>
+      </div>
+      <div class="day-body">`;
+    blocks.forEach(b => {
+      html += `<div class="time-block block-${b.type}">
+        <div class="time">${b.time}</div>
+        <div class="activity">${b.activity}</div>
+        ${b.detail ? `<div class="detail">${b.detail}</div>` : ''}
+      </div>`;
+    });
+    html += '</div></div>';
+  }
+  html += '</div>';
+
+  html += `<div class="highlight-box" style="margin-top:20px">
+    🎧 <strong>Правило дороги и зала:</strong> Всё время в транспорте (≈2 ч/день) и в зале (пн/ср/пт/вс ≈8 ч/нед) = <strong>~18 часов/неделю</strong> на английский через аудио. За год это 900+ часов фонового обучения.
+  </div>`;
+
+  container.innerHTML = html;
+
+  container.querySelectorAll('.day-card').forEach(card => {
+    card.addEventListener('click', () => {
+      currentDate = new Date(card.dataset.date);
+      currentView = 'day';
+      document.querySelectorAll('.view-btn').forEach(b => b.classList.toggle('active', b.dataset.view === 'day'));
+      render();
+    });
+  });
+}
+
+function renderDay() {
+  const container = document.getElementById('calendarContent');
+  const weekday = (currentDate.getDay() + 6) % 7;
+  const ph = getPhaseForDate(currentDate.getFullYear(), currentDate.getMonth());
+  const blocks = getDayBlocks(weekday, ph);
+  const key = `${currentDate.getFullYear()}-${currentDate.getMonth()}`;
+  const monthData = MONTH_DATA[key] || {};
+  const keyDate = monthData.keyDates ? monthData.keyDates.find(kd => kd.day === currentDate.getDate()) : null;
+
+  let html = `<button class="close-day-btn" id="backToWeek">← Неделя</button>`;
+
+  // Hero
+  html += `<div class="day-view-hero ${keyDate ? 'key-day' : ''}">
+    <div class="day-view-focus">${ph ? `Фаза: ${ph.title}` : ''} · ${MONTHS_RU[currentDate.getMonth()]} ${currentDate.getFullYear()}</div>
+    <div class="day-view-title">${WEEKDAYS_RU_LONG[weekday]}, ${currentDate.getDate()} ${MONTHS_RU[currentDate.getMonth()]}</div>
+    <div class="day-view-subtitle">${ph ? ph.focus : ''}</div>
+    ${keyDate ? `<div class="day-view-desc" style="margin-top:12px;padding:12px;background:rgba(255,107,107,0.08);border-radius:8px;border:1px solid rgba(255,107,107,0.3)"><strong style="color:var(--red)">🔑 ${keyDate.label}:</strong> ${keyDate.desc}</div>` : ''}
+  </div>`;
+
+  html += '<div class="day-view">';
+
+  // Левая колонка — расписание
+  html += `<div class="day-view-card">
+    <h3>⏰ Расписание дня</h3>`;
+  blocks.forEach(b => {
+    html += `<div class="time-block-full block-${b.type}">
+      <div class="time">${b.time}</div>
+      <div class="activity">${b.activity}</div>
+      ${b.detail ? `<div class="detail">${b.detail}</div>` : ''}
+    </div>`;
+  });
+  html += '</div>';
+
+  // Правая колонка — задачи и фокус
+  html += `<div>
+    <div class="day-view-card" style="margin-bottom:16px">
+      <h3>🎯 Задачи недели (из фокуса месяца)</h3>
+      <ul class="day-tasks" data-task-key="week-${currentDate.getFullYear()}-${currentDate.getMonth()}">`;
+  const weekTasks = monthData.keyTasks ? monthData.keyTasks.slice(0, 5) : [];
+  weekTasks.forEach((t, i) => {
+    html += `<li onclick="toggleCheck(this)" data-task-id="daytask-${key}-${i}"><div class="check-box"></div><span>${t}</span></li>`;
+  });
+  if (weekTasks.length === 0) {
+    html += '<li style="cursor:default; opacity:0.5">Нет задач месяца</li>';
+  }
+  html += `</ul>
+    </div>
+
+    <div class="day-view-card">
+      <h3>💡 Правило дня</h3>
+      <div style="font-size:13px;line-height:1.6;color:var(--text)">
+        ${getDayTip(weekday, ph)}
+      </div>
+    </div>
+  </div>`;
+
+  html += '</div>';
+
+  container.innerHTML = html;
+
+  document.getElementById('backToWeek').addEventListener('click', () => {
+    currentView = 'week';
+    document.querySelectorAll('.view-btn').forEach(b => b.classList.toggle('active', b.dataset.view === 'week'));
+    render();
+  });
+
+  loadProgress();
+}
+
+function getDayTip(weekday, phase) {
+  const tips = {
+    0: 'Начало недели — настрой на 5 продуктивных дней. В зале слушай TED Talks. Вечер — LinkedIn пост (обязательно на английском).',
+    1: 'Английский — сегодня занятие. Запиши 10 новых слов в Anki после урока.',
+    2: 'Середина недели. Вечером — Upwork/HARO/O-1A (в зависимости от фазы). Не пропускай.',
+    3: 'Ещё одно занятие английским. Через HubSpot Academy продолжай сертификаты.',
+    4: 'Пятница — итог недели. Проверь, что сделано: статьи, клиенты, учёба. План на следующую неделю.',
+    5: '⭐ <strong>Суббота — главный день.</strong> Это твой единственный полный выходной. Используй для глубокой работы: 1 полная статья Medium + Nexford модуль + фриланс. Не откладывай.',
+    6: 'Воскресенье — восстановление и планирование. Готовь контент на неделю вперёд, смотри сериалы на английском.'
+  };
+  let tip = tips[weekday] || '';
+  // Добавить фазу-специфичную подсказку
+  if (phase) {
+    const phaseTips = {
+      'p1': '<br><br><em style="color:var(--accent)">Фаза 1:</em> Сейчас твой фокус — быть видимым. Каждый пост, статья, сертификат = строка в LinkedIn/O-1A. Количество > качество в первые месяцы.',
+      'p2': '<br><br><em style="color:var(--yellow)">Фаза 2:</em> Ищи цифры. Каждый клиент = кейс. Каждый HARO ответ = шанс попасть в СМИ. Фиксируй все результаты.',
+      'p3': '<br><br><em style="color:var(--purple)">Фаза 3:</em> Октябрь — регистрация DV. Не пропусти окно. Параллельно — O-1A консультация и доходы $2–3k/мес.',
+      'p4': '<br><br><em style="color:var(--red)">Фаза 4:</em> Финал. Либо подача O-1A, либо ожидание DV (май 2027). Держи резерв $12k+, английский C1.'
+    };
+    tip += phaseTips[phase.id] || '';
+  }
+  return tip;
+}
+
+// ============================================================
+// MAIN RENDER
+// ============================================================
+
+function render() {
+  updatePeriodLabel();
+  if (currentView === 'year') renderYear();
+  else if (currentView === 'month') renderMonth();
+  else if (currentView === 'week') renderWeek();
+  else if (currentView === 'day') renderDay();
+}
+
+// ============================================================
+// НАВИГАЦИЯ
+// ============================================================
+
+document.querySelectorAll('.view-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentView = btn.dataset.view;
+    if (currentView === 'year') {
+      currentDate = new Date(PLAN_START);
+    }
+    render();
+  });
+});
+
+document.getElementById('navPrev').addEventListener('click', () => {
+  if (currentView === 'year') return;
+  if (currentView === 'month') {
+    const d = new Date(currentDate);
+    d.setMonth(d.getMonth() - 1);
+    if (isInPlan(d)) currentDate = d;
+  } else if (currentView === 'week') {
+    const d = new Date(currentDate);
+    d.setDate(d.getDate() - 7);
+    if (isInPlan(d)) currentDate = d;
+  } else if (currentView === 'day') {
+    const d = new Date(currentDate);
+    d.setDate(d.getDate() - 1);
+    if (isInPlan(d)) currentDate = d;
+  }
+  render();
+});
+
+document.getElementById('navNext').addEventListener('click', () => {
+  if (currentView === 'year') return;
+  if (currentView === 'month') {
+    const d = new Date(currentDate);
+    d.setMonth(d.getMonth() + 1);
+    if (isInPlan(d)) currentDate = d;
+  } else if (currentView === 'week') {
+    const d = new Date(currentDate);
+    d.setDate(d.getDate() + 7);
+    if (isInPlan(d)) currentDate = d;
+  } else if (currentView === 'day') {
+    const d = new Date(currentDate);
+    d.setDate(d.getDate() + 1);
+    if (isInPlan(d)) currentDate = d;
+  }
+  render();
+});
+
+document.getElementById('todayBtn').addEventListener('click', () => {
+  const t = new Date();
+  currentDate = isInPlan(t) ? t : new Date(PLAN_START);
+  render();
+});
+
+// ============================================================
+// ВКЛАДКИ
+// ============================================================
+
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(tab.dataset.section).classList.add('active');
+    tab.classList.add('active');
+    updateProgress();
+  });
+});
+
+// ============================================================
+// ПРОГРЕСС И СОХРАНЕНИЕ
+// ============================================================
+
+function toggleCheck(li) {
+  li.classList.toggle('done');
+  updateProgress();
+  saveProgress();
+}
+
+function updateProgress() {
+  const all = document.querySelectorAll('.checklist li, .day-tasks li[data-task-id]');
+  const done = document.querySelectorAll('.checklist li.done, .day-tasks li.done[data-task-id]');
+  const pct = all.length ? (done.length / all.length * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressCount').textContent = done.length + ' / ' + all.length + ' выполнено';
+}
+
+function saveProgress() {
+  const state = {};
+  // Сохраняем только задачи с data-task-id
+  document.querySelectorAll('[data-task-id]').forEach(li => {
+    state[li.dataset.taskId] = li.classList.contains('done');
+  });
+  // И общий список чеклистов
+  const checklistItems = document.querySelectorAll('.checklist li:not([data-task-id])');
+  const checklistState = Array.from(checklistItems).map(li => li.classList.contains('done'));
+  try {
+    window._progressState = window._progressState || {};
+    Object.assign(window._progressState, state);
+    window._progressState._checklist = checklistState;
+    localStorage.setItem('artem_progress_v2', JSON.stringify(window._progressState));
+  } catch(e) {}
+}
+
+function loadProgress() {
+  try {
+    const state = JSON.parse(localStorage.getItem('artem_progress_v2') || '{}');
+    window._progressState = state;
+    // Восстанавливаем задачи с data-task-id
+    document.querySelectorAll('[data-task-id]').forEach(li => {
+      if (state[li.dataset.taskId]) li.classList.add('done');
+    });
+    // Восстанавливаем общие чеклисты по индексу
+    if (state._checklist) {
+      const checklistItems = document.querySelectorAll('.checklist li:not([data-task-id])');
+      checklistItems.forEach((li, i) => {
+        if (state._checklist[i]) li.classList.add('done');
+      });
+    }
+  } catch(e) {}
+  updateProgress();
+}
+
+// ============================================================
+// ИНИЦИАЛИЗАЦИЯ
+// ============================================================
+
+render();
+loadProgress();
+</script>
+</body>
+</html>
