@@ -10,7 +10,6 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-  /* Принудительная тёмная тема — игнорируем force-dark/light режимы браузера */
   :root {
     color-scheme: dark only;
     forced-color-adjust: none;
@@ -39,14 +38,9 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   @media (prefers-color-scheme: light) {
-    html, body {
-      background: #0a0a0f !important;
-      color: #e8e8f0 !important;
-    }
+    html, body { background: #0a0a0f !important; color: #e8e8f0 !important; }
   }
-  @media screen and (forced-colors: active) {
-    * { forced-color-adjust: none; }
-  }
+  @media screen and (forced-colors: active) { * { forced-color-adjust: none; } }
 
   body {
     font-family: 'Inter', sans-serif;
@@ -57,10 +51,7 @@
     -webkit-text-fill-color: var(--text);
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    color: var(--text);
-    -webkit-text-fill-color: var(--text);
-  }
+  h1, h2, h3, h4, h5, h6 { color: var(--text); -webkit-text-fill-color: var(--text); }
 
   .header {
     padding: 40px 32px 28px;
@@ -103,16 +94,8 @@
     color: #ffffff;
     -webkit-text-fill-color: #ffffff;
   }
-  .header h1 span {
-    color: var(--accent);
-    -webkit-text-fill-color: var(--accent);
-  }
-  .header p {
-    color: var(--muted);
-    font-size: 14px;
-    max-width: 600px;
-    position: relative;
-  }
+  .header h1 span { color: var(--accent); -webkit-text-fill-color: var(--accent); }
+  .header p { color: var(--muted); font-size: 14px; max-width: 600px; position: relative; }
   .header .positioning {
     display: inline-block;
     margin-top: 14px;
@@ -136,35 +119,10 @@
     gap: 20px;
     flex-wrap: wrap;
   }
-  .progress-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    white-space: nowrap;
-  }
-  .progress-track {
-    flex: 1;
-    min-width: 150px;
-    height: 4px;
-    background: var(--border);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    border-radius: 2px;
-    width: 0%;
-    transition: width 0.6s ease;
-  }
-  .progress-count {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--accent);
-    white-space: nowrap;
-  }
+  .progress-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; white-space: nowrap; }
+  .progress-track { flex: 1; min-width: 150px; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 2px; width: 0%; transition: width 0.6s ease; }
+  .progress-count { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); white-space: nowrap; }
 
   .nav {
     padding: 0 32px;
@@ -196,34 +154,17 @@
     font-family: 'Inter', sans-serif;
   }
   .nav-tab:hover { color: var(--text); }
-  .nav-tab.active {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-  }
+  .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
 
   .main { padding: 28px 32px; max-width: 1600px; margin: 0 auto; }
 
   .section { display: none; animation: fadeIn 0.3s; }
   .section.active { display: block; }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
   .section-header { margin-bottom: 24px; }
-  .section-header h2 {
-    font-size: 26px;
-    font-weight: 800;
-    margin-bottom: 4px;
-    letter-spacing: -0.02em;
-    color: #ffffff;
-    -webkit-text-fill-color: #ffffff;
-  }
-  .section-header p {
-    font-size: 13px;
-    color: var(--text);
-    opacity: 0.75;
-  }
+  .section-header h2 { font-size: 26px; font-weight: 800; margin-bottom: 4px; letter-spacing: -0.02em; color: #ffffff; -webkit-text-fill-color: #ffffff; }
+  .section-header p { font-size: 13px; color: var(--text); opacity: 0.75; }
 
   .calendar-controls {
     display: flex;
@@ -237,265 +178,65 @@
     border: 1px solid var(--border);
   }
 
-  .view-switcher {
-    display: flex;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 3px;
-    gap: 2px;
-  }
-  .view-btn {
-    padding: 7px 14px;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--muted);
-    background: none;
-    border: none;
-    border-radius: 7px;
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-    transition: all 0.2s;
-  }
+  .view-switcher { display: flex; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 3px; gap: 2px; }
+  .view-btn { padding: 7px 14px; font-size: 12px; font-weight: 500; color: var(--muted); background: none; border: none; border-radius: 7px; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; }
   .view-btn:hover { color: var(--text); }
-  .view-btn.active {
-    background: var(--accent);
-    color: #000;
-    font-weight: 600;
-  }
+  .view-btn.active { background: var(--accent); color: #000; font-weight: 600; }
 
-  .nav-btn {
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    color: var(--text);
-    cursor: pointer;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-  }
-  .nav-btn:hover {
-    background: var(--accent);
-    color: #000;
-    border-color: var(--accent);
-  }
+  .nav-btn { width: 34px; height: 34px; border-radius: 8px; background: var(--bg); border: 1px solid var(--border); color: var(--text); cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+  .nav-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
 
-  .current-period {
-    flex: 1;
-    min-width: 180px;
-    font-size: 16px;
-    font-weight: 700;
-    text-align: center;
-  }
-  .current-period .period-phase {
-    display: block;
-    font-size: 10px;
-    font-family: 'JetBrains Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--muted);
-    margin-top: 2px;
-    font-weight: 400;
-  }
+  .current-period { flex: 1; min-width: 180px; font-size: 16px; font-weight: 700; text-align: center; }
+  .current-period .period-phase { display: block; font-size: 10px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-top: 2px; font-weight: 400; }
   .current-period .period-phase.p1 { color: var(--accent); }
   .current-period .period-phase.p2 { color: var(--yellow); }
   .current-period .period-phase.p3 { color: var(--purple); }
   .current-period .period-phase.p4 { color: var(--red); }
 
-  .today-btn {
-    padding: 7px 14px;
-    font-size: 11px;
-    font-weight: 600;
-    background: var(--card);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: 'JetBrains Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.2s;
-  }
-  .today-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
+  .today-btn { padding: 7px 14px; font-size: 11px; font-weight: 600; background: var(--card); color: var(--text); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 1px; transition: all 0.2s; }
+  .today-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-  .year-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-  }
+  .year-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
   @media (max-width: 900px) { .year-grid { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 700px) { .year-grid { grid-template-columns: repeat(2, 1fr); } }
 
-  .month-tile {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px;
-    cursor: pointer;
-    transition: all 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-  .month-tile::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-  }
+  .month-tile { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden; }
+  .month-tile::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
   .month-tile.p1::before { background: var(--accent); }
   .month-tile.p2::before { background: var(--yellow); }
   .month-tile.p3::before { background: var(--purple); }
   .month-tile.p4::before { background: var(--red); }
-  .month-tile:hover {
-    background: var(--card-hover);
-    transform: translateY(-2px);
-    border-color: var(--border-light);
-  }
-  .month-tile.key-month {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 1px rgba(0,212,170,0.2);
-  }
-  .month-tile .month-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    color: var(--muted);
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-  }
-  .month-tile .month-name {
-    font-size: 17px;
-    font-weight: 700;
-    margin: 4px 0 8px;
-    letter-spacing: -0.01em;
-  }
-  .month-tile .month-focus {
-    font-size: 11px;
-    color: var(--muted);
-    line-height: 1.4;
-    margin-bottom: 10px;
-    min-height: 30px;
-  }
-  .month-tile .month-stats {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    font-size: 10px;
-    font-family: 'JetBrains Mono', monospace;
-  }
-  .month-stat {
-    padding: 2px 7px;
-    background: rgba(255,255,255,0.04);
-    border-radius: 4px;
-    color: var(--muted);
-  }
-  .month-stat.key {
-    background: rgba(0,212,170,0.15);
-    color: var(--accent);
-  }
+  .month-tile:hover { background: var(--card-hover); transform: translateY(-2px); border-color: var(--border-light); }
+  .month-tile.key-month { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(0,212,170,0.2); }
+  .month-tile .month-num { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; }
+  .month-tile .month-name { font-size: 17px; font-weight: 700; margin: 4px 0 8px; letter-spacing: -0.01em; }
+  .month-tile .month-focus { font-size: 11px; color: var(--muted); line-height: 1.4; margin-bottom: 10px; min-height: 30px; }
+  .month-tile .month-stats { display: flex; gap: 8px; flex-wrap: wrap; font-size: 10px; font-family: 'JetBrains Mono', monospace; }
+  .month-stat { padding: 2px 7px; background: rgba(255,255,255,0.04); border-radius: 4px; color: var(--muted); }
+  .month-stat.key { background: rgba(0,212,170,0.15); color: var(--accent); }
 
-  .month-calendar {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px;
-  }
-  .weekdays-header {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 6px;
-    margin-bottom: 6px;
-  }
-  .weekday {
-    text-align: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    padding: 6px 0;
-  }
+  .month-calendar { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .weekdays-header { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-bottom: 6px; }
+  .weekday { text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; padding: 6px 0; }
   .weekday.weekend { color: var(--accent); }
 
-  .days-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 6px;
-  }
-  .day-cell {
-    aspect-ratio: 1;
-    min-height: 70px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 6px;
-    cursor: pointer;
-    transition: all 0.15s;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-  }
-  .day-cell:hover {
-    background: var(--surface);
-    border-color: var(--border-light);
-    transform: scale(1.02);
-  }
-  .day-cell.empty {
-    background: transparent;
-    border: 1px dashed var(--border);
-    opacity: 0.3;
-    cursor: default;
-  }
+  .days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+  .day-cell { aspect-ratio: 1; min-height: 70px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 6px; cursor: pointer; transition: all 0.15s; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .day-cell:hover { background: var(--surface); border-color: var(--border-light); transform: scale(1.02); }
+  .day-cell.empty { background: transparent; border: 1px dashed var(--border); opacity: 0.3; cursor: default; }
   .day-cell.empty:hover { transform: none; }
-  .day-cell.today {
-    border-color: var(--accent);
-    background: rgba(0,212,170,0.05);
-    box-shadow: 0 0 0 1px var(--accent);
-  }
-  .day-cell.key-day {
-    background: linear-gradient(135deg, rgba(255,107,107,0.1), rgba(124,92,252,0.1));
-    border-color: var(--red);
-  }
-  .day-cell .day-num {
-    font-size: 14px;
-    font-weight: 700;
-  }
+  .day-cell.today { border-color: var(--accent); background: rgba(0,212,170,0.05); box-shadow: 0 0 0 1px var(--accent); }
+  .day-cell.key-day { background: linear-gradient(135deg, rgba(255,107,107,0.1), rgba(124,92,252,0.1)); border-color: var(--red); }
+  .day-cell .day-num { font-size: 14px; font-weight: 700; }
   .day-cell.weekend .day-num { color: var(--accent); }
-  .day-cell .day-dot {
-    position: absolute;
-    bottom: 6px;
-    right: 6px;
-    display: flex;
-    gap: 3px;
-  }
-  .dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-  }
+  .day-cell .day-dot { position: absolute; bottom: 6px; right: 6px; display: flex; gap: 3px; }
+  .dot { width: 5px; height: 5px; border-radius: 50%; }
   .dot.gym { background: var(--red); }
   .dot.english { background: var(--yellow); }
   .dot.content { background: var(--purple); }
   .dot.study { background: var(--accent); }
-  .day-cell .day-tag {
-    font-size: 9px;
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--muted);
-    margin-top: auto;
-    line-height: 1.2;
-    text-transform: uppercase;
-  }
-  .day-cell.key-day .day-tag {
-    color: var(--red);
-    font-weight: 700;
-  }
+  .day-cell .day-tag { font-size: 9px; font-family: 'JetBrains Mono', monospace; color: var(--muted); margin-top: auto; line-height: 1.2; text-transform: uppercase; }
+  .day-cell.key-day .day-tag { color: var(--red); font-weight: 700; }
 
   @media (max-width: 700px) {
     .day-cell { min-height: 55px; padding: 4px; }
@@ -503,72 +244,78 @@
     .day-cell .day-tag { font-size: 8px; }
   }
 
-  .week-grid-v2 {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
+  /* ===== МОБИЛЬНЫЕ ШРИФТЫ ===== */
+  @media (max-width: 768px) {
+    body { font-size: 15px; }
+    .main { padding: 16px; }
+    .header { padding: 24px 16px 20px; }
+    .nav { padding: 0 8px; }
+    .nav-tab { padding: 12px 14px; font-size: 13px; }
+
+    .section-header h2 { font-size: 22px; }
+    .section-header p { font-size: 14px; }
+
+    .phase-title { font-size: 17px; }
+    .phase-dates { font-size: 13px; }
+    .phase-goal { font-size: 13px; }
+    .checklist li { font-size: 14px; padding: 10px 0; }
+    .checklist-sub { font-size: 10px; }
+
+    .resource-name { font-size: 15px; }
+    .resource-desc { font-size: 13px; }
+    .resource-badge { font-size: 10px; padding: 3px 8px; }
+
+    .highlight-box { font-size: 14px; padding: 14px 16px; }
+    .timeline-content h4 { font-size: 15px; }
+    .timeline-tasks { font-size: 13px; }
+
+    .tools-table { font-size: 13px; }
+    .tools-table th { font-size: 11px; padding: 10px; }
+    .tools-table td { padding: 10px; font-size: 13px; }
+
+    .svc-title { font-size: 16px; }
+    .svc-price { font-size: 12px; }
+    .svc-desc { font-size: 13px; }
+    .svc-stack-item { font-size: 11px; padding: 3px 8px; }
+
+    .progress-label { font-size: 11px; }
+    .progress-count { font-size: 13px; }
+
+    .month-name { font-size: 16px; }
+    .month-focus { font-size: 12px; }
+
+    .time-block .activity { font-size: 12px; }
+    .time-block .detail { font-size: 11px; }
+
+    .check-box { width: 20px; height: 20px; flex-shrink: 0; }
+    .check-box::after { font-size: 13px; }
+
+    .english-card h3 { font-size: 16px; }
+    .english-card .subtitle { font-size: 12px; }
+
+    .calendar-controls { padding: 10px 12px; gap: 8px; }
+    .current-period { font-size: 14px; }
   }
+
+  .week-grid-v2 { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
   @media (max-width: 1100px) { .week-grid-v2 { grid-template-columns: repeat(4, 1fr); } }
   @media (max-width: 700px) { .week-grid-v2 { grid-template-columns: repeat(2, 1fr); } }
 
-  .day-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-  .day-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(0,0,0,0.3);
-    border-color: var(--border-light);
-  }
-  .day-card.today {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 1px var(--accent);
-  }
-  .day-header {
-    padding: 12px 14px 8px;
-    border-bottom: 1px solid var(--border);
-  }
+  .day-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: all 0.2s; cursor: pointer; }
+  .day-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.3); border-color: var(--border-light); }
+  .day-card.today { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .day-header { padding: 12px 14px 8px; border-bottom: 1px solid var(--border); }
   .day-card.weekend .day-header { background: rgba(0,212,170,0.04); }
-  .day-name {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--muted);
-    margin-bottom: 2px;
-  }
-  .day-label {
-    font-size: 13px;
-    font-weight: 700;
-  }
+  .day-name { font-family: 'JetBrains Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 2px; }
+  .day-label { font-size: 13px; font-weight: 700; }
   .day-card.weekend .day-label { color: var(--accent); }
   .day-body { padding: 10px; }
 
-  .time-block {
-    padding: 7px 9px;
-    border-radius: 7px;
-    margin-bottom: 5px;
-    border-left: 3px solid;
-    font-size: 11px;
-    line-height: 1.35;
-  }
+  .time-block { padding: 7px 9px; border-radius: 7px; margin-bottom: 5px; border-left: 3px solid; font-size: 11px; line-height: 1.35; }
   .time-block:last-child { margin-bottom: 0; }
-  .time-block .time {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    opacity: 0.6;
-    margin-bottom: 2px;
-  }
+  .time-block .time { font-family: 'JetBrains Mono', monospace; font-size: 9px; opacity: 0.6; margin-bottom: 2px; }
   .time-block .activity { font-weight: 600; font-size: 11px; }
-  .time-block .detail {
-    font-size: 10px;
-    opacity: 0.75;
-    margin-top: 2px;
-  }
+  .time-block .detail { font-size: 10px; opacity: 0.75; margin-top: 2px; }
 
   .block-commute { background: rgba(124,92,252,0.1); border-color: var(--purple); }
   .block-work { background: rgba(107,107,138,0.1); border-color: var(--muted); }
@@ -579,172 +326,44 @@
   .block-content { background: rgba(124,92,252,0.12); border-color: var(--purple); }
   .block-free { background: rgba(107,107,138,0.05); border-color: var(--border); }
 
-  .day-view {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
+  .day-view { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   @media (max-width: 900px) { .day-view { grid-template-columns: 1fr; } }
 
-  .day-view-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 22px;
-  }
-  .day-view-card h3 {
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 14px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .day-view-title {
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 4px;
-  }
-  .day-view-subtitle {
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 16px;
-  }
-  .day-view-hero {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 22px;
-    margin-bottom: 16px;
-    position: relative;
-    overflow: hidden;
-  }
-  .day-view-hero.key-day {
-    background: linear-gradient(135deg, rgba(255,107,107,0.08), rgba(124,92,252,0.08));
-    border-color: var(--red);
-  }
-  .day-view-focus {
-    font-size: 12px;
-    font-family: 'JetBrains Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--accent);
-    margin-bottom: 10px;
-  }
-  .day-view-desc {
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--text);
-  }
+  .day-view-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px; }
+  .day-view-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .day-view-title { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .day-view-subtitle { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+  .day-view-hero { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px; margin-bottom: 16px; position: relative; overflow: hidden; }
+  .day-view-hero.key-day { background: linear-gradient(135deg, rgba(255,107,107,0.08), rgba(124,92,252,0.08)); border-color: var(--red); }
+  .day-view-focus { font-size: 12px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 10px; }
+  .day-view-desc { font-size: 14px; line-height: 1.6; color: var(--text); }
 
-  .time-block-full {
-    padding: 12px 14px;
-    border-radius: 10px;
-    margin-bottom: 8px;
-    border-left: 3px solid;
-    font-size: 13px;
-  }
-  .time-block-full .time {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    opacity: 0.7;
-    margin-bottom: 4px;
-    letter-spacing: 1px;
-  }
+  .time-block-full { padding: 12px 14px; border-radius: 10px; margin-bottom: 8px; border-left: 3px solid; font-size: 13px; }
+  .time-block-full .time { font-family: 'JetBrains Mono', monospace; font-size: 10px; opacity: 0.7; margin-bottom: 4px; letter-spacing: 1px; }
   .time-block-full .activity { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
-  .time-block-full .detail {
-    font-size: 12px;
-    opacity: 0.85;
-    margin-top: 4px;
-    line-height: 1.5;
-  }
+  .time-block-full .detail { font-size: 12px; opacity: 0.85; margin-top: 4px; line-height: 1.5; }
 
   .day-tasks { list-style: none; }
-  .day-tasks li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    font-size: 13px;
-    cursor: pointer;
-    transition: opacity 0.2s;
-    line-height: 1.45;
-  }
+  .day-tasks li { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 13px; cursor: pointer; transition: opacity 0.2s; line-height: 1.45; }
   .day-tasks li:last-child { border-bottom: none; }
   .day-tasks li.done { opacity: 0.4; text-decoration: line-through; }
-  .day-tasks .check-box {
-    width: 17px; height: 17px;
-    border: 1.5px solid var(--border-light);
-    border-radius: 4px;
-    flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    margin-top: 1px;
-    transition: all 0.2s;
-  }
-  .day-tasks li.done .check-box {
-    background: var(--accent);
-    border-color: var(--accent);
-  }
+  .day-tasks .check-box { width: 17px; height: 17px; border: 1.5px solid var(--border-light); border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 1px; transition: all 0.2s; }
+  .day-tasks li.done .check-box { background: var(--accent); border-color: var(--accent); }
   .day-tasks .check-box::after { content: '✓'; font-size: 11px; color: #000; display: none; font-weight: bold; }
   .day-tasks li.done .check-box::after { display: block; }
 
-  .close-day-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 7px 14px;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--muted);
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-    margin-bottom: 16px;
-    transition: all 0.2s;
-  }
-  .close-day-btn:hover {
-    color: var(--text);
-    border-color: var(--border-light);
-  }
+  .close-day-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; font-size: 12px; font-weight: 500; color: var(--muted); background: none; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-family: 'Inter', sans-serif; margin-bottom: 16px; transition: all 0.2s; }
+  .close-day-btn:hover { color: var(--text); border-color: var(--border-light); }
 
-  .phases-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-    margin-bottom: 32px;
-  }
-  .phase-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 22px;
-    position: relative;
-    overflow: hidden;
-  }
-  .phase-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-  }
+  .phases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .phase-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px; position: relative; overflow: hidden; }
+  .phase-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
   .phase-card.p1::before { background: var(--accent); }
   .phase-card.p2::before { background: var(--yellow); }
   .phase-card.p3::before { background: var(--purple); }
   .phase-card.p4::before { background: var(--red); }
 
-  .phase-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 6px;
-  }
+  .phase-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
   .p1 .phase-num { color: var(--accent); }
   .p2 .phase-num { color: var(--yellow); }
   .p3 .phase-num { color: var(--purple); }
@@ -752,299 +371,126 @@
 
   .phase-title { font-size: 18px; font-weight: 800; margin-bottom: 3px; letter-spacing: -0.01em; }
   .phase-dates { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
-  .phase-goal {
-    font-size: 12px;
-    padding: 9px 11px;
-    border-radius: 8px;
-    margin-bottom: 14px;
-    background: rgba(255,255,255,0.04);
-    line-height: 1.45;
-  }
+  .phase-goal { font-size: 12px; padding: 9px 11px; border-radius: 8px; margin-bottom: 14px; background: rgba(255,255,255,0.04); line-height: 1.45; }
 
   .checklist { list-style: none; }
-  .checklist li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    font-size: 12.5px;
-    cursor: pointer;
-    transition: opacity 0.2s;
-    line-height: 1.45;
-  }
+  .checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 12.5px; cursor: pointer; transition: opacity 0.2s; line-height: 1.45; }
   .checklist li:last-child { border-bottom: none; }
   .checklist li.done { opacity: 0.4; text-decoration: line-through; }
-  .check-box {
-    width: 17px; height: 17px;
-    border: 1.5px solid var(--border-light);
-    border-radius: 4px;
-    flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    margin-top: 1px;
-    transition: all 0.2s;
-  }
-  .checklist li.done .check-box {
-    background: var(--accent);
-    border-color: var(--accent);
-  }
+  .check-box { width: 17px; height: 17px; border: 1.5px solid var(--border-light); border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 1px; transition: all 0.2s; }
+  .checklist li.done .check-box { background: var(--accent); border-color: var(--accent); }
   .check-box::after { content: '✓'; font-size: 11px; color: #000; display: none; font-weight: bold; }
   .checklist li.done .check-box::after { display: block; }
 
-  .resources-section { margin-bottom: 32px; }
-  .resources-title {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--muted);
+  /* Подзаголовок внутри чеклиста */
+  .checklist-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-family: 'JetBrains Mono', monospace;
-    margin-bottom: 14px;
-    padding-bottom: 8px;
+    color: var(--accent);
+    padding: 10px 0 4px;
     border-bottom: 1px solid var(--border);
+    margin-bottom: 2px;
+    display: block;
   }
-  .resource-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 10px;
-  }
-  .resource-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px;
-    text-decoration: none;
-    color: var(--text);
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    transition: all 0.2s;
-  }
-  .resource-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(0,212,170,0.08);
-  }
-  .resource-icon {
-    width: 34px; height: 34px;
-    border-radius: 7px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-    flex-shrink: 0;
-  }
+  .checklist-sub.yellow { color: var(--yellow); }
+  .checklist-sub.purple { color: var(--purple); }
+
+  .resources-section { margin-bottom: 32px; }
+  .resources-title { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; font-family: 'JetBrains Mono', monospace; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+  .resource-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-decoration: none; color: var(--text); display: flex; align-items: flex-start; gap: 10px; transition: all 0.2s; }
+  .resource-card:hover { border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,212,170,0.08); }
+  .resource-icon { width: 34px; height: 34px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
   .resource-info { flex: 1; min-width: 0; }
   .resource-name { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
   .resource-desc { font-size: 11px; color: var(--muted); line-height: 1.35; }
-  .resource-badge {
-    font-size: 9px;
-    padding: 2px 7px;
-    border-radius: 16px;
-    font-weight: 700;
-    white-space: nowrap;
-    align-self: flex-start;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    font-family: 'JetBrains Mono', monospace;
-  }
+  .resource-badge { font-size: 9px; padding: 2px 7px; border-radius: 16px; font-weight: 700; white-space: nowrap; align-self: flex-start; letter-spacing: 0.5px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; }
   .badge-free { background: rgba(0,212,170,0.15); color: var(--accent); }
   .badge-cert { background: rgba(124,92,252,0.15); color: var(--purple); }
   .badge-paid { background: rgba(255,107,107,0.15); color: var(--red); }
   .badge-daily { background: rgba(255,217,61,0.15); color: var(--yellow); }
 
-  .english-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 16px;
-    margin-bottom: 28px;
-  }
-  .english-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px;
-  }
-  .english-card h3 {
-    font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-  .english-card .subtitle {
-    font-size: 11px;
-    color: var(--muted);
-    margin-bottom: 14px;
-  }
+  .english-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-bottom: 28px; }
+  .english-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; }
+  .english-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .english-card .subtitle { font-size: 11px; color: var(--muted); margin-bottom: 14px; }
 
-  .legend {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-    padding: 12px 16px;
-    background: var(--surface);
-    border-radius: 10px;
-    border: 1px solid var(--border);
-  }
-  .legend-item {
-    display: flex; align-items: center; gap: 7px;
-    font-size: 11px; color: var(--muted);
-  }
-  .legend-dot {
-    width: 9px; height: 9px;
-    border-radius: 2px;
-  }
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; padding: 12px 16px; background: var(--surface); border-radius: 10px; border: 1px solid var(--border); }
+  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--muted); }
+  .legend-dot { width: 9px; height: 9px; border-radius: 2px; }
 
-  .tips-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 10px;
-    margin-bottom: 24px;
-  }
-  .tip-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px;
-  }
+  .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 24px; }
+  .tip-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
   .tip-icon { font-size: 22px; margin-bottom: 6px; }
   .tip-title { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
   .tip-text { font-size: 11px; color: var(--muted); line-height: 1.45; }
 
-  .highlight-box {
-    background: rgba(0,212,170,0.08);
-    border: 1px solid rgba(0,212,170,0.25);
-    border-radius: 10px;
-    padding: 14px 18px;
-    margin-bottom: 20px;
-    font-size: 12.5px;
-    line-height: 1.6;
-    color: var(--text);
-    -webkit-text-fill-color: var(--text);
-  }
-  .highlight-box strong {
-    color: var(--accent);
-    -webkit-text-fill-color: var(--accent);
-  }
-  .highlight-box.warning {
-    background: rgba(255,217,61,0.08);
-    border-color: rgba(255,217,61,0.3);
-  }
-  .highlight-box.warning strong {
-    color: var(--yellow);
-    -webkit-text-fill-color: var(--yellow);
-  }
+  .highlight-box { background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.25); border-radius: 10px; padding: 14px 18px; margin-bottom: 20px; font-size: 12.5px; line-height: 1.6; color: var(--text); -webkit-text-fill-color: var(--text); }
+  .highlight-box strong { color: var(--accent); -webkit-text-fill-color: var(--accent); }
+  .highlight-box.warning { background: rgba(255,217,61,0.08); border-color: rgba(255,217,61,0.3); }
+  .highlight-box.warning strong { color: var(--yellow); -webkit-text-fill-color: var(--yellow); }
 
   a { color: inherit; }
-
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
-  .tag {
-    display: inline-block;
-    font-size: 9px;
-    padding: 2px 7px;
-    border-radius: 16px;
-    margin-left: 5px;
-    vertical-align: middle;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.5px;
-  }
+  .tag { display: inline-block; font-size: 9px; padding: 2px 7px; border-radius: 16px; margin-left: 5px; vertical-align: middle; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; }
   .tag-audio { background: rgba(255,107,107,0.15); color: var(--red); }
   .tag-video { background: rgba(124,92,252,0.15); color: var(--purple); }
   .tag-read { background: rgba(0,212,170,0.15); color: var(--accent); }
   .tag-practice { background: rgba(255,217,61,0.15); color: var(--yellow); }
 
   .timeline { position: relative; padding-left: 28px; }
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 7px; top: 0; bottom: 0;
-    width: 1px;
-    background: var(--border);
-  }
-  .timeline-item {
-    position: relative;
-    padding-bottom: 20px;
-  }
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -26px;
-    top: 4px;
-    width: 9px; height: 9px;
-    border-radius: 50%;
-    background: var(--accent);
-    border: 2px solid var(--bg);
-  }
-  .timeline-month {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--accent);
-    margin-bottom: 6px;
-  }
-  .timeline-content {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px;
-  }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 0; bottom: 0; width: 1px; background: var(--border); }
+  .timeline-item { position: relative; padding-bottom: 20px; }
+  .timeline-item::before { content: ''; position: absolute; left: -26px; top: 4px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); }
+  .timeline-month { font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 6px; }
+  .timeline-content { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
   .timeline-content h4 { font-size: 14px; margin-bottom: 6px; }
   .timeline-tasks { font-size: 12px; color: var(--muted); line-height: 1.7; }
 
-  /* SERVICES — новый блок под позиционирование */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 14px;
-    margin-bottom: 28px;
-  }
-  .service-card {
+  /* Таблица сервисов */
+  .tools-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-bottom: 16px;
     background: var(--card);
+    border-radius: 10px;
+    overflow: hidden;
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px;
-    position: relative;
   }
-  .service-card .svc-num {
+  .tools-table th {
+    background: rgba(0,212,170,0.08);
+    padding: 10px 14px;
+    text-align: left;
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
     color: var(--accent);
-    letter-spacing: 2px;
-    margin-bottom: 6px;
+    border-bottom: 1px solid var(--border);
   }
-  .service-card .svc-title {
-    font-size: 15px;
-    font-weight: 800;
-    margin-bottom: 6px;
+  .tools-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text);
+    vertical-align: top;
   }
-  .service-card .svc-price {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--yellow);
-    margin-bottom: 10px;
-  }
-  .service-card .svc-desc {
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.5;
-    margin-bottom: 10px;
-  }
-  .service-card .svc-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-  }
-  .svc-stack-item {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    padding: 2px 7px;
-    background: rgba(0,212,170,0.1);
-    color: var(--accent);
-    border-radius: 4px;
-  }
+  .tools-table tr:last-child td { border-bottom: none; }
+  .tools-table tr:hover td { background: rgba(255,255,255,0.02); }
 
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-bottom: 28px; }
+  .service-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; position: relative; }
+  .service-card .svc-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 2px; margin-bottom: 6px; }
+  .service-card .svc-title { font-size: 15px; font-weight: 800; margin-bottom: 6px; }
+  .service-card .svc-price { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--yellow); margin-bottom: 10px; }
+  .service-card .svc-desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
+  .service-card .svc-stack { display: flex; flex-wrap: wrap; gap: 4px; }
+  .svc-stack-item { font-family: 'JetBrains Mono', monospace; font-size: 9px; padding: 2px 7px; background: rgba(0,212,170,0.1); color: var(--accent); border-radius: 4px; }
 </style>
 </head>
 <body>
@@ -1058,15 +504,15 @@
 
 <div class="progress-bar">
   <span class="progress-label">Прогресс всех задач</span>
-  <div class="progress-track">
-    <div class="progress-fill" id="progressFill"></div>
-  </div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
   <span class="progress-count" id="progressCount">0 / 0 выполнено</span>
 </div>
 
 <div class="nav">
   <button class="nav-tab active" data-section="calendar">📅 Календарь</button>
   <button class="nav-tab" data-section="phases">🗺 Фазы</button>
+  <button class="nav-tab" data-section="stack">🧰 Стек</button>
+  <button class="nav-tab" data-section="tools">🛠 Chatbase/VF/MC</button>
   <button class="nav-tab" data-section="services">⚙️ Услуги</button>
   <button class="nav-tab" data-section="english">🇺🇸 Английский</button>
   <button class="nav-tab" data-section="certs">🎓 Сертификаты</button>
@@ -1118,7 +564,7 @@
   </div>
 
   <div class="highlight-box">
-    ⚠️ <strong>Новое позиционирование:</strong> AI Automation Specialist — строим системы, чат-ботов и воркфлоу вместо копирайтинга. Английский становится второстепенным навыком, главное — работающие системы с метриками. Это ускоряет O-1A кейс (automation с ROI) и снимает языковой барьер.
+    ⚠️ <strong>Позиционирование:</strong> AI Automation Specialist — строим системы, чат-ботов и воркфлоу вместо копирайтинга. Английский становится второстепенным навыком, главное — работающие системы с метриками. Это ускоряет O-1A кейс (automation с ROI) и снимает языковой барьер.
   </div>
 
   <div class="phases-grid">
@@ -1126,23 +572,45 @@
       <div class="phase-num">// Фаза 1</div>
       <div class="phase-title">Фундамент навыка</div>
       <div class="phase-dates">Апрель — Июнь 2026</div>
-      <div class="phase-goal">🎯 Освоить Make + Chatbase + Instantly, 2 демо-кейса, первые $300-500 на Upwork</div>
+      <div class="phase-goal">🎯 Make + Chatbase + Voiceflow · 2 демо-кейса · первые $300–500 на Upwork</div>
       <ul class="checklist" id="phase1">
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Make Academy — курс Make Basics (2-3ч)</span></li>
+        <span class="checklist-sub">// Make.com</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Make Academy — Make Basics (2–3ч) ← <strong>в процессе</strong></span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Make Academy — Make Intermediate</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Получить Make.com сертификацию (бесплатно)</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Освоить Chatbase: построить 1 бота-квалификатора</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Освоить Voiceflow: 1 flow с условной логикой</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Демо-кейс №1: AI Lead Qualifier Chatbot + Loom видео</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Демо-кейс №2: Cold Outreach Automation + Loom видео</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Make.com сертификация — бесплатно (academy.make.com)</span></li>
+
+        <span class="checklist-sub">// Chatbase — старт здесь 🆓</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Зарегистрироваться — chatbase.co (бесплатно: 100 сообщ/мес)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Загрузить данные (PDF/сайт) → обучить бота</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Встроить виджет на тестовый лендинг</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Демо: AI Lead Qualifier Chatbot (Chatbase + Make + Calendly)</span></li>
+
+        <span class="checklist-sub">// Voiceflow 🆓</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Зарегистрироваться — voiceflow.com (бесплатно: 2 агента, 100 AI токенов/мес)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Пройти онбординг (drag-and-drop builder)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Построить 1 flow с условной логикой (квалификация → Calendly)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Voiceflow Certified Developer — learn.voiceflow.com (бесплатно)</span></li>
+
+        <span class="checklist-sub">// ManyChat (опционально) 🆓</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Зарегистрироваться — manychat.com (бесплатно: до 1000 контактов)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Подключить Instagram/Telegram · keyword trigger → автоответ</span></li>
+
+        <span class="checklist-sub">// Демо-кейсы</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Кейс №1: AI Lead Qualifier Chatbot + Loom видео (англ.)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Кейс №2: Cold Outreach Automation + Loom видео (англ.)</span></li>
+
+        <span class="checklist-sub">// Профили & портфолио</span>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Upwork профиль: AI Automation Specialist</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>LinkedIn headline + About под automation</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Notion-портфолио: 2 кейса + Loom + описания</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Отправить 50+ proposals на Upwork</span></li>
+
+        <span class="checklist-sub">// Доход & Английский</span>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Первый платный заказ (любой чек для отзыва)</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Установить Anki — 10 слов/день (английский параллельно)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Установить Anki — 10 слов/день (tech vocab)</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Начать первый курс Nexford</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Достичь $300-500/мес дохода</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Достичь $300–500/мес дохода</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>EF SET тест — baseline английского (июнь)</span></li>
       </ul>
     </div>
 
@@ -1150,21 +618,34 @@
       <div class="phase-num">// Фаза 2</div>
       <div class="phase-title">Кейсы с метриками</div>
       <div class="phase-dates">Июль — Сентябрь 2026</div>
-      <div class="phase-goal">🎯 Метрики в кейсах (часы сэкономлены, % конверсии), $1-1.5k/мес, первые ретейнеры</div>
+      <div class="phase-goal">🎯 Метрики в кейсах (часы сэкономлены, % конверсии) · $1–1.5k/мес · первые ретейнеры</div>
       <ul class="checklist" id="phase2">
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>3-5 платных клиентов на Upwork</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>1 ретейнер-клиент ($200-500/мес maintenance)</span></li>
+        <span class="checklist-sub yellow">// Клиенты & ретейнеры</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>3–5 платных клиентов на Upwork</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>1 ретейнер-клиент ($200–500/мес maintenance)</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Pro-bono automation для стартапа (с правом показать метрики)</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Освоить GoHighLevel (14-дневный триал)</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Освоить n8n (open-source Zapier)</span></li>
+
+        <span class="checklist-sub yellow">// Voiceflow → Pro</span>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Voiceflow Certified Developer сертификация</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Если есть платный клиент → Voiceflow Pro $60/мес</span></li>
+
+        <span class="checklist-sub yellow">// ManyChat для клиентов</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Подключить 1 клиента на ManyChat (Instagram/Facebook DM)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Настроить воронку: keyword → квалификация → Calendly</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Если база клиента > 1000 → ManyChat Pro $15/мес</span></li>
+
+        <span class="checklist-sub yellow">// GoHighLevel + n8n</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Освоить GoHighLevel (14-дневный триал, gohighlevel.com)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Освоить n8n (open-source Make, бесплатно self-hosted)</span></li>
+
+        <span class="checklist-sub yellow">// Медиа & O-1A</span>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Зарегистрироваться на HARO (connectively.us)</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Первое упоминание в англомедиа (AI/automation тема)</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Подать заявку ментором на Product Hunt</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>4 статьи/кейса на Medium (на английском, с AI помощью)</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Закрыть 2 курса Nexford</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>EF SET тест — baseline английского</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Достичь $1-1.5k/мес</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>EF SET тест — прогресс (цель B1→B2)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Достичь $1–1.5k/мес</span></li>
       </ul>
     </div>
 
@@ -1172,14 +653,20 @@
       <div class="phase-num">// Фаза 3</div>
       <div class="phase-title">Масштаб и DV</div>
       <div class="phase-dates">Октябрь — Декабрь 2026</div>
-      <div class="phase-goal">🎯 $2-3k/мес, DV регистрация, 3 критерия O-1A закрыты</div>
+      <div class="phase-goal">🎯 $2–3k/мес · DV регистрация · 3 критерия O-1A закрыты</div>
       <ul class="checklist" id="phase3">
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>🎲 Зарегистрироваться на DV Lottery</span></li>
+        <span class="checklist-sub purple">// 🎲 КРИТИЧНО — Иммиграция</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>🎲 Зарегистрироваться на DV Lottery — dvprogram.state.gov</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Сохранить номер подтверждения (скрин x3!)</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Консультация с O-1A адвокатом</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>3-5 рек. писем от automation клиентов</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>2-3 ретейнера стабильно ($200-500/мес каждый)</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>2-3 упоминания в англомедиа (automation кейсы)</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>$2-3k/мес стабильно</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>3–5 рекомендательных писем от automation клиентов</span></li>
+
+        <span class="checklist-sub purple">// Доход & клиенты</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>2–3 ретейнера стабильно ($200–500/мес каждый)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>2–3 упоминания в англомедиа (automation кейсы)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>$2–3k/мес стабильно</span></li>
+
+        <span class="checklist-sub purple">// Новые инструменты</span>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Освоить OpenAI API (Assistants, function calling)</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Google Analytics GA4 (для метрик в кейсах)</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Закрыть 4 курса Nexford (6+ всего)</span></li>
@@ -1195,9 +682,9 @@
       <div class="phase-goal">🎯 Подать O-1A или дождаться DV результата (май 2027)</div>
       <ul class="checklist" id="phase4">
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Нанять O-1A адвоката</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Подготовить пакет документов O-1A (automation кейсы с метриками)</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Проверить результаты DV (май 2027)</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Финансовый резерв $12-20k</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Подготовить пакет документов O-1A (automation кейсы с ROI)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Проверить результаты DV Lottery (май 2027)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Финансовый резерв $12–20k</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Закрыть 8+ курсов Nexford</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Английский: Advanced (C1)</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>$3k+/мес стабильно (automation + ретейнеры)</span></li>
@@ -1214,7 +701,7 @@
       <div class="timeline-content">
         <h4>🚀 Старт обучения</h4>
         <div class="timeline-tasks">
-          Make Academy · Chatbase/Voiceflow · первые сценарии · установка Anki · регистрация на Upwork
+          Make Academy · регистрация <strong>Chatbase</strong> (27 апр) + <strong>Voiceflow</strong> (29 апр) + <strong>ManyChat</strong> (5 мая) · установка Anki · регистрация Upwork
         </div>
       </div>
     </div>
@@ -1223,7 +710,9 @@
       <div class="timeline-content">
         <h4>🎬 Первые демо-кейсы</h4>
         <div class="timeline-tasks">
-          2 демо-кейса с Loom видео · оформление Upwork и LinkedIn · Notion портфолио · 50+ proposals
+          15 мая: Дедлайн Кейс №1 (AI Lead Qualifier — Chatbase + Make) ·
+          22 мая: Дедлайн Кейс №2 (Cold Outreach) ·
+          Loom видео · Upwork + LinkedIn · Notion портфолио · 50+ proposals
         </div>
       </div>
     </div>
@@ -1232,25 +721,27 @@
       <div class="timeline-content">
         <h4>💰 Первые заказы</h4>
         <div class="timeline-tasks">
-          Первый клиент · Make.com сертификация · $300-500 доход · EF SET baseline
+          Первый клиент · оценить переход Chatbase Hobby $40/мес (если есть клиент) · Make.com сертификация · $300–500 доход · EF SET baseline
         </div>
       </div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-month">Июль–Август 2026</div>
+      <div class="timeline-month">Июль 2026</div>
       <div class="timeline-content">
-        <h4>📊 Метрики и ретейнеры</h4>
+        <h4>🏅 Voiceflow Certified Developer</h4>
         <div class="timeline-tasks">
-          GoHighLevel + n8n · первый ретейнер · HARO · pro-bono с метриками · Voiceflow сертификат
+          7 июля: Начать Voiceflow сертификацию ·
+          Оценить переход ManyChat Pro $15/мес (если база клиента > 1000) ·
+          GoHighLevel 14-дней триал · HARO · pro-bono с метриками
         </div>
       </div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-month">Сентябрь 2026</div>
+      <div class="timeline-month">Август–Сентябрь 2026</div>
       <div class="timeline-content">
-        <h4>📰 Медиа упоминания</h4>
+        <h4>📰 Медиа + сертификат Voiceflow</h4>
         <div class="timeline-tasks">
-          Первое упоминание · заявка ментором Product Hunt · $1-1.5k/мес · 4 кейса на Medium
+          1 сент: Voiceflow Certified Developer получить · Первое медиа упоминание · заявка ментором Product Hunt · $1–1.5k/мес · 4 кейса на Medium
         </div>
       </div>
     </div>
@@ -1267,28 +758,467 @@
       <div class="timeline-month">Ноябрь–Декабрь 2026</div>
       <div class="timeline-content">
         <h4>💰 Масштаб дохода</h4>
-        <div class="timeline-tasks">
-          $2-3k/мес · 3+ ретейнера · 3 рек. письма · 6+ курсов Nexford · As Seen In блок
-        </div>
+        <div class="timeline-tasks">$2–3k/мес · 3+ ретейнера · 3 рек. письма · 6+ курсов Nexford · As Seen In блок</div>
       </div>
     </div>
     <div class="timeline-item">
       <div class="timeline-month">Январь–Март 2027</div>
       <div class="timeline-content">
         <h4>✈️ Финальная подготовка</h4>
-        <div class="timeline-tasks">
-          Оценка O-1A кейса · automation-кейсы с ROI · $12k+ резерв · 8+ курсов Nexford
-        </div>
+        <div class="timeline-tasks">O-1A адвокат · automation-кейсы с ROI · $12k+ резерв · 8+ курсов Nexford</div>
       </div>
     </div>
     <div class="timeline-item">
       <div class="timeline-month">Май 2027 🏆</div>
       <div class="timeline-content">
         <h4>🎉 Развязка</h4>
-        <div class="timeline-tasks">
-          Результаты DV Lottery · если выиграл → DS-260 + интервью · если нет → подача O-1A · $3k+/мес · Advanced английский
-        </div>
+        <div class="timeline-tasks">Результаты DV Lottery · если выиграл → DS-260 + интервью · если нет → подача O-1A · $3k+/мес · Advanced английский</div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== СТЕК ИНСТРУМЕНТОВ ===== -->
+<div class="section" id="stack">
+  <div class="section-header">
+    <h2>Полный стек инструментов</h2>
+    <p>Все сервисы по категориям · ссылки · тарифы · когда подключать</p>
+  </div>
+
+  <div class="highlight-box">
+    💡 <strong>Принцип:</strong> Все инструменты начинаем на <strong>бесплатном тарифе</strong>. Переходим на платный только когда есть платящий клиент. Стоимость тарифа закладываем в цену услуги.
+  </div>
+
+  <!-- АВТОМАТИЗАЦИЯ -->
+  <div class="resources-section">
+    <div class="resources-title">// 🔧 Автоматизация (Workflow) — Фаза 1</div>
+    <div class="resource-grid">
+      <a href="https://make.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(101,49,255,0.2)">⚙️</div>
+        <div class="resource-info">
+          <div class="resource-name">Make.com</div>
+          <div class="resource-desc">Основной инструмент. Визуальный конструктор automation. 1000 ops/мес бесплатно.</div>
+        </div>
+        <span class="resource-badge badge-free">Free → $9</span>
+      </a>
+      <a href="https://zapier.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(255,74,0,0.2)">⚡</div>
+        <div class="resource-info">
+          <div class="resource-name">Zapier</div>
+          <div class="resource-desc">Когда клиент просит именно Zapier. 100 задач/мес бесплатно. Самый известный на рынке.</div>
+        </div>
+        <span class="resource-badge badge-free">Free → $20</span>
+      </a>
+      <a href="https://n8n.io" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(234,68,90,0.2)">🔀</div>
+        <div class="resource-info">
+          <div class="resource-name">n8n</div>
+          <div class="resource-desc">Open-source Make. Self-hosted = бесплатно навсегда. Подключаем в Фазе 2. Хостить на Railway.</div>
+        </div>
+        <span class="resource-badge badge-free">Free (self-hosted)</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ЧАТ-БОТЫ -->
+  <div class="resources-section">
+    <div class="resources-title">// 🤖 Чат-боты — Фаза 1</div>
+    <div class="resource-grid">
+      <a href="https://chatbase.co" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(0,212,170,0.2)">💬</div>
+        <div class="resource-info">
+          <div class="resource-name">Chatbase</div>
+          <div class="resource-desc">AI бот на твоих данных за 1 час. Загружаешь PDF/сайт — бот отвечает. Старт 27 апреля.</div>
+        </div>
+        <span class="resource-badge badge-free">Free → $40</span>
+      </a>
+      <a href="https://voiceflow.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(70,47,255,0.2)">🧩</div>
+        <div class="resource-info">
+          <div class="resource-name">Voiceflow</div>
+          <div class="resource-desc">Визуальный конструктор сложных flows с ветками, условиями и API. Сертификат — сентябрь 2026.</div>
+        </div>
+        <span class="resource-badge badge-free">Free → $60</span>
+      </a>
+      <a href="https://manychat.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(124,92,252,0.2)">📱</div>
+        <div class="resource-info">
+          <div class="resource-name">ManyChat</div>
+          <div class="resource-desc">Автоматизация Instagram/Facebook/Telegram. Keyword trigger → воронка → лид. Старт 5 мая.</div>
+        </div>
+        <span class="resource-badge badge-free">Free → $15</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- CRM -->
+  <div class="resources-section">
+    <div class="resources-title">// 🏢 CRM и базы данных — Фаза 1–2</div>
+    <div class="resource-grid">
+      <a href="https://airtable.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(255,107,107,0.2)">📊</div>
+        <div class="resource-info">
+          <div class="resource-name">Airtable</div>
+          <div class="resource-desc">База данных для хранения лидов, клиентов, задач. Интегрируется с Make в 1 клик. 1200 записей бесплатно.</div>
+        </div>
+        <span class="resource-badge badge-free">Free → $20</span>
+      </a>
+      <a href="https://www.gohighlevel.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(0,77,255,0.2)">🏢</div>
+        <div class="resource-info">
+          <div class="resource-name">GoHighLevel</div>
+          <div class="resource-desc">White-label CRM для US-агентств. Фаза 2 — 14-дневный триал. Клиенты-агентства платят $97–297/мес.</div>
+        </div>
+        <span class="resource-badge badge-paid">Триал 14 дней</span>
+      </a>
+      <a href="https://www.hubspot.com/products/crm" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(255,122,0,0.2)">🔶</div>
+        <div class="resource-info">
+          <div class="resource-name">HubSpot CRM</div>
+          <div class="resource-desc">Клиенты часто уже на нём. Знать обязательно. Бесплатная версия полноценная.</div>
+        </div>
+        <span class="resource-badge badge-free">Free</span>
+      </a>
+      <a href="https://notion.so" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(255,255,255,0.1)">📓</div>
+        <div class="resource-info">
+          <div class="resource-name">Notion</div>
+          <div class="resource-desc">Портфолио-страница для клиентов + твой Мастер-план. Уже настроен.</div>
+        </div>
+        <span class="resource-badge badge-free">Free</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- COLD OUTREACH -->
+  <div class="resources-section">
+    <div class="resources-title">// 📧 Cold Outreach стек — Фаза 1–2</div>
+    <div class="resource-grid">
+      <a href="https://apollo.io" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(16,163,127,0.2)">🎯</div>
+        <div class="resource-info">
+          <div class="resource-name">Apollo.io</div>
+          <div class="resource-desc">Парсинг B2B лидов по фильтрам (должность, размер компании, страна). 50 контактов/мес бесплатно.</div>
+        </div>
+        <span class="resource-badge badge-free">Free → $49</span>
+      </a>
+      <a href="https://instantly.ai" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(249,171,0,0.2)">📨</div>
+        <div class="resource-info">
+          <div class="resource-name">Instantly.ai</div>
+          <div class="resource-desc">Массовая cold email рассылка с прогревом домена. Основной инструмент для кейса №2. 14-дней триал.</div>
+        </div>
+        <span class="resource-badge badge-paid">Триал → $37</span>
+      </a>
+      <a href="https://smartlead.ai" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(0,140,255,0.2)">✉️</div>
+        <div class="resource-info">
+          <div class="resource-name">Smartlead.ai</div>
+          <div class="resource-desc">Альтернатива Instantly. Используй когда клиент просит или для сравнения в кейсе.</div>
+        </div>
+        <span class="resource-badge badge-paid">Триал → $39</span>
+      </a>
+      <a href="https://calendly.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(0,105,255,0.2)">📅</div>
+        <div class="resource-info">
+          <div class="resource-name">Calendly</div>
+          <div class="resource-desc">Бронирование звонков. Встраивается в бота (Chatbase/Voiceflow) — клиент сразу записывается на встречу.</div>
+        </div>
+        <span class="resource-badge badge-free">Free → $10</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- AI -->
+  <div class="resources-section">
+    <div class="resources-title">// 🧠 AI и API — Фаза 2–3</div>
+    <div class="resource-grid">
+      <a href="https://platform.openai.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(16,163,127,0.2)">🤖</div>
+        <div class="resource-info">
+          <div class="resource-name">OpenAI API</div>
+          <div class="resource-desc">Персонализация cold emails, сложные AI боты, function calling. Фаза 3 — Assistants API. Оплата по токенам.</div>
+        </div>
+        <span class="resource-badge badge-paid">По токенам</span>
+      </a>
+      <a href="https://claude.ai" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(0,212,170,0.2)">✨</div>
+        <div class="resource-info">
+          <div class="resource-name">Claude (Anthropic API)</div>
+          <div class="resource-desc">Альтернатива OpenAI для ботов. Лучше для длинных документов. Можно предлагать клиентам как вариант.</div>
+        </div>
+        <span class="resource-badge badge-paid">По токенам</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ПОРТФОЛИО -->
+  <div class="resources-section">
+    <div class="resources-title">// 🎬 Портфолио и демо — Фаза 1</div>
+    <div class="resource-grid">
+      <a href="https://www.loom.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(98,95,245,0.2)">🎥</div>
+        <div class="resource-info">
+          <div class="resource-name">Loom</div>
+          <div class="resource-desc">Запись экрана + лицо. Обязателен для Upwork proposals и демо-кейсов. 25 видео бесплатно.</div>
+        </div>
+        <span class="resource-badge badge-free">Free → $12</span>
+      </a>
+      <a href="https://upwork.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(20,196,140,0.2)">💼</div>
+        <div class="resource-info">
+          <div class="resource-name">Upwork</div>
+          <div class="resource-desc">Основная биржа. 50+ proposals/нед на старте. Cover letter + Loom = конверсия в ответы.</div>
+        </div>
+        <span class="resource-badge badge-free">Бесплатно</span>
+      </a>
+      <a href="https://fiverr.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(26,182,89,0.2)">🟢</div>
+        <div class="resource-info">
+          <div class="resource-name">Fiverr</div>
+          <div class="resource-desc">Вторая биржа. Gig: "I will build AI chatbot". Фаза 2–3.</div>
+        </div>
+        <span class="resource-badge badge-free">Фаза 2</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- МЕДИА / O-1A -->
+  <div class="resources-section">
+    <div class="resources-title">// 📰 Медиа и O-1A — Фаза 2–3</div>
+    <div class="resource-grid">
+      <a href="https://medium.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(255,255,255,0.08)">✍️</div>
+        <div class="resource-info">
+          <div class="resource-name">Medium</div>
+          <div class="resource-desc">Кейс-стади на английском. 1 статья/мес с Фазы 2. Цель: 12+ статей для O-1A критерия #6.</div>
+        </div>
+        <span class="resource-badge badge-free">Free</span>
+      </a>
+      <a href="https://www.connectively.us" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(0,212,170,0.15)">📰</div>
+        <div class="resource-info">
+          <div class="resource-name">HARO (Connectively)</div>
+          <div class="resource-desc">Журналисты ищут эксперта → ты отвечаешь → тебя цитируют в СМИ. 3–5 ответов/нед. O-1A критерий #3.</div>
+        </div>
+        <span class="resource-badge badge-free">Free</span>
+      </a>
+      <a href="https://linkedin.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(0,119,181,0.2)">💼</div>
+        <div class="resource-info">
+          <div class="resource-name">LinkedIn</div>
+          <div class="resource-desc">3 поста/нед про automation. AI пишет → ты редактируешь. Клиенты приходят сами к Фазе 3.</div>
+        </div>
+        <span class="resource-badge badge-free">Free</span>
+      </a>
+      <a href="https://www.producthunt.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(255,88,0,0.2)">🏹</div>
+        <div class="resource-info">
+          <div class="resource-name">Product Hunt</div>
+          <div class="resource-desc">Подать заявку ментором. Фаза 2. O-1A критерий #4 — "judging the work of others".</div>
+        </div>
+        <span class="resource-badge badge-free">Free</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ТАБЛИЦА ПО ФАЗАМ -->
+  <div class="resources-section">
+    <div class="resources-title">// 📅 Когда подключать каждый инструмент</div>
+    <table class="tools-table">
+      <tr>
+        <th>Инструмент</th>
+        <th>Когда</th>
+        <th>Тариф старт</th>
+        <th>Переход на платный</th>
+      </tr>
+      <tr><td><strong>Make.com</strong></td><td>Апрель 2026 — сразу</td><td>Free (1000 ops)</td><td>Core $9 — при первом клиенте</td></tr>
+      <tr><td><strong>Chatbase</strong></td><td>27 апреля 2026</td><td>Free (100 сообщ)</td><td>Hobby $40 — при первом клиенте</td></tr>
+      <tr><td><strong>Voiceflow</strong></td><td>29 апреля 2026</td><td>Free (2 агента)</td><td>Pro $60 — при платном боте</td></tr>
+      <tr><td><strong>Apollo.io</strong></td><td>Апрель 2026</td><td>Free (50 контактов)</td><td>Basic $49 — при кейсе №2</td></tr>
+      <tr><td><strong>ManyChat</strong></td><td>5 мая 2026</td><td>Free (1000 контактов)</td><td>Pro $15 — при базе клиента &gt;1000</td></tr>
+      <tr><td><strong>Zapier</strong></td><td>Апрель — изучить</td><td>Free (100 задач)</td><td>Starter $20 — если клиент требует</td></tr>
+      <tr><td><strong>Instantly.ai</strong></td><td>Май 2026 (кейс №2)</td><td>Триал 14 дней</td><td>Growth $37 — при клиенте на outreach</td></tr>
+      <tr><td><strong>Airtable</strong></td><td>Май 2026</td><td>Free (1200 записей)</td><td>Plus $10 — при нескольких клиентах</td></tr>
+      <tr><td><strong>Calendly</strong></td><td>Май 2026</td><td>Free (1 тип события)</td><td>Standard $10 — при нескольких ботах</td></tr>
+      <tr><td><strong>Loom</strong></td><td>Май 2026 (кейс №1)</td><td>Free (25 видео)</td><td>Starter $12 — при активном Upwork</td></tr>
+      <tr><td><strong>n8n</strong></td><td>Июль 2026 (Фаза 2)</td><td>Free (self-hosted)</td><td>Бесплатно всегда</td></tr>
+      <tr><td><strong>GoHighLevel</strong></td><td>Июль 2026 (Фаза 2)</td><td>Триал 14 дней</td><td>Starter $97 — при агентстве-клиенте</td></tr>
+      <tr><td><strong>HubSpot CRM</strong></td><td>Июль 2026</td><td>Free</td><td>Бесплатной версии хватает</td></tr>
+      <tr><td><strong>OpenAI API</strong></td><td>Октябрь 2026 (Фаза 3)</td><td>$5 кредитов</td><td>По использованию — закладывать в цену</td></tr>
+      <tr><td><strong>HARO</strong></td><td>Июль 2026 (Фаза 2)</td><td>Free</td><td>Free</td></tr>
+      <tr><td><strong>Medium</strong></td><td>Июль 2026 (Фаза 2)</td><td>Free</td><td>Free</td></tr>
+    </table>
+  </div>
+
+  <!-- БЫСТРЫЕ ССЫЛКИ ДЛЯ ТЕЛЕФОНА -->
+  <div class="resources-section">
+    <div class="resources-title">// 🚀 Быстрый старт — нажми и зарегистрируйся</div>
+    <div class="resource-grid">
+      <a href="https://www.make.com/en/register" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(101,49,255,0.2)">⚙️</div>
+        <div class="resource-info"><div class="resource-name">Регистрация Make.com</div><div class="resource-desc">Сделать сейчас → бесплатно</div></div>
+        <span class="resource-badge badge-free">Сейчас</span>
+      </a>
+      <a href="https://www.chatbase.co/auth/sign-up" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(0,212,170,0.2)">💬</div>
+        <div class="resource-info"><div class="resource-name">Регистрация Chatbase</div><div class="resource-desc">27 апреля 2026 → бесплатно</div></div>
+        <span class="resource-badge badge-free">27 апр</span>
+      </a>
+      <a href="https://creator.voiceflow.com/signup" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(70,47,255,0.2)">🧩</div>
+        <div class="resource-info"><div class="resource-name">Регистрация Voiceflow</div><div class="resource-desc">29 апреля 2026 → бесплатно</div></div>
+        <span class="resource-badge badge-free">29 апр</span>
+      </a>
+      <a href="https://app.manychat.com/register" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(124,92,252,0.2)">📱</div>
+        <div class="resource-info"><div class="resource-name">Регистрация ManyChat</div><div class="resource-desc">5 мая 2026 → бесплатно</div></div>
+        <span class="resource-badge badge-free">5 мая</span>
+      </a>
+      <a href="https://app.apollo.io/#/sign-up" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(16,163,127,0.2)">🎯</div>
+        <div class="resource-info"><div class="resource-name">Регистрация Apollo.io</div><div class="resource-desc">Апрель 2026 → 50 контактов/мес</div></div>
+        <span class="resource-badge badge-free">Апрель</span>
+      </a>
+      <a href="https://academy.make.com" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(101,49,255,0.15)">🎓</div>
+        <div class="resource-info"><div class="resource-name">Make Academy — учёба</div><div class="resource-desc">Прямо сейчас → Make Basics</div></div>
+        <span class="resource-badge badge-free">Сейчас ▶</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ИНСТРУМЕНТЫ (Chatbase/VF/MC детально) ===== -->
+<div class="section" id="tools">
+  <div class="section-header">
+    <h2>Инструменты: Chatbase vs Voiceflow vs ManyChat</h2>
+    <p>Сравнение сервисов · тарифы · когда переходить на платный · стратегия применения</p>
+  </div>
+
+  <div class="highlight-box">
+    💡 <strong>Стратегия старта:</strong> Все три инструмента начинаем на <strong>бесплатном тарифе</strong>. Переходим на платный только когда есть платящий клиент. Стоимость тарифа закладываем в цену услуги клиенту.
+  </div>
+
+  <div class="resources-section">
+    <div class="resources-title">// Сравнение инструментов</div>
+    <table class="tools-table">
+      <tr>
+        <th>Инструмент</th>
+        <th>Суть</th>
+        <th>Бесплатный план</th>
+        <th>Платный от</th>
+        <th>Для чего</th>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--accent)">Chatbase</strong></td>
+        <td>AI бот на твоих данных (PDF/сайт/текст)</td>
+        <td>100 сообщений/мес · 1 бот</td>
+        <td>$40/мес (Hobby)</td>
+        <td>Поддержка, FAQ, лидген · Самый быстрый старт</td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--yellow)">Voiceflow</strong></td>
+        <td>Визуальный конструктор AI flows</td>
+        <td>2 агента · 100 AI токенов/мес</td>
+        <td>$60/мес (Pro)</td>
+        <td>Сложные диалоги · квалификация · multi-step</td>
+      </tr>
+      <tr>
+        <td><strong style="color:var(--purple)">ManyChat</strong></td>
+        <td>Автоматизация Instagram/FB/Telegram</td>
+        <td>До 1000 контактов</td>
+        <td>$15/мес (Pro)</td>
+        <td>Соцсети · keyword → воронка · массовые рассылки</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="phases-grid">
+
+    <div class="phase-card p1">
+      <div class="phase-num">// Chatbase</div>
+      <div class="phase-title">chatbase.co</div>
+      <div class="phase-dates">Старт: 27 апреля 2026</div>
+      <div class="phase-goal">Самый простой старт. Загружаешь данные — бот готов за час.</div>
+      <ul class="checklist">
+        <span class="checklist-sub">// Как начать (бесплатно)</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Зарегистрироваться на chatbase.co</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Загрузить данные: PDF / URL сайта / текст</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Кастомизировать внешний вид (цвет, имя бота)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Встроить виджет на тестовый лендинг</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Протестировать 10+ диалогов</span></li>
+        <span class="checklist-sub">// Когда переходить на платный</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Есть первый платящий клиент → Hobby $40/мес (1500 сообщ)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>2+ клиента с ботами → Standard $150/мес (2 бота)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Закладывать тариф в цену услуги клиенту</span></li>
+        <span class="checklist-sub">// Демо-кейс №1</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Chatbase + Make + Calendly: AI Lead Qualifier</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Loom видео 3–4 мин на английском</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Описание кейса в Notion-портфолио</span></li>
+      </ul>
+    </div>
+
+    <div class="phase-card p2">
+      <div class="phase-num">// Voiceflow</div>
+      <div class="phase-title">voiceflow.com</div>
+      <div class="phase-dates">Старт: 29 апреля 2026</div>
+      <div class="phase-goal">Сложнее Chatbase, но мощнее. Строишь визуальные сценарии разговора.</div>
+      <ul class="checklist">
+        <span class="checklist-sub yellow">// Как начать (бесплатно)</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Зарегистрироваться на voiceflow.com</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Пройти онбординг (drag-and-drop canvas)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Собрать первый flow: Start → вопрос → ветка → ответ</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Добавить условную логику (if/else ветки)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Интегрировать с Make через webhook</span></li>
+        <span class="checklist-sub yellow">// Сертификация (бесплатно)</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Начать: learn.voiceflow.com (7 июля 2026)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Получить: Voiceflow Certified Developer (1 сент 2026)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Добавить в Upwork + LinkedIn профиль</span></li>
+        <span class="checklist-sub yellow">// Когда переходить на платный</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Pro $60/мес — когда есть первый платный клиент на Voiceflow</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Закладывать $60 в цену maintenance клиенту</span></li>
+      </ul>
+    </div>
+
+    <div class="phase-card p3">
+      <div class="phase-num">// ManyChat</div>
+      <div class="phase-title">manychat.com</div>
+      <div class="phase-dates">Старт: 5 мая 2026</div>
+      <div class="phase-goal">Не AI, а автоматизация в соцсетях. Для клиентов с Instagram/Facebook.</div>
+      <ul class="checklist">
+        <span class="checklist-sub purple">// Как начать (бесплатно)</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Зарегистрироваться на manychat.com</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Подключить Instagram или Facebook страницу</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Настроить keyword trigger: "СТАРТ" → автоответ</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Построить простую воронку: вопрос → 2 кнопки → ответ</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Интегрировать с Google Sheets через Make</span></li>
+        <span class="checklist-sub purple">// Как услуга для клиентов (Фаза 2+)</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Подключить 1 клиента (его Instagram/Facebook аккаунт)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Настроить воронку: keyword → квалификация → Calendly</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Ценник: $200–600 setup + $100–200/мес maintenance</span></li>
+        <span class="checklist-sub purple">// Когда переходить на платный</span>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>База клиента > 1000 → Pro $15/мес за его аккаунт</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>$15 закладывать в maintenance fee клиента</span></li>
+      </ul>
+    </div>
+
+    <div class="phase-card p4">
+      <div class="phase-num">// Стек к концу Фазы 2</div>
+      <div class="phase-title">Весь инструментарий</div>
+      <div class="phase-dates">К сентябрю 2026</div>
+      <div class="phase-goal">Полная таблица инструментов с тарифами и назначением</div>
+      <table class="tools-table" style="margin-top:8px">
+        <tr><th>Инструмент</th><th>Тариф</th><th>Для чего</th></tr>
+        <tr><td>Make.com</td><td>Free / Core $9</td><td>Workflows</td></tr>
+        <tr><td>Chatbase</td><td>Free → $40</td><td>AI боты</td></tr>
+        <tr><td>Voiceflow</td><td>Free → $60</td><td>Сложные flows</td></tr>
+        <tr><td>ManyChat</td><td>Free → $15</td><td>Соцсети</td></tr>
+        <tr><td>GoHighLevel</td><td>Триал → $97</td><td>CRM US-клиентов</td></tr>
+        <tr><td>n8n</td><td>Free (self-hosted)</td><td>Open-source Make</td></tr>
+        <tr><td>Apollo.io</td><td>Free (50 кред)</td><td>Лиды B2B</td></tr>
+        <tr><td>Instantly.ai</td><td>Триал → $37</td><td>Cold email</td></tr>
+      </table>
     </div>
   </div>
 </div>
@@ -1297,7 +1227,7 @@
 <div class="section" id="services">
   <div class="section-header">
     <h2>Услуги и позиционирование</h2>
-    <p>3 основные услуги на старте · весь фокус здесь · никаких копирайтингов и маркетплейсов</p>
+    <p>5 основных услуг · automation-first · никаких копирайтингов</p>
   </div>
 
   <div class="highlight-box">
@@ -1308,10 +1238,8 @@
     <div class="service-card">
       <div class="svc-num">// Услуга 1</div>
       <div class="svc-title">AI Chatbot для лидогенерации</div>
-      <div class="svc-price">$300-800 setup · $100-200/мес maintenance</div>
-      <div class="svc-desc">
-        Настройка бота-квалификатора для лендинга: задаёт 5-7 вопросов, собирает контакты, бронирует звонок в Calendly, отправляет данные в CRM. Твоё преимущество: sales-опыт → ты знаешь какие вопросы задавать для квалификации.
-      </div>
+      <div class="svc-price">$300–800 setup · $100–200/мес maintenance</div>
+      <div class="svc-desc">Бот-квалификатор: 5–7 вопросов → сбор контактов → Calendly → CRM. Твоё преимущество: sales-опыт → знаешь какие вопросы задавать.</div>
       <div class="svc-stack">
         <span class="svc-stack-item">Chatbase</span>
         <span class="svc-stack-item">Voiceflow</span>
@@ -1320,119 +1248,96 @@
         <span class="svc-stack-item">Airtable</span>
       </div>
     </div>
-
     <div class="service-card">
       <div class="svc-num">// Услуга 2</div>
       <div class="svc-title">Sales Workflow Automation</div>
-      <div class="svc-price">$500-1500 setup · $200-500/мес maintenance</div>
-      <div class="svc-desc">
-        CRM интеграции, автоматический follow-up, lead scoring, nurture-последовательности. Клиент: small agencies, financial advisors, coaches с 50-500 лидов/мес. Ключевой объект продажи — система и метрики (часы сэкономлены, % конверсии).
-      </div>
+      <div class="svc-price">$500–1500 setup · $200–500/мес maintenance</div>
+      <div class="svc-desc">CRM интеграции, автоматический follow-up, lead scoring, nurture-последовательности. Клиент: agencies, advisors, coaches с 50–500 лидов/мес.</div>
       <div class="svc-stack">
         <span class="svc-stack-item">Make</span>
-        <span class="svc-stack-item">Zapier</span>
         <span class="svc-stack-item">n8n</span>
         <span class="svc-stack-item">Airtable</span>
         <span class="svc-stack-item">GoHighLevel</span>
       </div>
     </div>
-
     <div class="service-card">
       <div class="svc-num">// Услуга 3</div>
       <div class="svc-title">AI Cold Outreach System</div>
-      <div class="svc-price">$400-1000 setup · $150-400/мес maintenance</div>
-      <div class="svc-desc">
-        Парсинг лидов (Apollo) + AI персонализация сообщений (OpenAI) + рассылка (Instantly/Smartlead) + отслеживание ответов → CRM/Slack. Твоё преимущество: прямой опыт в lead gen, знаешь как конвертит.
-      </div>
+      <div class="svc-price">$400–1000 setup · $150–400/мес maintenance</div>
+      <div class="svc-desc">Apollo → AI персонализация (OpenAI) → Instantly/Smartlead → ответы в CRM/Slack. Твоё преимущество: прямой опыт в lead gen.</div>
       <div class="svc-stack">
         <span class="svc-stack-item">Instantly</span>
         <span class="svc-stack-item">Apollo</span>
         <span class="svc-stack-item">Make</span>
         <span class="svc-stack-item">OpenAI</span>
-        <span class="svc-stack-item">Slack</span>
       </div>
     </div>
-
     <div class="service-card">
       <div class="svc-num">// Услуга 4</div>
       <div class="svc-title">AI Customer Support Bot</div>
-      <div class="svc-price">$400-900 setup · $100-300/мес maintenance</div>
-      <div class="svc-desc">
-        Бот отвечает на FAQ 24/7, сложные вопросы эскалирует на живого оператора. Обучается на документации клиента. Интегрируется в сайт, Telegram, WhatsApp. Снижает нагрузку на поддержку на 60-80%.
-      </div>
+      <div class="svc-price">$400–900 setup · $100–300/мес maintenance</div>
+      <div class="svc-desc">Бот 24/7 → FAQ → сложные эскалирует оператору. Снижает нагрузку на поддержку на 60–80%. Интегрируется в сайт, Telegram, WhatsApp.</div>
       <div class="svc-stack">
         <span class="svc-stack-item">Voiceflow</span>
         <span class="svc-stack-item">Chatbase</span>
         <span class="svc-stack-item">OpenAI</span>
         <span class="svc-stack-item">Make</span>
-        <span class="svc-stack-item">Zendesk</span>
       </div>
     </div>
-
     <div class="service-card">
       <div class="svc-num">// Услуга 5</div>
       <div class="svc-title">Social Media Automation</div>
-      <div class="svc-price">$200-600 setup · $100-200/мес maintenance</div>
-      <div class="svc-desc">
-        Одна статья или видео → AI переформатирует под каждую платформу → автопостинг в LinkedIn, Twitter/X, Instagram. Экономит 5-10 часов/неделю на контент-менеджменте. Быстрый вход, простой кейс для портфолио.
-      </div>
+      <div class="svc-price">$200–600 setup · $100–200/мес maintenance</div>
+      <div class="svc-desc">Статья → AI переформатирует под каждую платформу → автопостинг. Для клиентов с Instagram/Facebook → ManyChat воронки.</div>
       <div class="svc-stack">
         <span class="svc-stack-item">Make</span>
+        <span class="svc-stack-item">ManyChat</span>
         <span class="svc-stack-item">OpenAI</span>
         <span class="svc-stack-item">Buffer</span>
-        <span class="svc-stack-item">Airtable</span>
-        <span class="svc-stack-item">Hootsuite</span>
       </div>
     </div>
   </div>
 
-  <div class="section-header" style="margin-top:12px">
-    <h2>Воронка клиентов</h2>
-  </div>
-
+  <div class="section-header" style="margin-top:12px"><h2>Воронка клиентов</h2></div>
   <div class="phases-grid">
     <div class="phase-card p1">
       <div class="phase-num">// Канал 1 (основной)</div>
       <div class="phase-title">Upwork</div>
-      <div class="phase-goal">50+ proposals в неделю на старте · cover letters с Loom-видео · Niche: automation for sales</div>
+      <div class="phase-goal">50+ proposals в неделю · cover letters с Loom-видео · ниша: automation for sales</div>
       <ul class="checklist">
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Upwork профиль с headline "AI Automation Specialist"</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Portfolio: 4-6 работ с описаниями и скринами</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Rising Talent badge (получить)</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Proposal шаблон с персонализацией + Loom</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Headline "AI Automation Specialist"</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Portfolio: 4–6 работ с описаниями</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Rising Talent badge</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Proposal шаблон + Loom</span></li>
       </ul>
     </div>
-
     <div class="phase-card p2">
       <div class="phase-num">// Канал 2</div>
       <div class="phase-title">LinkedIn</div>
-      <div class="phase-goal">Контент 3-5 раз/неделю на англ · кейсы · AI помогает писать</div>
+      <div class="phase-goal">Контент 3–5 раз/неделю · кейсы · AI помогает писать</div>
       <ul class="checklist">
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Headline под automation</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>About секция (AI помощь + твоя редактура)</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Featured: 2 закреплённых кейса</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>3 поста/неделю с кейсами</span></li>
       </ul>
     </div>
-
     <div class="phase-card p3">
       <div class="phase-num">// Канал 3</div>
       <div class="phase-title">Medium + HARO</div>
       <div class="phase-goal">Для O-1A · не для клиентов напрямую</div>
       <ul class="checklist">
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Medium: 1 кейс-стади в месяц</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>HARO: 3-5 ответов/неделю в фазе 2+</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Target темы: AI automation, sales ops, lead gen</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>HARO: 3–5 ответов/неделю (Фаза 2+)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Темы: AI automation, sales ops, lead gen</span></li>
       </ul>
     </div>
-
     <div class="phase-card p4">
       <div class="phase-num">// Канал 4 (позже)</div>
       <div class="phase-title">Fiverr + Product Hunt</div>
-      <div class="phase-goal">Фаза 2-3 · дополнительные источники</div>
+      <div class="phase-goal">Фаза 2–3 · дополнительные источники</div>
       <ul class="checklist">
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Fiverr gig: "I will build AI chatbot for your business"</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Fiverr gig: "I will automate your sales workflow with Make"</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Fiverr: "I will build AI chatbot for your business"</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Fiverr: "I will automate your sales workflow with Make"</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Product Hunt ментор (O-1A критерий)</span></li>
       </ul>
     </div>
@@ -1447,7 +1352,7 @@
   </div>
 
   <div class="highlight-box">
-    💡 <strong>Новая стратегия:</strong> В automation-нише английский нужен на уровне "техническое общение и редактура AI-драфтов". Это B1-B2, у тебя уже есть. C1 — долгосрочная цель для O-1A, не для клиентов. Не блокируй себя языком — старт на Upwork прямо сейчас.
+    💡 <strong>Стратегия:</strong> В automation-нише английский нужен на уровне B1–B2. C1 — долгосрочная цель для O-1A. Не блокируй себя языком — старт на Upwork прямо сейчас.
   </div>
 
   <div class="english-grid">
@@ -1462,7 +1367,6 @@
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span><a href="https://www.mfmpod.com" target="_blank" style="color:var(--accent)">My First Million</a> <span class="tag tag-audio">аудио</span></span></li>
       </ul>
     </div>
-
     <div class="english-card">
       <h3>📺 Видео и сериалы</h3>
       <div class="subtitle">Воскресенье · 1.5 часа · субтитры на англ.</div>
@@ -1473,7 +1377,6 @@
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span><a href="https://www.youtube.com/@EnglishwithLucy" target="_blank" style="color:var(--accent)">English with Lucy</a> — грамматика B2–C1 <span class="tag tag-video">видео</span></span></li>
       </ul>
     </div>
-
     <div class="english-card">
       <h3>📖 Чтение (обед + утро)</h3>
       <div class="subtitle">15–20 мин/день · без переводчика</div>
@@ -1484,7 +1387,6 @@
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span><a href="https://www.morningbrew.com" target="_blank" style="color:var(--accent)">Morning Brew</a> — бизнес новости <span class="tag tag-read">чтение</span></span></li>
       </ul>
     </div>
-
     <div class="english-card">
       <h3>✍️ Активная практика</h3>
       <div class="subtitle">Каждый день · письмо и говорение</div>
@@ -1498,41 +1400,26 @@
     </div>
   </div>
 
-  <div class="section-header">
-    <h2>Книги (аудио)</h2>
-    <p>Слушай в зале и дороге — деловой English + знания для работы</p>
-  </div>
+  <div class="section-header"><h2>Книги (аудио)</h2><p>Слушай в зале и дороге — деловой English + знания для работы</p></div>
   <div class="resource-grid">
     <a href="https://www.audible.com/pd/The-Lean-Startup-Audiobook/B005MU0IZE" target="_blank" class="resource-card">
       <div class="resource-icon" style="background:rgba(0,212,170,0.1)">📘</div>
-      <div class="resource-info">
-        <div class="resource-name">The Lean Startup</div>
-        <div class="resource-desc">Eric Ries · продуктовое мышление</div>
-      </div>
+      <div class="resource-info"><div class="resource-name">The Lean Startup</div><div class="resource-desc">Eric Ries · продуктовое мышление</div></div>
       <span class="resource-badge badge-cert">Аудио</span>
     </a>
     <a href="https://www.audible.com/pd/The-Mom-Test-Audiobook/B08LTM85ZN" target="_blank" class="resource-card">
       <div class="resource-icon" style="background:rgba(124,92,252,0.1)">📙</div>
-      <div class="resource-info">
-        <div class="resource-name">The Mom Test</div>
-        <div class="resource-desc">Rob Fitzpatrick · как общаться с клиентами</div>
-      </div>
+      <div class="resource-info"><div class="resource-name">The Mom Test</div><div class="resource-desc">Rob Fitzpatrick · как общаться с клиентами</div></div>
       <span class="resource-badge badge-cert">Аудио</span>
     </a>
     <a href="https://www.audible.com/pd/Building-a-StoryBrand-Audiobook/B072J7K3GS" target="_blank" class="resource-card">
       <div class="resource-icon" style="background:rgba(255,217,61,0.1)">📕</div>
-      <div class="resource-info">
-        <div class="resource-name">Building a StoryBrand</div>
-        <div class="resource-desc">Donald Miller · позиционирование</div>
-      </div>
+      <div class="resource-info"><div class="resource-name">Building a StoryBrand</div><div class="resource-desc">Donald Miller · позиционирование</div></div>
       <span class="resource-badge badge-cert">Аудио</span>
     </a>
     <a href="https://www.audible.com/pd/Influence-Audiobook/B01BMIQDUC" target="_blank" class="resource-card">
       <div class="resource-icon" style="background:rgba(255,107,107,0.1)">📗</div>
-      <div class="resource-info">
-        <div class="resource-name">Influence</div>
-        <div class="resource-desc">Robert Cialdini · психология убеждения</div>
-      </div>
+      <div class="resource-info"><div class="resource-name">Influence</div><div class="resource-desc">Robert Cialdini · психология убеждения</div></div>
       <span class="resource-badge badge-cert">Аудио</span>
     </a>
   </div>
@@ -1546,64 +1433,46 @@
   </div>
 
   <div class="highlight-box">
-    📌 <strong>Новый порядок:</strong> Make.com → Voiceflow → OpenAI API → HubSpot Sales/CRM (вторичны) → Nexford. Automation-сертификаты = строки в Upwork/LinkedIn, напрямую продают клиенту. HubSpot/Google маркетинг — для O-1A досье, не для клиентов.
+    📌 <strong>Порядок:</strong> Make.com → Voiceflow → OpenAI API → HubSpot (вторичны) → Nexford. Automation-сертификаты = строки в Upwork/LinkedIn, напрямую продают клиенту.
   </div>
 
   <div class="resources-section">
-    <div class="resources-title">// Приоритет 1 — Апрель–Май (automation core)</div>
+    <div class="resources-title">// Приоритет 1 — Апрель–Июнь (automation core)</div>
     <div class="resource-grid">
       <a href="https://academy.make.com" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(101,49,255,0.15)">⚙️</div>
-        <div class="resource-info">
-          <div class="resource-name">Make.com Certification</div>
-          <div class="resource-desc">Основной сертификат · бесплатно · ~10ч</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">Make.com Certification</div><div class="resource-desc">Основной сертификат · бесплатно · ~10ч</div></div>
         <span class="resource-badge badge-free">Бесплатно</span>
       </a>
       <a href="https://learn.voiceflow.com" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(70,47,255,0.15)">🤖</div>
-        <div class="resource-info">
-          <div class="resource-name">Voiceflow Certified Developer</div>
-          <div class="resource-desc">Построение чат-ботов · бесплатно</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">Voiceflow Certified Developer</div><div class="resource-desc">Дедлайн: 1 сентября 2026 · бесплатно</div></div>
         <span class="resource-badge badge-free">Бесплатно</span>
       </a>
       <a href="https://www.chatbase.co/docs" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(0,212,170,0.15)">💬</div>
-        <div class="resource-info">
-          <div class="resource-name">Chatbase Docs</div>
-          <div class="resource-desc">Быстрые AI боты на базе GPT · 3ч</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">Chatbase Docs</div><div class="resource-desc">AI боты на GPT · старт 27 апреля · 3ч</div></div>
         <span class="resource-badge badge-free">Бесплатно</span>
       </a>
     </div>
   </div>
 
   <div class="resources-section">
-    <div class="resources-title">// Приоритет 2 — Июнь–Август (outreach + CRM)</div>
+    <div class="resources-title">// Приоритет 2 — Июль–Август (outreach + CRM)</div>
     <div class="resource-grid">
       <a href="https://help.instantly.ai" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(249,171,0,0.15)">📧</div>
-        <div class="resource-info">
-          <div class="resource-name">Instantly.ai Academy</div>
-          <div class="resource-desc">Cold outreach automation</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">Instantly.ai Academy</div><div class="resource-desc">Cold outreach automation</div></div>
         <span class="resource-badge badge-free">Бесплатно</span>
       </a>
       <a href="https://academy.hubspot.com/courses/inbound-sales" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(255,122,0,0.15)">💼</div>
-        <div class="resource-info">
-          <div class="resource-name">HubSpot Sales Software</div>
-          <div class="resource-desc">Для понимания клиентов (они часто на HubSpot)</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">HubSpot Sales Software</div><div class="resource-desc">Для понимания клиентов (они часто на HubSpot)</div></div>
         <span class="resource-badge badge-free">Бесплатно</span>
       </a>
       <a href="https://help.gohighlevel.com" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(0,77,255,0.15)">🏢</div>
-        <div class="resource-info">
-          <div class="resource-name">GoHighLevel docs</div>
-          <div class="resource-desc">CRM для agencies · US-рынок</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">GoHighLevel docs</div><div class="resource-desc">CRM для US-agencies · 14-дней триал</div></div>
         <span class="resource-badge badge-free">Бесплатно</span>
       </a>
     </div>
@@ -1614,34 +1483,22 @@
     <div class="resource-grid">
       <a href="https://platform.openai.com/docs" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(16,163,127,0.15)">🧠</div>
-        <div class="resource-info">
-          <div class="resource-name">OpenAI API</div>
-          <div class="resource-desc">Assistants, function calling · для сложных ботов</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">OpenAI API</div><div class="resource-desc">Assistants, function calling · для сложных ботов</div></div>
         <span class="resource-badge badge-free">Бесплатно</span>
       </a>
       <a href="https://skillshop.google.com" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(249,171,0,0.15)">📊</div>
-        <div class="resource-info">
-          <div class="resource-name">Google Analytics (GA4)</div>
-          <div class="resource-desc">Для метрик в automation кейсах</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">Google Analytics (GA4)</div><div class="resource-desc">Для метрик в automation кейсах</div></div>
         <span class="resource-badge badge-free">Бесплатно</span>
       </a>
       <a href="https://docs.n8n.io" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(234,68,90,0.15)">🔀</div>
-        <div class="resource-info">
-          <div class="resource-name">n8n docs</div>
-          <div class="resource-desc">Open-source альтернатива Make/Zapier</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">n8n docs</div><div class="resource-desc">Open-source альтернатива Make/Zapier</div></div>
         <span class="resource-badge badge-free">Бесплатно</span>
       </a>
       <a href="https://www.coursera.org/learn/ai-for-everyone" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(0,119,181,0.15)">🤖</div>
-        <div class="resource-info">
-          <div class="resource-name">AI for Everyone (Andrew Ng)</div>
-          <div class="resource-desc">Аудит · для O-1A кейса</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">AI for Everyone (Andrew Ng)</div><div class="resource-desc">Для O-1A кейса</div></div>
         <span class="resource-badge badge-free">Бесплатно</span>
       </a>
     </div>
@@ -1652,34 +1509,22 @@
     <div class="resource-grid">
       <a href="https://nexford.edu" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(124,92,252,0.15)">🎓</div>
-        <div class="resource-info">
-          <div class="resource-name">Marketing Fundamentals</div>
-          <div class="resource-desc">Первый курс</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">Marketing Fundamentals</div><div class="resource-desc">Первый курс</div></div>
         <span class="resource-badge badge-cert">Nexford</span>
       </a>
       <a href="https://nexford.edu" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(124,92,252,0.15)">🎓</div>
-        <div class="resource-info">
-          <div class="resource-name">Digital Marketing Fundamentals</div>
-          <div class="resource-desc">Ландшафт рынка</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">Digital Marketing Fundamentals</div><div class="resource-desc">Ландшафт рынка</div></div>
         <span class="resource-badge badge-cert">Nexford</span>
       </a>
       <a href="https://nexford.edu" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(124,92,252,0.15)">🎓</div>
-        <div class="resource-info">
-          <div class="resource-name">AI & Business</div>
-          <div class="resource-desc">Усиливает твоё позиционирование</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">AI & Business</div><div class="resource-desc">Усиливает позиционирование</div></div>
         <span class="resource-badge badge-cert">Nexford</span>
       </a>
       <a href="https://nexford.edu" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(124,92,252,0.15)">🎓</div>
-        <div class="resource-info">
-          <div class="resource-name">Marketing Analytics</div>
-          <div class="resource-desc">Для метрик в кейсах</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">Marketing Analytics</div><div class="resource-desc">Для метрик в кейсах</div></div>
         <span class="resource-badge badge-cert">Nexford</span>
       </a>
     </div>
@@ -1694,55 +1539,48 @@
   </div>
 
   <div class="resources-section">
+    <div class="resources-title">// Чат-боты и AI (Фаза 1)</div>
+    <div class="resource-grid">
+      <a href="https://www.chatbase.co/auth/sign-up" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(0,212,170,0.15)">💬</div>
+        <div class="resource-info"><div class="resource-name">Chatbase — зарегистрироваться</div><div class="resource-desc">27 апр · AI боты за 1 час · Free: 100 сообщ/мес</div></div>
+        <span class="resource-badge badge-free">Free → $40</span>
+      </a>
+      <a href="https://creator.voiceflow.com/signup" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(70,47,255,0.15)">🧩</div>
+        <div class="resource-info"><div class="resource-name">Voiceflow — зарегистрироваться</div><div class="resource-desc">29 апр · Сложные flows · Free: 2 агента</div></div>
+        <span class="resource-badge badge-free">Free → $60</span>
+      </a>
+      <a href="https://app.manychat.com/register" target="_blank" class="resource-card">
+        <div class="resource-icon" style="background:rgba(124,92,252,0.15)">📱</div>
+        <div class="resource-info"><div class="resource-name">ManyChat — зарегистрироваться</div><div class="resource-desc">5 мая · Instagram/FB воронки · Free: до 1000 контактов</div></div>
+        <span class="resource-badge badge-free">Free → $15</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="resources-section">
     <div class="resources-title">// Automation стек (главные инструменты)</div>
     <div class="resource-grid">
-      <a href="https://make.com" target="_blank" class="resource-card">
+      <a href="https://www.make.com/en/register" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(101,49,255,0.15)">⚙️</div>
-        <div class="resource-info">
-          <div class="resource-name">Make.com</div>
-          <div class="resource-desc">Основной инструмент автоматизации · 1000 ops/мес free</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">Make.com — зарегистрироваться</div><div class="resource-desc">Основной инструмент · 1000 ops/мес free</div></div>
         <span class="resource-badge badge-free">Core</span>
       </a>
-      <a href="https://chatbase.co" target="_blank" class="resource-card">
-        <div class="resource-icon" style="background:rgba(0,212,170,0.15)">💬</div>
-        <div class="resource-info">
-          <div class="resource-name">Chatbase</div>
-          <div class="resource-desc">AI чат-боты за 1 час · GPT-powered</div>
-        </div>
-        <span class="resource-badge badge-free">Freemium</span>
-      </a>
-      <a href="https://voiceflow.com" target="_blank" class="resource-card">
-        <div class="resource-icon" style="background:rgba(70,47,255,0.15)">🤖</div>
-        <div class="resource-info">
-          <div class="resource-name">Voiceflow</div>
-          <div class="resource-desc">Продвинутый конструктор ботов · free tier</div>
-        </div>
-        <span class="resource-badge badge-free">Freemium</span>
-      </a>
-      <a href="https://zapier.com" target="_blank" class="resource-card">
+      <a href="https://zapier.com/sign-up" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(255,74,0,0.15)">⚡</div>
-        <div class="resource-info">
-          <div class="resource-name">Zapier</div>
-          <div class="resource-desc">Альтернатива Make · клиенты часто просят</div>
-        </div>
-        <span class="resource-badge badge-free">Freemium</span>
+        <div class="resource-info"><div class="resource-name">Zapier — зарегистрироваться</div><div class="resource-desc">Альтернатива Make · клиенты часто просят</div></div>
+        <span class="resource-badge badge-free">Free → $20</span>
       </a>
       <a href="https://n8n.io" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(234,68,90,0.15)">🔀</div>
-        <div class="resource-info">
-          <div class="resource-name">n8n</div>
-          <div class="resource-desc">Open-source Make · self-hosted</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">n8n — документация</div><div class="resource-desc">Open-source Make · self-hosted бесплатно · Фаза 2</div></div>
         <span class="resource-badge badge-free">Free</span>
       </a>
-      <a href="https://airtable.com" target="_blank" class="resource-card">
+      <a href="https://airtable.com/signup" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(255,107,107,0.1)">📊</div>
-        <div class="resource-info">
-          <div class="resource-name">Airtable</div>
-          <div class="resource-desc">База данных для automation · free tier</div>
-        </div>
-        <span class="resource-badge badge-free">Freemium</span>
+        <div class="resource-info"><div class="resource-name">Airtable — зарегистрироваться</div><div class="resource-desc">База данных для automation · 1200 записей free</div></div>
+        <span class="resource-badge badge-free">Free → $10</span>
       </a>
     </div>
   </div>
@@ -1750,53 +1588,30 @@
   <div class="resources-section">
     <div class="resources-title">// Sales/Outreach стек</div>
     <div class="resource-grid">
-      <a href="https://instantly.ai" target="_blank" class="resource-card">
+      <a href="https://app.instantly.ai/auth/sign-up" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(249,171,0,0.15)">📧</div>
-        <div class="resource-info">
-          <div class="resource-name">Instantly.ai</div>
-          <div class="resource-desc">Cold email на масштабе · 14 дней триал</div>
-        </div>
-        <span class="resource-badge badge-paid">Триал</span>
+        <div class="resource-info"><div class="resource-name">Instantly.ai — зарегистрироваться</div><div class="resource-desc">Cold email на масштабе · 14 дней триал бесплатно</div></div>
+        <span class="resource-badge badge-paid">Триал → $37</span>
       </a>
-      <a href="https://smartlead.ai" target="_blank" class="resource-card">
-        <div class="resource-icon" style="background:rgba(0,140,255,0.15)">✉️</div>
-        <div class="resource-info">
-          <div class="resource-name">Smartlead.ai</div>
-          <div class="resource-desc">Альтернатива Instantly</div>
-        </div>
-        <span class="resource-badge badge-paid">Триал</span>
-      </a>
-      <a href="https://apollo.io" target="_blank" class="resource-card">
+      <a href="https://app.apollo.io/#/sign-up" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(16,163,127,0.15)">🎯</div>
-        <div class="resource-info">
-          <div class="resource-name">Apollo.io</div>
-          <div class="resource-desc">База B2B лидов · 50 кредитов/мес free</div>
-        </div>
-        <span class="resource-badge badge-free">Freemium</span>
+        <div class="resource-info"><div class="resource-name">Apollo.io — зарегистрироваться</div><div class="resource-desc">B2B лиды · 50 контактов/мес бесплатно</div></div>
+        <span class="resource-badge badge-free">Free → $49</span>
       </a>
       <a href="https://www.gohighlevel.com" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(0,77,255,0.15)">🏢</div>
-        <div class="resource-info">
-          <div class="resource-name">GoHighLevel</div>
-          <div class="resource-desc">CRM для US-agencies · 14 дней триал</div>
-        </div>
-        <span class="resource-badge badge-paid">Триал</span>
+        <div class="resource-info"><div class="resource-name">GoHighLevel — триал</div><div class="resource-desc">CRM для US-agencies · 14-дней триал · Фаза 2</div></div>
+        <span class="resource-badge badge-paid">Триал → $97</span>
       </a>
-      <a href="https://calendly.com" target="_blank" class="resource-card">
+      <a href="https://calendly.com/signup" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(0,105,255,0.15)">📅</div>
-        <div class="resource-info">
-          <div class="resource-name">Calendly</div>
-          <div class="resource-desc">Бронирование звонков · free tier</div>
-        </div>
-        <span class="resource-badge badge-free">Freemium</span>
+        <div class="resource-info"><div class="resource-name">Calendly — зарегистрироваться</div><div class="resource-desc">Бронирование звонков · встроить в бота</div></div>
+        <span class="resource-badge badge-free">Free → $10</span>
       </a>
-      <a href="https://platform.openai.com" target="_blank" class="resource-card">
+      <a href="https://platform.openai.com/signup" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(16,163,127,0.15)">🧠</div>
-        <div class="resource-info">
-          <div class="resource-name">OpenAI API</div>
-          <div class="resource-desc">Для AI персонализации в автоматизациях</div>
-        </div>
-        <span class="resource-badge badge-paid">По использованию</span>
+        <div class="resource-info"><div class="resource-name">OpenAI API — зарегистрироваться</div><div class="resource-desc">AI персонализация · Фаза 3</div></div>
+        <span class="resource-badge badge-paid">По токенам</span>
       </a>
     </div>
   </div>
@@ -1806,34 +1621,17 @@
     <div class="resource-grid">
       <a href="https://academy.make.com" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(101,49,255,0.15)">🎓</div>
-        <div class="resource-info">
-          <div class="resource-name">Make Academy</div>
-          <div class="resource-desc">Официальные курсы · сертификат</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">Make Academy</div><div class="resource-desc">Официальные курсы · сертификат</div></div>
         <span class="resource-badge badge-free">Бесплатно</span>
       </a>
       <a href="https://www.youtube.com/@NickSaraev" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(255,0,0,0.15)">📺</div>
-        <div class="resource-info">
-          <div class="resource-name">Nick Saraev (YouTube)</div>
-          <div class="resource-desc">Кейсы automation фрилансеров · must-watch</div>
-        </div>
-        <span class="resource-badge badge-free">Бесплатно</span>
-      </a>
-      <a href="https://www.youtube.com/@TheAIAutomators" target="_blank" class="resource-card">
-        <div class="resource-icon" style="background:rgba(255,0,0,0.15)">📺</div>
-        <div class="resource-info">
-          <div class="resource-name">The AI Automators</div>
-          <div class="resource-desc">Сложные воркфлоу · фаза 2-3</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">Nick Saraev (YouTube)</div><div class="resource-desc">Кейсы automation фрилансеров · must-watch</div></div>
         <span class="resource-badge badge-free">Бесплатно</span>
       </a>
       <a href="https://community.make.com" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(101,49,255,0.1)">👥</div>
-        <div class="resource-info">
-          <div class="resource-name">Make Community</div>
-          <div class="resource-desc">Форум · живые кейсы · помощь</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">Make Community</div><div class="resource-desc">Форум · живые кейсы · помощь</div></div>
         <span class="resource-badge badge-free">Бесплатно</span>
       </a>
     </div>
@@ -1844,66 +1642,22 @@
     <div class="resource-grid">
       <a href="https://upwork.com" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(20,196,140,0.15)">💼</div>
-        <div class="resource-info">
-          <div class="resource-name">Upwork</div>
-          <div class="resource-desc">Основная платформа · US клиенты</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">Upwork</div><div class="resource-desc">Основная платформа · US клиенты</div></div>
         <span class="resource-badge badge-free">Core</span>
       </a>
       <a href="https://fiverr.com" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(26,182,89,0.15)">🎯</div>
-        <div class="resource-info">
-          <div class="resource-name">Fiverr</div>
-          <div class="resource-desc">Gigs: chatbot, automation setup</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">Fiverr</div><div class="resource-desc">Gigs: chatbot, automation setup (Фаза 2)</div></div>
         <span class="resource-badge badge-free">Фаза 2</span>
       </a>
       <a href="https://www.connectively.us" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(0,212,170,0.15)">📰</div>
-        <div class="resource-info">
-          <div class="resource-name">HARO (Connectively)</div>
-          <div class="resource-desc">СМИ → O-1A кейс</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">HARO (Connectively)</div><div class="resource-desc">СМИ → O-1A кейс</div></div>
         <span class="resource-badge badge-free">Бесплатно</span>
-      </a>
-      <a href="https://linkedin.com" target="_blank" class="resource-card">
-        <div class="resource-icon" style="background:rgba(0,119,181,0.15)">💼</div>
-        <div class="resource-info">
-          <div class="resource-name">LinkedIn</div>
-          <div class="resource-desc">Профиль + контент на англ.</div>
-        </div>
-        <span class="resource-badge badge-free">Ежедневно</span>
-      </a>
-      <a href="https://medium.com" target="_blank" class="resource-card">
-        <div class="resource-icon" style="background:rgba(255,255,255,0.05)">✍️</div>
-        <div class="resource-info">
-          <div class="resource-name">Medium</div>
-          <div class="resource-desc">Кейсы → O-1A критерий #6</div>
-        </div>
-        <span class="resource-badge badge-free">1х/мес</span>
-      </a>
-      <a href="https://www.producthunt.com" target="_blank" class="resource-card">
-        <div class="resource-icon" style="background:rgba(255,88,0,0.15)">🏹</div>
-        <div class="resource-info">
-          <div class="resource-name">Product Hunt</div>
-          <div class="resource-desc">Ментор → O-1A критерий #4</div>
-        </div>
-        <span class="resource-badge badge-free">Фаза 2</span>
       </a>
       <a href="https://www.loom.com" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(98,95,245,0.15)">🎬</div>
-        <div class="resource-info">
-          <div class="resource-name">Loom</div>
-          <div class="resource-desc">Видео-демо кейсов · free tier</div>
-        </div>
-        <span class="resource-badge badge-free">Бесплатно</span>
-      </a>
-      <a href="https://notion.so" target="_blank" class="resource-card">
-        <div class="resource-icon" style="background:rgba(255,255,255,0.1)">📓</div>
-        <div class="resource-info">
-          <div class="resource-name">Notion</div>
-          <div class="resource-desc">Портфолио-страница для клиентов</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">Loom</div><div class="resource-desc">Видео-демо кейсов · free tier</div></div>
         <span class="resource-badge badge-free">Бесплатно</span>
       </a>
     </div>
@@ -1914,73 +1668,18 @@
     <div class="resource-grid">
       <a href="https://dvprogram.state.gov" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(0,60,136,0.3)">🇺🇸</div>
-        <div class="resource-info">
-          <div class="resource-name">DV Lottery — Официальный</div>
-          <div class="resource-desc">Регистрация октябрь 2026</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">DV Lottery — Официальный</div><div class="resource-desc">Регистрация октябрь 2026</div></div>
         <span class="resource-badge badge-cert">Октябрь</span>
-      </a>
-      <a href="https://travel.state.gov/content/travel/en/us-visas/immigrate/diversity-visa-program-entry/diversity-visa-instructions.html" target="_blank" class="resource-card">
-        <div class="resource-icon" style="background:rgba(0,60,136,0.2)">📋</div>
-        <div class="resource-info">
-          <div class="resource-name">DV Lottery — Инструкции</div>
-          <div class="resource-desc">Требования к фото и документам</div>
-        </div>
-        <span class="resource-badge badge-cert">Читать</span>
       </a>
       <a href="https://www.uscis.gov/working-in-the-united-states/temporary-workers/o-1-visa-individuals-with-extraordinary-ability-or-achievement" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(0,212,170,0.1)">⭐</div>
-        <div class="resource-info">
-          <div class="resource-name">O-1A Виза — USCIS</div>
-          <div class="resource-desc">Критерии extraordinary ability</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">O-1A Виза — USCIS</div><div class="resource-desc">Критерии extraordinary ability</div></div>
         <span class="resource-badge badge-cert">Изучить</span>
       </a>
       <a href="https://www.ama.org" target="_blank" class="resource-card">
         <div class="resource-icon" style="background:rgba(255,107,107,0.1)">🏛️</div>
-        <div class="resource-info">
-          <div class="resource-name">AMA</div>
-          <div class="resource-desc">$49/год студент · O-1A критерий #2</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">AMA</div><div class="resource-desc">$49/год студент · O-1A критерий #2</div></div>
         <span class="resource-badge badge-paid">$49/год</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="resources-section">
-    <div class="resources-title">// Английский + образование</div>
-    <div class="resource-grid">
-      <a href="https://nexford.edu" target="_blank" class="resource-card">
-        <div class="resource-icon" style="background:rgba(124,92,252,0.1)">🏫</div>
-        <div class="resource-info">
-          <div class="resource-name">Nexford University</div>
-          <div class="resource-desc">BBA Digital Marketing</div>
-        </div>
-        <span class="resource-badge badge-paid">Платно</span>
-      </a>
-      <a href="https://ankiweb.net" target="_blank" class="resource-card">
-        <div class="resource-icon" style="background:rgba(255,217,61,0.1)">🧠</div>
-        <div class="resource-info">
-          <div class="resource-name">Anki</div>
-          <div class="resource-desc">Флеш-карты · 10 слов/день</div>
-        </div>
-        <span class="resource-badge badge-free">Ежедневно</span>
-      </a>
-      <a href="https://www.efset.org/free-english-test/" target="_blank" class="resource-card">
-        <div class="resource-icon" style="background:rgba(0,119,181,0.1)">📊</div>
-        <div class="resource-info">
-          <div class="resource-name">EF SET</div>
-          <div class="resource-desc">Тест каждые 3 мес</div>
-        </div>
-        <span class="resource-badge badge-free">Каждые 3 мес</span>
-      </a>
-      <a href="https://italki.com" target="_blank" class="resource-card">
-        <div class="resource-icon" style="background:rgba(255,122,0,0.1)">🗣️</div>
-        <div class="resource-info">
-          <div class="resource-name">iTalki</div>
-          <div class="resource-desc">Уроки с носителем</div>
-        </div>
-        <span class="resource-badge badge-paid">Платно</span>
       </a>
     </div>
   </div>
@@ -1994,7 +1693,7 @@
   </div>
 
   <div class="highlight-box">
-    💡 <strong>Плюс нового позиционирования:</strong> Automation проекты дают конкретные метрики (часы сэкономлены, % конверсии, ROI) → это лучший материал для O-1A критерия #5 (original contributions) и #7 (high remuneration). Клиентские письма от US бизнесов = сильнее любых статей.
+    💡 <strong>Плюс автоматизации:</strong> Automation проекты дают конкретные метрики (часы сэкономлены, % конверсии, ROI) → лучший материал для O-1A критерия #5 и #7. Клиентские письма от US бизнесов = сильнее любых статей.
   </div>
 
   <div class="phases-grid">
@@ -2006,28 +1705,25 @@
       <ul class="checklist">
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Получить загранпаспорт</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Фото строго по требованиям</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Напоминание: октябрь 2026 — регистрация</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Регистрация: <a href="https://dvprogram.state.gov" target="_blank" style="color:var(--accent)">dvprogram.state.gov</a></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Октябрь 2026 — регистрация на dvprogram.state.gov</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Сохранить номер подтверждения (скрин x3)</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Май 2027: проверить результат</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Если выиграл: адвокат + DS-260</span></li>
       </ul>
     </div>
-
     <div class="phase-card p3">
       <div class="phase-num">// Путь 2 — страховка</div>
       <div class="phase-title">O-1A Виза</div>
       <div class="phase-dates">Подготовка: апр–дек 2026 · Подача: янв 2027</div>
       <div class="phase-goal">🎯 Нужно 3 из 8 критериев USCIS · automation кейсы = сильные доказательства</div>
       <ul class="checklist">
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Критерий #2: AMA (<a href="https://www.ama.org" target="_blank" style="color:var(--accent)">ama.org</a>)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Критерий #2: AMA (ama.org)</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Критерий #3: HARO упоминания (automation тематика)</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Критерий #4: ментор Product Hunt + судья AI хакатонов</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Критерий #5: automation кейсы с метриками (часы, ROI)</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Критерий #6: 12+ кейсов/статей на Medium</span></li>
         <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Критерий #7: $3k+/мес = высокая зарплата</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Консультация адвоката</span></li>
-        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Бюджет: $3-5k (с фазы 2)</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span>Консультация адвоката · бюджет $3–5k</span></li>
       </ul>
     </div>
   </div>
@@ -2037,34 +1733,22 @@
     <div class="resource-grid">
       <div class="resource-card" style="cursor:default">
         <div class="resource-icon" style="background:rgba(255,217,61,0.1)">📅</div>
-        <div class="resource-info">
-          <div class="resource-name">Октябрь 2026</div>
-          <div class="resource-desc">Регистрация DV Lottery 2028. Окно ~5 недель.</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">Октябрь 2026</div><div class="resource-desc">Регистрация DV Lottery 2028. Окно ~5 недель.</div></div>
         <span class="resource-badge badge-cert">Критично</span>
       </div>
       <div class="resource-card" style="cursor:default">
         <div class="resource-icon" style="background:rgba(0,212,170,0.1)">📅</div>
-        <div class="resource-info">
-          <div class="resource-name">Май 2027</div>
-          <div class="resource-desc">Результаты DV — только dvprogram.state.gov</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">Май 2027</div><div class="resource-desc">Результаты DV — только dvprogram.state.gov</div></div>
         <span class="resource-badge badge-free">Проверить</span>
       </div>
       <div class="resource-card" style="cursor:default">
         <div class="resource-icon" style="background:rgba(124,92,252,0.1)">📅</div>
-        <div class="resource-info">
-          <div class="resource-name">Январь 2027</div>
-          <div class="resource-desc">Подача O-1A петиции</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">Январь 2027</div><div class="resource-desc">Подача O-1A петиции</div></div>
         <span class="resource-badge badge-cert">Планово</span>
       </div>
       <div class="resource-card" style="cursor:default">
         <div class="resource-icon" style="background:rgba(255,107,107,0.1)">⚠️</div>
-        <div class="resource-info">
-          <div class="resource-name">30 сентября 2027</div>
-          <div class="resource-desc">Дедлайн DV-2027 — все документы</div>
-        </div>
+        <div class="resource-info"><div class="resource-name">30 сентября 2027</div><div class="resource-desc">Дедлайн DV-2027 — все документы</div></div>
         <span class="resource-badge badge-paid">Дедлайн</span>
       </div>
     </div>
@@ -2074,10 +1758,6 @@
 </div><!-- /main -->
 
 <script>
-// ============================================================
-// ДАННЫЕ ПЛАНА
-// ============================================================
-
 const MONTHS_RU = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
 const WEEKDAYS_RU_SHORT = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
 const WEEKDAYS_RU_LONG = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];
@@ -2086,10 +1766,10 @@ const PLAN_START = new Date(2026, 3, 1);
 const PLAN_END = new Date(2027, 2, 31);
 
 const PHASES = [
-  { id: 'p1', title: 'Фундамент навыка', start: {y:2026, m:3}, end: {y:2026, m:5},  accent: 'accent', focus: 'Make + Chatbase + демо-кейсы, первые $300-500' },
-  { id: 'p2', title: 'Кейсы с метриками', start: {y:2026, m:6}, end: {y:2026, m:8},  accent: 'yellow', focus: 'Ретейнеры, метрики в кейсах, $1-1.5k/мес' },
-  { id: 'p3', title: 'Масштаб и DV',      start: {y:2026, m:9}, end: {y:2026, m:11}, accent: 'purple', focus: 'DV регистрация, $2-3k/мес, O-1A консультация' },
-  { id: 'p4', title: 'Подача',            start: {y:2027, m:0}, end: {y:2027, m:2},  accent: 'red',    focus: 'O-1A пакет, подготовка к DV, $3k+/мес' }
+  { id: 'p1', title: 'Фундамент навыка', start: {y:2026, m:3}, end: {y:2026, m:5}, accent: 'accent', focus: 'Make + Chatbase + Voiceflow · 2 демо-кейса · $300–500' },
+  { id: 'p2', title: 'Кейсы с метриками', start: {y:2026, m:6}, end: {y:2026, m:8}, accent: 'yellow', focus: 'Ретейнеры · метрики · $1–1.5k/мес' },
+  { id: 'p3', title: 'Масштаб и DV', start: {y:2026, m:9}, end: {y:2026, m:11}, accent: 'purple', focus: 'DV регистрация · $2–3k/мес · O-1A консультация' },
+  { id: 'p4', title: 'Подача', start: {y:2027, m:0}, end: {y:2027, m:2}, accent: 'red', focus: 'O-1A пакет · DV результаты · $3k+/мес' }
 ];
 
 function getPhaseForDate(year, month) {
@@ -2102,133 +1782,143 @@ function getPhaseForDate(year, month) {
   return null;
 }
 
-// Данные по месяцам — переписаны под AI Automation
 const MONTH_DATA = {
-  '2026-3': { // Апрель 2026 — СТАРТ
-    focus: 'СТАРТ. Make Academy + Chatbase + Voiceflow. Первое демо-видео.',
+  '2026-3': {
+    focus: 'СТАРТ. Make Academy + регистрация Chatbase (27 апр) + Voiceflow (29 апр). Первые сценарии.',
     keyTasks: [
-      'Зарегистрироваться в Make.com (бесплатный тариф)',
-      'Пройти Make Academy: курс Make Basics (2-3 часа)',
-      'Сделать первый сценарий: Gmail → Google Sheets',
-      'Пройти Make Intermediate (роутеры, webhooks, data stores)',
-      'Зарегистрироваться в Chatbase, собрать первого бота за час',
-      'Начать Voiceflow 101 (YouTube + их academy)',
-      'Зарегистрироваться в Apollo.io (50 кредитов free)',
-      'Зарегистрироваться на Upwork, заполнить профиль как AI Automation Specialist',
-      'Установить Anki, настроить деку на 10 слов/день (tech vocab)',
+      'Make Academy — Make Basics (2–3 часа) — в процессе',
+      '27 апр: Зарегистрироваться на Chatbase.co (бесплатно)',
+      '27 апр: Загрузить данные → обучить первого бота',
+      '29 апр: Зарегистрироваться на Voiceflow.com (бесплатно)',
+      '29 апр: Пройти онбординг Voiceflow (drag-and-drop)',
+      'Make Academy — Make Intermediate (роутеры, webhooks)',
+      'Зарегистрироваться на Apollo.io (50 кредитов free)',
+      'Зарегистрироваться на Upwork — AI Automation Specialist',
+      'Установить Anki — 10 слов/день (tech vocab)',
       'Начать первый курс Nexford'
     ],
-    keyDates: []
+    keyDates: [
+      { day: 27, label: 'Chatbase', desc: 'Старт: зарегистрироваться на chatbase.co и собрать первого бота' },
+      { day: 29, label: 'Voiceflow', desc: 'Старт: зарегистрироваться на voiceflow.com и пройти онбординг' }
+    ]
   },
-  '2026-4': { // Май 2026 — ДЕМО-КЕЙСЫ
-    focus: 'Демо-кейсы с Loom видео. Оформление Upwork/LinkedIn. 50+ proposals.',
+  '2026-4': {
+    focus: '5 мая: ManyChat старт. 15 мая: Дедлайн кейс №1. 22 мая: Дедлайн кейс №2. 50+ proposals.',
     keyTasks: [
-      'Демо-кейс №1: AI Lead Qualifier Chatbot (Chatbase + Make + Calendly + Google Sheets)',
-      'Записать Loom-видео (3-4 мин) по кейсу №1',
-      'Демо-кейс №2: Cold Outreach System (Apollo → Instantly → AI персонализация через Make)',
+      '5 мая: Зарегистрироваться на ManyChat.com (бесплатно)',
+      '5 мая: Подключить Instagram/Telegram → keyword trigger → автоответ',
+      'Демо-кейс №1: AI Lead Qualifier (Chatbase + Make + Calendly)',
+      'Записать Loom-видео по кейсу №1 (3–4 мин, на английском)',
+      'Демо-кейс №2: Cold Outreach System (Apollo → Instantly → AI)',
       'Записать Loom-видео по кейсу №2',
-      'Создать Notion-портфолио с 2 кейсами, описаниями и видео',
+      'Notion-портфолио: 2 кейса + Loom + описания',
       'LinkedIn: headline + About под AI Automation',
-      'Upwork: Portfolio блок с 4-6 работами',
-      'Отправить 50+ proposals на Upwork (AI automation, chatbot, workflow setup)',
-      'Получить Make.com сертификацию (бесплатный экзамен в academy)',
-      'Ежедневно LinkedIn посты про automation'
-    ],
-    keyDates: []
-  },
-  '2026-5': { // Июнь 2026 — ПЕРВЫЕ ДЕНЬГИ
-    focus: 'Первый платный клиент на Upwork. $300-500 доход. Voiceflow сертификация.',
-    keyTasks: [
-      'Первый платный заказ (даже $50-100 ради первого отзыва)',
-      'Пройти Voiceflow Certified Developer (бесплатно)',
-      'Вступить в AMA (ama.org, $49/год) — O-1A критерий',
-      'Получить 5* отзыв от первого клиента',
-      '2-3 заказа на Upwork суммарно',
-      'Достичь $300-500/мес дохода',
-      'EF SET тест №1 — baseline английского',
-      'Первый кейс-стади на Medium (на англ, AI помощь + редактура)'
-    ],
-    keyDates: []
-  },
-  '2026-6': { // Июль 2026 — ФАЗА 2
-    focus: 'ФАЗА 2. GoHighLevel + n8n. Pro-bono с метриками. HARO.',
-    keyTasks: [
-      'Зарегистрироваться на HARO (connectively.us)',
-      'Отвечать на 3-5 HARO запросов в день (automation/AI темы)',
-      'Освоить GoHighLevel (14-дневный триал, построить полный CRM flow)',
-      'Освоить n8n (self-hosted на Railway, понять отличия от Make)',
-      'Pro-bono automation для стартапа (с правом показывать метрики)',
-      'Закрыть первый курс Nexford',
-      'Начать искать первого ретейнер-клиента ($200-500/мес maintenance)'
-    ],
-    keyDates: []
-  },
-  '2026-7': { // Август 2026 — РЕТЕЙНЕРЫ
-    focus: 'Первый ретейнер-клиент. Pro-bono с метриками завершён.',
-    keyTasks: [
-      'Первый ретейнер-клиент ($200-500/мес)',
-      'Pro-bono проект завершён — скриншоты метрик, рек. письмо',
-      'Первое упоминание в англомедиа через HARO',
-      '3-й/4-й платный проект на Upwork',
-      '2-й кейс-стади на Medium (с метриками pro-bono)',
-      'Начать Instantly.ai Academy',
-      '8+ статей/постов в LinkedIn суммарно'
-    ],
-    keyDates: []
-  },
-  '2026-8': { // Сентябрь 2026 — МЕДИА
-    focus: 'Product Hunt ментор. $1-1.5k/мес. EF SET проверка.',
-    keyTasks: [
-      'Подать заявку ментором на Product Hunt',
-      'Подать заявки судьёй на AI хакатоны (Devpost)',
-      '2-й ретейнер-клиент',
-      'Закрыть 2-й курс Nexford',
-      'Достичь $1-1.5k/мес стабильно',
-      'EF SET тест №2 — проверить прогресс',
-      '4+ кейса/статьи на Medium суммарно'
-    ],
-    keyDates: []
-  },
-  '2026-9': { // Октябрь 2026 — КЛЮЧЕВОЙ
-    focus: '🔑 DV LOTTERY. Регистрация. Консультация с O-1A адвокатом.',
-    keyTasks: [
-      '🎲 Подготовить документы для DV (паспорт, фото 2x2")',
-      '🎲 Зарегистрироваться на dvprogram.state.gov',
-      '🎲 Сохранить номер подтверждения (3+ резервных копии)',
-      'Консультация с O-1A адвокатом (~$200-300) — automation кейсы как основа',
-      'Начать OpenAI API (Assistants, function calling)',
-      'Начать Google GA4 сертификат (для метрик в automation кейсах)'
+      'Upwork: Portfolio блок с 4–6 работами',
+      'Отправить 50+ proposals (AI automation, chatbot, workflow)'
     ],
     keyDates: [
-      { day: 7, label: 'DV старт', desc: 'Ожидаемое открытие регистрации DV Lottery 2028' },
+      { day: 5, label: 'ManyChat', desc: 'Старт: зарегистрироваться на manychat.com и подключить Instagram' },
+      { day: 15, label: 'Кейс №1', desc: 'Дедлайн: AI Lead Qualifier Chatbot готов + Loom видео записан' },
+      { day: 22, label: 'Кейс №2', desc: 'Дедлайн: Cold Outreach Automation готов + Loom видео записан' }
+    ]
+  },
+  '2026-5': {
+    focus: 'Первый платный клиент. Оценить Chatbase Hobby $40. Make.com сертификат. $300–500.',
+    keyTasks: [
+      'Первый платный заказ (даже $50–100 ради первого отзыва)',
+      'Оценить: нужен ли переход Chatbase на Hobby $40/мес?',
+      'Make.com сертификация (бесплатный экзамен в academy)',
+      'Voiceflow: начать изучение для сертификации',
+      'Вступить в AMA (ama.org, $49/год) — O-1A критерий',
+      'Получить 5★ отзыв от первого клиента',
+      'Достичь $300–500/мес дохода',
+      'EF SET тест №1 — baseline английского'
+    ],
+    keyDates: []
+  },
+  '2026-6': {
+    focus: 'ФАЗА 2. GoHighLevel + n8n. HARO. 7 июля: Voiceflow сертификация старт.',
+    keyTasks: [
+      'Зарегистрироваться на HARO (connectively.us)',
+      '7 июля: Начать Voiceflow Certified Developer (learn.voiceflow.com)',
+      'Освоить GoHighLevel (14-дневный триал)',
+      'Освоить n8n (self-hosted, понять отличия от Make)',
+      'Оценить: нужен ли ManyChat Pro $15/мес для клиента?',
+      'Pro-bono automation для стартапа (с метриками)',
+      'Закрыть первый курс Nexford',
+      'Найти первого ретейнер-клиента ($200–500/мес)'
+    ],
+    keyDates: [
+      { day: 7, label: 'Voiceflow Cert', desc: 'Старт Voiceflow Certified Developer — learn.voiceflow.com' }
+    ]
+  },
+  '2026-7': {
+    focus: 'Первый ретейнер. Pro-bono с метриками завершён. $1k/мес.',
+    keyTasks: [
+      'Первый ретейнер-клиент ($200–500/мес)',
+      'Pro-bono проект завершён — скрины метрик, рек. письмо',
+      'Первое упоминание в англомедиа через HARO',
+      '2-й кейс-стади на Medium (с метриками pro-bono)',
+      'Начать Instantly.ai Academy',
+      '8+ постов в LinkedIn суммарно'
+    ],
+    keyDates: []
+  },
+  '2026-8': {
+    focus: '1 сент: Voiceflow Certified Developer получить. Product Hunt ментор. $1–1.5k.',
+    keyTasks: [
+      '1 сент: Получить Voiceflow Certified Developer сертификат',
+      'Добавить Voiceflow сертификат в Upwork + LinkedIn',
+      'Подать заявку ментором на Product Hunt',
+      '2-й ретейнер-клиент',
+      'Закрыть 2-й курс Nexford',
+      'Достичь $1–1.5k/мес',
+      'EF SET тест №2 — прогресс (цель B1→B2)',
+      '4+ кейса/статьи на Medium'
+    ],
+    keyDates: [
+      { day: 1, label: 'Voiceflow ✓', desc: 'Дедлайн: Voiceflow Certified Developer получен' }
+    ]
+  },
+  '2026-9': {
+    focus: '🔑 DV LOTTERY. Регистрация. Консультация с O-1A адвокатом.',
+    keyTasks: [
+      '🎲 Подготовить документы (паспорт, фото 2x2")',
+      '🎲 Зарегистрироваться на dvprogram.state.gov',
+      '🎲 Сохранить номер подтверждения (3+ резервных копии)',
+      'Консультация с O-1A адвокатом (~$200–300)',
+      'Начать OpenAI API (Assistants, function calling)',
+      'Google GA4 сертификат (для метрик в automation кейсах)'
+    ],
+    keyDates: [
+      { day: 7, label: 'DV старт', desc: 'Ожидаемое открытие DV Lottery 2028 — зайти на dvprogram.state.gov' },
       { day: 15, label: 'DV подача', desc: 'Целевая дата подачи заявки — не откладывай' }
     ]
   },
-  '2026-10': { // Ноябрь 2026
+  '2026-10': {
     focus: '3 рек. письма. 3-й ретейнер. $2k/мес.',
     keyTasks: [
       'Попросить 3 рекомендательных письма от automation клиентов',
       '3-й ретейнер-клиент',
-      '5-й/6-й проектный клиент на Upwork',
       'Достичь $2k/мес',
       'Освоить OpenAI Assistants API полностью',
       'Закрыть 3-й курс Nexford'
     ],
     keyDates: []
   },
-  '2026-11': { // Декабрь 2026
-    focus: '$2.5-3k/мес. Оценка O-1A кейса. Итоги года.',
+  '2026-11': {
+    focus: '$2.5–3k/мес. Оценка O-1A кейса. Итоги года.',
     keyTasks: [
       '2-е упоминание в англомедиа',
-      'Достичь $2.5-3k/мес',
-      'Собрать первый черновик O-1A пакета (automation кейсы + метрики)',
-      'Повторная консультация O-1A адвоката: готов ли кейс?',
+      'Достичь $2.5–3k/мес',
+      'Черновик O-1A пакета (automation кейсы + метрики)',
+      'Повторная консультация O-1A адвоката',
       'EF SET тест №3 — цель B2+',
-      '8-10 кейсов/статей на Medium суммарно'
+      '8–10 кейсов/статей на Medium'
     ],
     keyDates: []
   },
-  '2027-0': { // Январь 2027
+  '2027-0': {
     focus: 'ФАЗА 4. Подготовка O-1A пакета.',
     keyTasks: [
       'Нанять O-1A адвоката (если кейс готов)',
@@ -2239,23 +1929,23 @@ const MONTH_DATA = {
     ],
     keyDates: []
   },
-  '2027-1': { // Февраль 2027
+  '2027-1': {
     focus: 'Финализация O-1A. Подача.',
     keyTasks: [
       'Финализировать O-1A петицию с адвокатом',
-      'Собрать 5+ рекомендательных писем (US automation клиенты)',
+      '5+ рекомендательных писем (US automation клиенты)',
       'Подать O-1A (если готов)',
       '$3k+/мес стабильно',
       'Финансовый резерв: $10k+'
     ],
     keyDates: []
   },
-  '2027-2': { // Март 2027
+  '2027-2': {
     focus: 'Ожидание результатов. Подготовка к маю.',
     keyTasks: [
-      'Получить решение по O-1A (если подавал)',
-      'Подготовить все документы на случай DV победы',
-      'Изучить процесс DS-260 и интервью в посольстве',
+      'Получить решение по O-1A',
+      'Подготовить документы на случай DV победы',
+      'DS-260 и интервью в посольстве — изучить процесс',
       'Финансовый резерв: $12k+',
       'Закрыть 8-й курс Nexford',
       'EF SET тест №4 — цель C1'
@@ -2264,7 +1954,6 @@ const MONTH_DATA = {
   }
 };
 
-// Дневные блоки — переписаны под automation
 function getDayBlocks(weekday, phase) {
   const commutePodcasts = {
     0: '🎧 Nick Saraev (YouTube аудио) — automation кейсы',
@@ -2272,36 +1961,35 @@ function getDayBlocks(weekday, phase) {
     2: '🎧 My First Million — идеи',
     3: '🎧 The AI Automators (YouTube аудио)',
     4: '🎧 How I Built This (NPR)',
-    5: '',
-    6: ''
+    5: '', 6: ''
   };
 
   const eveningContent = {
     'p1': {
-      0: { activity: 'Upwork proposals', detail: '10-15 откликов с персональными cover letters + Loom-видео' },
-      2: { activity: 'Демо-кейсы', detail: 'Работа над Notion-портфолио и Loom-видео' },
-      4: { activity: 'Итог недели', detail: 'Сколько proposals отправлено, сколько отвечено, план на следующую неделю' }
+      0: { activity: 'Upwork proposals', detail: '10–15 откликов с cover letters + Loom-видео' },
+      2: { activity: 'Демо-кейсы / Chatbase', detail: 'Работа над ботом или Notion-портфолио' },
+      4: { activity: 'Итог недели', detail: 'Proposals отправлено, ответы, план на след. неделю' }
     },
     'p2': {
-      0: { activity: 'Клиенты + Upwork', detail: 'Работа с текущими клиентами + 5-10 новых proposals' },
-      2: { activity: 'HARO + Medium', detail: 'Ответить на 2-3 запроса + час работы над кейс-стади' },
-      4: { activity: 'Pro-bono / ретейнеры', detail: 'Работа на pro-bono проекте или maintenance ретейнеров' }
+      0: { activity: 'Клиенты + Upwork', detail: 'Работа с клиентами + 5–10 новых proposals' },
+      2: { activity: 'HARO + Medium', detail: '2–3 запроса HARO + час работы над кейс-стади' },
+      4: { activity: 'Pro-bono / ретейнеры', detail: 'Pro-bono или maintenance ретейнеров' }
     },
     'p3': {
       0: { activity: 'LinkedIn + клиенты', detail: 'Пост с кейсом + работа с ретейнерами' },
-      2: { activity: 'O-1A документы', detail: 'Собирать automation кейсы с метриками, рек. письма, медиа' },
-      4: { activity: 'OpenAI API практика', detail: 'Учить function calling, Assistants для продвинутых ботов' }
+      2: { activity: 'O-1A документы', detail: 'Automation кейсы с метриками, рек. письма' },
+      4: { activity: 'OpenAI API практика', detail: 'Function calling, Assistants для продвинутых ботов' }
     },
     'p4': {
       0: { activity: 'LinkedIn + O-1A', detail: 'Пост + работа с адвокатом над O-1A петицией' },
-      2: { activity: 'O-1A финализация', detail: 'Перевод документов, сбор рек. писем, правки' },
-      4: { activity: 'Итог + планирование', detail: 'Проверить DV/O-1A статус, финансовый план' }
+      2: { activity: 'O-1A финализация', detail: 'Перевод документов, рек. письма, правки' },
+      4: { activity: 'Итог + планирование', detail: 'DV/O-1A статус, финансовый план' }
     }
   };
 
   const studyEvening = {
-    'p1': '→ academy.make.com · Make Intermediate или Voiceflow',
-    'p2': '→ GoHighLevel docs + n8n practice',
+    'p1': '→ academy.make.com · Make Intermediate или Voiceflow онбординг',
+    'p2': '→ GoHighLevel docs + n8n практика',
     'p3': '→ OpenAI API + HubSpot Sales Software',
     'p4': '→ Финальные Nexford курсы + O-1A материалы'
   };
@@ -2316,23 +2004,20 @@ function getDayBlocks(weekday, phase) {
   const phaseId = phase ? phase.id : 'p1';
   const content = eveningContent[phaseId] || eveningContent['p1'];
 
-  // ПОНЕДЕЛЬНИК
   if (weekday === 0) return [
     { type: 'commute', time: '07:00–08:00', activity: 'Подъём + дорога', detail: commutePodcasts[0] },
-    { type: 'work', time: '09:00–18:00', activity: 'Работа', detail: 'Обед 13:00–14:00 → читать Medium Automation на англ.' },
+    { type: 'work', time: '09:00–18:00', activity: 'Работа', detail: 'Обед → читать Medium Automation на англ.' },
     { type: 'commute', time: '18:00–19:00', activity: 'Дорога домой', detail: '🎧 All-In или Nick Saraev' },
     { type: 'gym', time: '19:00–21:00', activity: '💪 Зал', detail: '🎧 TED Talks на английском' },
     { type: 'freelance', time: '21:30–22:30', activity: content[0].activity, detail: content[0].detail }
   ];
-  // ВТОРНИК
   if (weekday === 1) return [
     { type: 'commute', time: '07:00–08:00', activity: 'Подъём + дорога', detail: commutePodcasts[1] },
     { type: 'work', time: '09:00–18:00', activity: 'Работа', detail: 'Обед → Nexford модуль (30 мин)' },
     { type: 'commute', time: '18:00–19:30', activity: 'Дорога + Anki', detail: '🎧 Tech vocab повтор' },
     { type: 'english', time: '19:30–21:00', activity: '🇺🇸 Курсы английского', detail: 'Активное участие' },
-    { type: 'study', time: '21:15–22:00', activity: 'Make Academy', detail: studyEvening[phaseId] || studyEvening['p1'] }
+    { type: 'study', time: '21:15–22:00', activity: 'Make / Voiceflow / Chatbase', detail: studyEvening[phaseId] || studyEvening['p1'] }
   ];
-  // СРЕДА
   if (weekday === 2) return [
     { type: 'commute', time: '07:00–08:00', activity: 'Подъём + дорога', detail: commutePodcasts[2] },
     { type: 'work', time: '09:00–18:00', activity: 'Работа', detail: 'Обед → Nexford тест/задание' },
@@ -2340,7 +2025,6 @@ function getDayBlocks(weekday, phase) {
     { type: 'gym', time: '19:00–21:00', activity: '💪 Зал', detail: '🎧 BBC Learning English или TED' },
     { type: 'content', time: '21:30–22:30', activity: content[2].activity, detail: content[2].detail }
   ];
-  // ЧЕТВЕРГ
   if (weekday === 3) return [
     { type: 'commute', time: '07:00–08:00', activity: 'Подъём + дорога', detail: commutePodcasts[3] },
     { type: 'work', time: '09:00–18:00', activity: 'Работа', detail: 'Обед → HARO 15 мин' },
@@ -2348,7 +2032,6 @@ function getDayBlocks(weekday, phase) {
     { type: 'english', time: '19:30–21:00', activity: '🇺🇸 Курсы английского', detail: 'Разбор сложных тем' },
     { type: 'study', time: '21:15–22:00', activity: 'Automation практика', detail: studyThursday[phaseId] || studyThursday['p1'] }
   ];
-  // ПЯТНИЦА
   if (weekday === 4) return [
     { type: 'commute', time: '07:00–08:00', activity: 'Подъём + дорога', detail: commutePodcasts[4] },
     { type: 'work', time: '09:00–18:00', activity: 'Работа', detail: 'Обед → LinkedIn пост про automation (15 мин)' },
@@ -2356,26 +2039,24 @@ function getDayBlocks(weekday, phase) {
     { type: 'gym', time: '19:00–21:00', activity: '💪 Зал', detail: '🎧 Nexford лекция или TED' },
     { type: 'freelance', time: '21:30–22:30', activity: content[4].activity, detail: content[4].detail }
   ];
-  // СУББОТА
   if (weekday === 5) {
     const satMain = {
-      'p1': { title: '🛠 Демо-кейсы + Notion портфолио', detail: 'Строить AI Lead Qualifier или Cold Outreach System, записывать Loom' },
-      'p2': { title: '📊 Pro-bono + кейс-стади', detail: 'Работа над pro-bono проектом + статья-кейс на Medium с метриками' },
+      'p1': { title: '🛠 Chatbase + Voiceflow демо-кейсы', detail: 'Строить AI Lead Qualifier или Cold Outreach, записывать Loom' },
+      'p2': { title: '📊 Pro-bono + кейс-стади', detail: 'Pro-bono проект + статья-кейс на Medium с метриками' },
       'p3': { title: '📈 Ретейнеры + O-1A', detail: 'Maintenance клиентов + сбор материалов для O-1A' },
       'p4': { title: '✍️ O-1A финализация', detail: 'Документы, переводы, рек. письма для O-1A петиции' }
     };
     const sat = satMain[phaseId] || satMain['p1'];
     return [
       { type: 'free', time: '08:00–10:00', activity: 'Утро свободно', detail: 'Отдых, завтрак' },
-      { type: 'study', time: '10:00–12:30', activity: '📚 Глубокая учёба', detail: 'Make Academy / Voiceflow / OpenAI — полный модуль + практика' },
+      { type: 'study', time: '10:00–12:30', activity: '📚 Глубокая учёба', detail: 'Make Academy / Chatbase / Voiceflow — полный модуль + практика' },
       { type: 'content', time: '13:30–16:00', activity: sat.title, detail: sat.detail },
-      { type: 'freelance', time: '16:00–18:00', activity: '💼 Upwork / клиенты', detail: 'Proposals, коммуникация с клиентами, работа над активными проектами' },
+      { type: 'freelance', time: '16:00–18:00', activity: '💼 Upwork / клиенты', detail: 'Proposals, коммуникация, работа над проектами' },
       { type: 'free', time: '18:00+', activity: 'Свободное время', detail: 'Отдых от экранов' }
     ];
   }
-  // ВОСКРЕСЕНЬЕ
   const sunPlan = {
-    'p1': 'Make Academy / Voiceflow — 1-2 модуля + практика',
+    'p1': 'Make Academy / Voiceflow / Chatbase — 1–2 модуля + практика',
     'p2': 'GoHighLevel / n8n практика + HARO ответы',
     'p3': 'OpenAI API практика + подготовка DV (если октябрь)',
     'p4': 'O-1A документы + финальные Nexford курсы'
@@ -2389,55 +2070,12 @@ function getDayBlocks(weekday, phase) {
   ];
 }
 
-// ============================================================
-// СОСТОЯНИЕ И НАВИГАЦИЯ
-// ============================================================
-
 let currentView = 'year';
 let currentDate = new Date(2026, 3, 1);
 const today = new Date();
 
-function clampDate(d) {
-  if (d < PLAN_START) return new Date(PLAN_START);
-  if (d > PLAN_END) return new Date(PLAN_END);
-  return d;
-}
-
-function isInPlan(d) {
-  return d >= PLAN_START && d <= PLAN_END;
-}
-
-function formatPeriodLabel() {
-  if (currentView === 'year') {
-    return { main: 'Апрель 2026 — Март 2027', sub: '// Весь план', phaseId: null };
-  }
-  if (currentView === 'month') {
-    const ph = getPhaseForDate(currentDate.getFullYear(), currentDate.getMonth());
-    return {
-      main: `${MONTHS_RU[currentDate.getMonth()]} ${currentDate.getFullYear()}`,
-      sub: ph ? `// Фаза: ${ph.title}` : '//',
-      phaseId: ph ? ph.id : null
-    };
-  }
-  if (currentView === 'week') {
-    const mon = getMondayOf(currentDate);
-    const sun = new Date(mon);
-    sun.setDate(sun.getDate() + 6);
-    const ph = getPhaseForDate(mon.getFullYear(), mon.getMonth());
-    return {
-      main: `${mon.getDate()} ${MONTHS_RU[mon.getMonth()].slice(0,3)} — ${sun.getDate()} ${MONTHS_RU[sun.getMonth()].slice(0,3)} ${sun.getFullYear()}`,
-      sub: ph ? `// Фаза: ${ph.title}` : '//',
-      phaseId: ph ? ph.id : null
-    };
-  }
-  const ph = getPhaseForDate(currentDate.getFullYear(), currentDate.getMonth());
-  return {
-    main: `${WEEKDAYS_RU_LONG[(currentDate.getDay()+6)%7]}, ${currentDate.getDate()} ${MONTHS_RU[currentDate.getMonth()]}`,
-    sub: ph ? `// Фаза: ${ph.title}` : '//',
-    phaseId: ph ? ph.id : null
-  };
-}
-
+function isInPlan(d) { return d >= PLAN_START && d <= PLAN_END; }
+function sameDay(a, b) { return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate(); }
 function getMondayOf(date) {
   const d = new Date(date);
   const day = d.getDay();
@@ -2447,8 +2085,20 @@ function getMondayOf(date) {
   return d;
 }
 
-function sameDay(a, b) {
-  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+function formatPeriodLabel() {
+  if (currentView === 'year') return { main: 'Апрель 2026 — Март 2027', sub: '// Весь план', phaseId: null };
+  if (currentView === 'month') {
+    const ph = getPhaseForDate(currentDate.getFullYear(), currentDate.getMonth());
+    return { main: `${MONTHS_RU[currentDate.getMonth()]} ${currentDate.getFullYear()}`, sub: ph ? `// Фаза: ${ph.title}` : '//', phaseId: ph ? ph.id : null };
+  }
+  if (currentView === 'week') {
+    const mon = getMondayOf(currentDate);
+    const sun = new Date(mon); sun.setDate(sun.getDate() + 6);
+    const ph = getPhaseForDate(mon.getFullYear(), mon.getMonth());
+    return { main: `${mon.getDate()} ${MONTHS_RU[mon.getMonth()].slice(0,3)} — ${sun.getDate()} ${MONTHS_RU[sun.getMonth()].slice(0,3)} ${sun.getFullYear()}`, sub: ph ? `// Фаза: ${ph.title}` : '//', phaseId: ph ? ph.id : null };
+  }
+  const ph = getPhaseForDate(currentDate.getFullYear(), currentDate.getMonth());
+  return { main: `${WEEKDAYS_RU_LONG[(currentDate.getDay()+6)%7]}, ${currentDate.getDate()} ${MONTHS_RU[currentDate.getMonth()]}`, sub: ph ? `// Фаза: ${ph.title}` : '//', phaseId: ph ? ph.id : null };
 }
 
 function updatePeriodLabel() {
@@ -2458,38 +2108,32 @@ function updatePeriodLabel() {
   el.innerHTML = `${label.main}<span class="period-phase${phaseClass}">${label.sub}</span>`;
 }
 
-// ============================================================
-// РЕНДЕРИНГ
-// ============================================================
-
 function renderYear() {
   const container = document.getElementById('calendarContent');
-  let html = '<div class="year-grid">';
   const months = [
-    {y:2026, m:3}, {y:2026, m:4}, {y:2026, m:5}, {y:2026, m:6},
-    {y:2026, m:7}, {y:2026, m:8}, {y:2026, m:9}, {y:2026, m:10},
-    {y:2026, m:11}, {y:2027, m:0}, {y:2027, m:1}, {y:2027, m:2}
+    {y:2026,m:3},{y:2026,m:4},{y:2026,m:5},{y:2026,m:6},
+    {y:2026,m:7},{y:2026,m:8},{y:2026,m:9},{y:2026,m:10},
+    {y:2026,m:11},{y:2027,m:0},{y:2027,m:1},{y:2027,m:2}
   ];
+  let html = '<div class="year-grid">';
   months.forEach((mm, idx) => {
     const ph = getPhaseForDate(mm.y, mm.m);
     const key = `${mm.y}-${mm.m}`;
     const data = MONTH_DATA[key] || {};
     const isKey = mm.y === 2026 && mm.m === 9;
     const hasKeyDates = data.keyDates && data.keyDates.length > 0;
-    html += `
-      <div class="month-tile ${ph ? ph.id : ''} ${isKey ? 'key-month' : ''}" data-year="${mm.y}" data-month="${mm.m}">
-        <div class="month-num">M${idx+1} · ${ph ? ph.title : ''}</div>
-        <div class="month-name">${MONTHS_RU[mm.m]} ${mm.y}</div>
-        <div class="month-focus">${data.focus || ''}</div>
-        <div class="month-stats">
-          ${hasKeyDates ? '<span class="month-stat key">★ Ключевой</span>' : ''}
-          <span class="month-stat">${data.keyTasks ? data.keyTasks.length : 0} задач</span>
-        </div>
-      </div>`;
+    html += `<div class="month-tile ${ph ? ph.id : ''} ${isKey ? 'key-month' : ''}" data-year="${mm.y}" data-month="${mm.m}">
+      <div class="month-num">M${idx+1} · ${ph ? ph.title : ''}</div>
+      <div class="month-name">${MONTHS_RU[mm.m]} ${mm.y}</div>
+      <div class="month-focus">${data.focus || ''}</div>
+      <div class="month-stats">
+        ${hasKeyDates ? '<span class="month-stat key">★ Ключевой</span>' : ''}
+        <span class="month-stat">${data.keyTasks ? data.keyTasks.length : 0} задач</span>
+      </div>
+    </div>`;
   });
   html += '</div>';
   container.innerHTML = html;
-
   container.querySelectorAll('.month-tile').forEach(tile => {
     tile.addEventListener('click', () => {
       currentDate = new Date(parseInt(tile.dataset.year), parseInt(tile.dataset.month), 1);
@@ -2507,53 +2151,37 @@ function renderMonth() {
   const key = `${year}-${month}`;
   const data = MONTH_DATA[key] || {};
   const ph = getPhaseForDate(year, month);
-
   const firstDay = new Date(year, month, 1);
   const lastDay = new Date(year, month + 1, 0);
   const firstWeekday = (firstDay.getDay() + 6) % 7;
   const daysInMonth = lastDay.getDate();
 
   let html = '';
-
   if (data.focus) {
-    html += `<div class="highlight-box ${ph && ph.id === 'p3' && month === 9 ? 'warning' : ''}">
-      <strong>Фокус месяца:</strong> ${data.focus}
-    </div>`;
+    html += `<div class="highlight-box ${ph && ph.id === 'p3' && month === 9 ? 'warning' : ''}"><strong>Фокус месяца:</strong> ${data.focus}</div>`;
   }
-
   html += '<div class="month-calendar"><div class="weekdays-header">';
-  WEEKDAYS_RU_SHORT.forEach((w, i) => {
-    html += `<div class="weekday ${i >= 5 ? 'weekend' : ''}">${w}</div>`;
-  });
+  WEEKDAYS_RU_SHORT.forEach((w, i) => { html += `<div class="weekday ${i >= 5 ? 'weekend' : ''}">${w}</div>`; });
   html += '</div><div class="days-grid">';
-
-  for (let i = 0; i < firstWeekday; i++) {
-    html += '<div class="day-cell empty"></div>';
-  }
-
+  for (let i = 0; i < firstWeekday; i++) html += '<div class="day-cell empty"></div>';
   for (let d = 1; d <= daysInMonth; d++) {
     const date = new Date(year, month, d);
     const weekday = (date.getDay() + 6) % 7;
     const isWeekend = weekday >= 5;
     const isToday = sameDay(date, today);
     const keyDate = data.keyDates ? data.keyDates.find(kd => kd.day === d) : null;
-    const isKey = !!keyDate;
-
     const dots = [];
-    if ([0,2,4,6].includes(weekday)) dots.push('<span class="dot gym" title="Зал"></span>');
-    if ([1,3].includes(weekday)) dots.push('<span class="dot english" title="Английский"></span>');
-    if ([0,1,2,3,4,5,6].includes(weekday)) dots.push('<span class="dot study" title="Учёба"></span>');
-    if ([0,2,4,5,6].includes(weekday)) dots.push('<span class="dot content" title="Upwork/контент"></span>');
-
-    html += `<div class="day-cell ${isWeekend ? 'weekend' : ''} ${isToday ? 'today' : ''} ${isKey ? 'key-day' : ''}" data-day="${d}">
+    if ([0,2,4,6].includes(weekday)) dots.push('<span class="dot gym"></span>');
+    if ([1,3].includes(weekday)) dots.push('<span class="dot english"></span>');
+    dots.push('<span class="dot study"></span>');
+    if ([0,2,4,5,6].includes(weekday)) dots.push('<span class="dot content"></span>');
+    html += `<div class="day-cell ${isWeekend?'weekend':''} ${isToday?'today':''} ${keyDate?'key-day':''}" data-day="${d}">
       <div class="day-num">${d}</div>
       <div class="day-dot">${dots.slice(0,3).join('')}</div>
-      ${isKey ? `<div class="day-tag">${keyDate.label}</div>` : ''}
+      ${keyDate ? `<div class="day-tag">${keyDate.label}</div>` : ''}
     </div>`;
   }
-
   html += '</div></div>';
-
   if (data.keyTasks && data.keyTasks.length > 0) {
     html += `<div style="margin-top:20px" class="phase-card p1">
       <div class="phase-num">// Задачи месяца</div>
@@ -2564,9 +2192,7 @@ function renderMonth() {
     });
     html += '</ul></div>';
   }
-
   container.innerHTML = html;
-
   container.querySelectorAll('.day-cell:not(.empty)').forEach(cell => {
     cell.addEventListener('click', () => {
       const d = parseInt(cell.dataset.day);
@@ -2576,26 +2202,22 @@ function renderMonth() {
       render();
     });
   });
-
   loadProgress();
 }
 
 function renderWeek() {
   const container = document.getElementById('calendarContent');
   const monday = getMondayOf(currentDate);
-
   let html = '<div class="week-grid-v2">';
   for (let i = 0; i < 7; i++) {
-    const d = new Date(monday);
-    d.setDate(d.getDate() + i);
+    const d = new Date(monday); d.setDate(d.getDate() + i);
     const isWeekend = i >= 5;
     const isToday = sameDay(d, today);
     const dayPh = getPhaseForDate(d.getFullYear(), d.getMonth());
     const blocks = getDayBlocks(i, dayPh);
-
-    html += `<div class="day-card ${isWeekend ? 'weekend' : ''} ${isToday ? 'today' : ''}" data-date="${d.toISOString()}">
+    html += `<div class="day-card ${isWeekend?'weekend':''} ${isToday?'today':''}" data-date="${d.toISOString()}">
       <div class="day-header">
-        <div class="day-name">${isWeekend && i === 5 ? 'выходной' : 'день ' + (i+1)}</div>
+        <div class="day-name">${isWeekend&&i===5?'выходной':'день '+(i+1)}</div>
         <div class="day-label">${WEEKDAYS_RU_LONG[i]}, ${d.getDate()} ${MONTHS_RU[d.getMonth()].slice(0,3)}</div>
       </div>
       <div class="day-body">`;
@@ -2603,19 +2225,14 @@ function renderWeek() {
       html += `<div class="time-block block-${b.type}">
         <div class="time">${b.time}</div>
         <div class="activity">${b.activity}</div>
-        ${b.detail ? `<div class="detail">${b.detail}</div>` : ''}
+        ${b.detail?`<div class="detail">${b.detail}</div>`:''}
       </div>`;
     });
     html += '</div></div>';
   }
   html += '</div>';
-
-  html += `<div class="highlight-box" style="margin-top:20px">
-    🎧 <strong>Правило дороги и зала:</strong> Всё время в транспорте (≈2 ч/день) и в зале (пн/ср/пт/вс ≈8 ч/нед) = <strong>~18 часов/неделю</strong> на английский + automation контент через аудио. За год это 900+ часов фонового обучения.
-  </div>`;
-
+  html += `<div class="highlight-box" style="margin-top:20px">🎧 <strong>Правило дороги и зала:</strong> Всё время в транспорте (≈2 ч/день) и в зале (пн/ср/пт/вс ≈8 ч/нед) = <strong>~18 часов/неделю</strong> на английский + automation контент. За год это 900+ часов фонового обучения.</div>`;
   container.innerHTML = html;
-
   container.querySelectorAll('.day-card').forEach(card => {
     card.addEventListener('click', () => {
       currentDate = new Date(card.dataset.date);
@@ -2636,88 +2253,66 @@ function renderDay() {
   const keyDate = monthData.keyDates ? monthData.keyDates.find(kd => kd.day === currentDate.getDate()) : null;
 
   let html = `<button class="close-day-btn" id="backToWeek">← Неделя</button>`;
-
-  html += `<div class="day-view-hero ${keyDate ? 'key-day' : ''}">
+  html += `<div class="day-view-hero ${keyDate?'key-day':''}">
     <div class="day-view-focus">${ph ? `Фаза: ${ph.title}` : ''} · ${MONTHS_RU[currentDate.getMonth()]} ${currentDate.getFullYear()}</div>
     <div class="day-view-title">${WEEKDAYS_RU_LONG[weekday]}, ${currentDate.getDate()} ${MONTHS_RU[currentDate.getMonth()]}</div>
     <div class="day-view-subtitle">${ph ? ph.focus : ''}</div>
     ${keyDate ? `<div class="day-view-desc" style="margin-top:12px;padding:12px;background:rgba(255,107,107,0.08);border-radius:8px;border:1px solid rgba(255,107,107,0.3)"><strong style="color:var(--red)">🔑 ${keyDate.label}:</strong> ${keyDate.desc}</div>` : ''}
   </div>`;
-
   html += '<div class="day-view">';
-
-  html += `<div class="day-view-card">
-    <h3>⏰ Расписание дня</h3>`;
+  html += `<div class="day-view-card"><h3>⏰ Расписание дня</h3>`;
   blocks.forEach(b => {
     html += `<div class="time-block-full block-${b.type}">
       <div class="time">${b.time}</div>
       <div class="activity">${b.activity}</div>
-      ${b.detail ? `<div class="detail">${b.detail}</div>` : ''}
+      ${b.detail?`<div class="detail">${b.detail}</div>`:''}
     </div>`;
   });
   html += '</div>';
-
-  html += `<div>
-    <div class="day-view-card" style="margin-bottom:16px">
-      <h3>🎯 Задачи недели (из фокуса месяца)</h3>
-      <ul class="day-tasks" data-task-key="week-${currentDate.getFullYear()}-${currentDate.getMonth()}">`;
+  html += `<div><div class="day-view-card" style="margin-bottom:16px">
+    <h3>🎯 Задачи месяца (топ 5)</h3>
+    <ul class="day-tasks">`;
   const weekTasks = monthData.keyTasks ? monthData.keyTasks.slice(0, 5) : [];
   weekTasks.forEach((t, i) => {
     html += `<li onclick="toggleCheck(this)" data-task-id="daytask-${key}-${i}"><div class="check-box"></div><span>${t}</span></li>`;
   });
-  if (weekTasks.length === 0) {
-    html += '<li style="cursor:default; opacity:0.5">Нет задач месяца</li>';
-  }
-  html += `</ul>
-    </div>
-
-    <div class="day-view-card">
-      <h3>💡 Правило дня</h3>
-      <div style="font-size:13px;line-height:1.6;color:var(--text)">
-        ${getDayTip(weekday, ph)}
-      </div>
-    </div>
-  </div>`;
-
+  if (weekTasks.length === 0) html += '<li style="cursor:default;opacity:0.5">Нет задач месяца</li>';
+  html += `</ul></div>
+    <div class="day-view-card"><h3>💡 Правило дня</h3>
+    <div style="font-size:13px;line-height:1.6;color:var(--text)">${getDayTip(weekday, ph)}</div>
+    </div></div>`;
   html += '</div>';
-
   container.innerHTML = html;
-
   document.getElementById('backToWeek').addEventListener('click', () => {
     currentView = 'week';
     document.querySelectorAll('.view-btn').forEach(b => b.classList.toggle('active', b.dataset.view === 'week'));
     render();
   });
-
   loadProgress();
 }
 
 function getDayTip(weekday, phase) {
   const tips = {
-    0: 'Начало недели — настрой на 5 продуктивных дней. В зале слушай Nick Saraev/All-In. Вечер — Upwork proposals (10-15) или работа с клиентами.',
-    1: 'Английский — сегодня занятие. Запиши 10 новых слов (tech vocab) в Anki после урока.',
-    2: 'Середина недели. Вечером — демо-кейсы, HARO, или O-1A (в зависимости от фазы).',
+    0: 'Начало недели — настрой на продуктивные 5 дней. Вечером: Upwork proposals (10–15) или работа с клиентами.',
+    1: 'Английский сегодня. Запиши 10 новых слов в Anki после урока.',
+    2: 'Середина недели. Вечером: Chatbase/Voiceflow практика, HARO, или O-1A.',
     3: 'Ещё одно занятие английским. Продолжай Make/Voiceflow/OpenAI практику.',
-    4: 'Пятница — итог недели. Сколько proposals, сколько клиентов, сколько заработано. План на следующую неделю.',
-    5: '⭐ <strong>Суббота — главный день для automation.</strong> Строй демо-кейсы, работай над pro-bono, записывай Loom-видео. Это твой главный ресурс для роста.',
-    6: 'Воскресенье — восстановление и планирование. Готовь LinkedIn контент на неделю, смотри кейсы Nick Saraev.'
+    4: 'Пятница — итог недели. Proposals, клиенты, доход. План на след. неделю.',
+    5: '⭐ <strong>Суббота — главный день для automation.</strong> Строй демо-кейсы на Chatbase/Voiceflow, записывай Loom.',
+    6: 'Воскресенье — планирование. Готовь LinkedIn контент на неделю, смотри кейсы Nick Saraev.'
   };
   let tip = tips[weekday] || '';
   if (phase) {
     const phaseTips = {
-      'p1': '<br><br><em style="color:var(--accent)">Фаза 1:</em> Твой фокус — построить 2 демо-кейса и начать бомбить proposals. Make Academy обязателен. Без навыка — никаких клиентов.',
-      'p2': '<br><br><em style="color:var(--yellow)">Фаза 2:</em> Ищи ретейнеров. Фиксируй метрики (часы сэкономлены, % конверсии). Каждый кейс = материал для O-1A.',
-      'p3': '<br><br><em style="color:var(--purple)">Фаза 3:</em> Октябрь — регистрация DV. Не пропусти окно. Параллельно — O-1A консультация и $2-3k/мес.',
-      'p4': '<br><br><em style="color:var(--red)">Фаза 4:</em> Финал. Либо подача O-1A с automation кейсами, либо ожидание DV (май 2027). Резерв $12k+, английский C1.'
+      'p1': '<br><br><em style="color:var(--accent)">Фаза 1:</em> Фокус — Chatbase + Voiceflow + 2 демо-кейса. Старт на Upwork прямо сейчас. Make Academy обязателен.',
+      'p2': '<br><br><em style="color:var(--yellow)">Фаза 2:</em> Ищи ретейнеров. Фиксируй метрики. Каждый кейс = материал для O-1A.',
+      'p3': '<br><br><em style="color:var(--purple)">Фаза 3:</em> Октябрь — DV регистрация. Не пропусти. Параллельно — O-1A консультация и $2–3k/мес.',
+      'p4': '<br><br><em style="color:var(--red)">Фаза 4:</em> Финал. O-1A подача или ожидание DV (май 2027). Резерв $12k+, английский C1.'
     };
     tip += phaseTips[phase.id] || '';
   }
   return tip;
 }
-
-// ============================================================
-// MAIN RENDER
-// ============================================================
 
 function render() {
   updatePeriodLabel();
@@ -2732,46 +2327,24 @@ document.querySelectorAll('.view-btn').forEach(btn => {
     document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     currentView = btn.dataset.view;
-    if (currentView === 'year') {
-      currentDate = new Date(PLAN_START);
-    }
+    if (currentView === 'year') currentDate = new Date(PLAN_START);
     render();
   });
 });
 
 document.getElementById('navPrev').addEventListener('click', () => {
   if (currentView === 'year') return;
-  if (currentView === 'month') {
-    const d = new Date(currentDate);
-    d.setMonth(d.getMonth() - 1);
-    if (isInPlan(d)) currentDate = d;
-  } else if (currentView === 'week') {
-    const d = new Date(currentDate);
-    d.setDate(d.getDate() - 7);
-    if (isInPlan(d)) currentDate = d;
-  } else if (currentView === 'day') {
-    const d = new Date(currentDate);
-    d.setDate(d.getDate() - 1);
-    if (isInPlan(d)) currentDate = d;
-  }
+  if (currentView === 'month') { const d = new Date(currentDate); d.setMonth(d.getMonth()-1); if (isInPlan(d)) currentDate = d; }
+  else if (currentView === 'week') { const d = new Date(currentDate); d.setDate(d.getDate()-7); if (isInPlan(d)) currentDate = d; }
+  else if (currentView === 'day') { const d = new Date(currentDate); d.setDate(d.getDate()-1); if (isInPlan(d)) currentDate = d; }
   render();
 });
 
 document.getElementById('navNext').addEventListener('click', () => {
   if (currentView === 'year') return;
-  if (currentView === 'month') {
-    const d = new Date(currentDate);
-    d.setMonth(d.getMonth() + 1);
-    if (isInPlan(d)) currentDate = d;
-  } else if (currentView === 'week') {
-    const d = new Date(currentDate);
-    d.setDate(d.getDate() + 7);
-    if (isInPlan(d)) currentDate = d;
-  } else if (currentView === 'day') {
-    const d = new Date(currentDate);
-    d.setDate(d.getDate() + 1);
-    if (isInPlan(d)) currentDate = d;
-  }
+  if (currentView === 'month') { const d = new Date(currentDate); d.setMonth(d.getMonth()+1); if (isInPlan(d)) currentDate = d; }
+  else if (currentView === 'week') { const d = new Date(currentDate); d.setDate(d.getDate()+7); if (isInPlan(d)) currentDate = d; }
+  else if (currentView === 'day') { const d = new Date(currentDate); d.setDate(d.getDate()+1); if (isInPlan(d)) currentDate = d; }
   render();
 });
 
@@ -2791,11 +2364,7 @@ document.querySelectorAll('.nav-tab').forEach(tab => {
   });
 });
 
-function toggleCheck(li) {
-  li.classList.toggle('done');
-  updateProgress();
-  saveProgress();
-}
+function toggleCheck(li) { li.classList.toggle('done'); updateProgress(); saveProgress(); }
 
 function updateProgress() {
   const all = document.querySelectorAll('.checklist li, .day-tasks li[data-task-id]');
@@ -2807,9 +2376,7 @@ function updateProgress() {
 
 function saveProgress() {
   const state = {};
-  document.querySelectorAll('[data-task-id]').forEach(li => {
-    state[li.dataset.taskId] = li.classList.contains('done');
-  });
+  document.querySelectorAll('[data-task-id]').forEach(li => { state[li.dataset.taskId] = li.classList.contains('done'); });
   const checklistItems = document.querySelectorAll('.checklist li:not([data-task-id])');
   const checklistState = Array.from(checklistItems).map(li => li.classList.contains('done'));
   try {
@@ -2824,14 +2391,10 @@ function loadProgress() {
   try {
     const state = JSON.parse(localStorage.getItem('artem_progress_v2') || '{}');
     window._progressState = state;
-    document.querySelectorAll('[data-task-id]').forEach(li => {
-      if (state[li.dataset.taskId]) li.classList.add('done');
-    });
+    document.querySelectorAll('[data-task-id]').forEach(li => { if (state[li.dataset.taskId]) li.classList.add('done'); });
     if (state._checklist) {
       const checklistItems = document.querySelectorAll('.checklist li:not([data-task-id])');
-      checklistItems.forEach((li, i) => {
-        if (state._checklist[i]) li.classList.add('done');
-      });
+      checklistItems.forEach((li, i) => { if (state._checklist[i]) li.classList.add('done'); });
     }
   } catch(e) {}
   updateProgress();
