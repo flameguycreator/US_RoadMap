@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>Артём — Sales HQ v2.0</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+  :root { color-scheme: dark only; }
+  html { background: #0a0a0f; }
+  :root {
+    --bg: #0a0a0f; --surface: #12121a; --card: #1a1a26; --card-hover: #22222f;
+    --border: #2a2a3d; --border-light: #3a3a50;
+    --accent: #00d4aa; --purple: #7c5cfc; --red: #ff6b6b; --yellow: #ffd93d;
+    --text: #e8e8f0; --muted: #6b6b8a;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; -webkit-text-fill-color:var(--text); }
+  h1,h2,h3,h4 { color:var(--text); -webkit-text-fill-color:var(--text); }
+  a { color:inherit; text-decoration:none; }
+  ::-webkit-scrollbar { width:6px; height:6px; }
+  ::-webkit-scrollbar-track { background:var(--bg); }
+  ::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+
+  .header { padding:40px 32px 28px; border-bottom:1px solid var(--border); position:relative; overflow:hidden; }
+  .header::before { content:''; position:absolute; top:-150px; right:-100px; width:500px; height:500px; background:radial-gradient(circle,rgba(0,212,170,0.1) 0%,transparent 70%); pointer-events:none; }
+  .header::after { content:''; position:absolute; bottom:-200px; left:10%; width:400px; height:400px; background:radial-gradient(circle,rgba(255,217,61,0.06) 0%,transparent 70%); pointer-events:none; }
+  .header-tag { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--yellow); letter-spacing:3px; text-transform:uppercase; margin-bottom:12px; position:relative; -webkit-text-fill-color:var(--yellow); }
+  .header h1 { font-size:clamp(28px,4vw,44px); font-weight:800; line-height:1.1; margin-bottom:8px; letter-spacing:-0.02em; color:#fff; -webkit-text-fill-color:#fff; position:relative; }
+  .header h1 span { color:var(--yellow); -webkit-text-fill-color:var(--yellow); }
+  .header p { color:var(--muted); font-size:14px; max-width:600px; position:relative; -webkit-text-fill-color:var(--muted); }
+  .header-badges { display:flex; gap:8px; margin-top:16px; flex-wrap:wrap; position:relative; }
+  .hbadge { padding:5px 12px; border-radius:6px; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:500; }
+  .hbadge-green { background:rgba(0,212,170,0.12); color:var(--accent); border:1px solid rgba(0,212,170,0.25); -webkit-text-fill-color:var(--accent); }
+  .hbadge-yellow { background:rgba(255,217,61,0.12); color:var(--yellow); border:1px solid rgba(255,217,61,0.25); -webkit-text-fill-color:var(--yellow); }
+  .hbadge-purple { background:rgba(124,92,252,0.12); color:var(--purple); border:1px solid rgba(124,92,252,0.25); -webkit-text-fill-color:var(--purple); }
+  .hbadge-red { background:rgba(255,107,107,0.12); color:var(--red); border:1px solid rgba(255,107,107,0.25); -webkit-text-fill-color:var(--red); }
+
+  .stats-bar { background:var(--surface); border-bottom:1px solid var(--border); padding:14px 32px; display:flex; gap:32px; flex-wrap:wrap; align-items:center; }
+  .stat { display:flex; flex-direction:column; gap:2px; cursor:pointer; }
+  .stat-label { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:2px; -webkit-text-fill-color:var(--muted); }
+  .stat-value { font-size:20px; font-weight:800; color:var(--accent); -webkit-text-fill-color:var(--accent); letter-spacing:-0.02em; }
+  .stat-value.yellow { color:var(--yellow); -webkit-text-fill-color:var(--yellow); }
+  .stat-value.purple { color:var(--purple); -webkit-text-fill-color:var(--purple); }
+  .stat-value.red { color:var(--red); -webkit-text-fill-color:var(--red); }
+
+  .nav { padding:0 32px; border-bottom:1px solid var(--border); display:flex; gap:0; overflow-x:auto; scrollbar-width:none; background:var(--surface); position:sticky; top:0; z-index:100; backdrop-filter:blur(10px); }
+  .nav::-webkit-scrollbar { display:none; }
+  .nav-tab { padding:14px 18px; font-size:13px; font-weight:500; color:var(--muted); cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.2s; background:none; border-top:none; border-left:none; border-right:none; font-family:'Inter',sans-serif; }
+  .nav-tab:hover { color:var(--text); }
+  .nav-tab.active { color:var(--yellow); border-bottom-color:var(--yellow); }
+
+  .main { padding:28px 32px; max-width:1600px; margin:0 auto; }
+  .section { display:none; animation:fadeIn 0.3s; }
+  .section.active { display:block; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+
+  .section-header { margin-bottom:24px; }
+  .section-header h2 { font-size:26px; font-weight:800; margin-bottom:4px; letter-spacing:-0.02em; color:#fff; -webkit-text-fill-color:#fff; }
+  .section-header p { font-size:13px; color:var(--muted); -webkit-text-fill-color:var(--muted); }
+
+  .card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:20px; transition:all 0.2s; }
+  .card:hover { background:var(--card-hover); }
+  .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+
+  .pill { display:inline-block; padding:2px 9px; border-radius:12px; font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; white-space:nowrap; }
+  .pill-live { background:rgba(0,212,170,0.15); color:var(--accent); border:1px solid rgba(0,212,170,0.3); -webkit-text-fill-color:var(--accent); }
+  .pill-draft { background:rgba(255,217,61,0.15); color:var(--yellow); border:1px solid rgba(255,217,61,0.3); -webkit-text-fill-color:var(--yellow); }
+  .pill-planned { background:rgba(124,92,252,0.15); color:var(--purple); border:1px solid rgba(124,92,252,0.3); -webkit-text-fill-color:var(--purple); }
+  .pill-todo { background:rgba(107,107,138,0.15); color:var(--muted); border:1px solid rgba(107,107,138,0.3); -webkit-text-fill-color:var(--muted); }
+  .pill-top { background:rgba(255,217,61,0.2); color:var(--yellow); border:1px solid rgba(255,217,61,0.4); -webkit-text-fill-color:var(--yellow); }
+
+  .highlight-box { background:rgba(0,212,170,0.06); border:1px solid rgba(0,212,170,0.2); border-radius:10px; padding:14px 18px; margin-bottom:20px; font-size:13px; line-height:1.6; color:var(--text); -webkit-text-fill-color:var(--text); }
+  .highlight-box strong { color:var(--accent); -webkit-text-fill-color:var(--accent); }
+  .highlight-box.yellow { background:rgba(255,217,61,0.06); border-color:rgba(255,217,61,0.2); }
+  .highlight-box.yellow strong { color:var(--yellow); -webkit-text-fill-color:var(--yellow); }
+  .highlight-box.red { background:rgba(255,107,107,0.06); border-color:rgba(255,107,107,0.2); }
+  .highlight-box.red strong { color:var(--red); -webkit-text-fill-color:var(--red); }
+
+  .plabel { font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:2px; color:var(--accent); margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid var(--border); -webkit-text-fill-color:var(--accent); }
+  .plabel.yellow { color:var(--yellow); -webkit-text-fill-color:var(--yellow); }
+  .plabel.purple { color:var(--purple); -webkit-text-fill-color:var(--purple); }
+  .plabel.red { color:var(--red); -webkit-text-fill-color:var(--red); }
+  .plabel.muted { color:var(--muted); -webkit-text-fill-color:var(--muted); }
+
+  .copy-block { background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:16px; margin-bottom:12px; position:relative; }
+  .copy-block-label { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px; -webkit-text-fill-color:var(--muted); }
+  .copy-block-text { font-size:13px; line-height:1.65; color:var(--text); -webkit-text-fill-color:var(--text); white-space:pre-wrap; padding-right:60px; }
+  .copy-btn { position:absolute; top:12px; right:12px; padding:4px 10px; background:rgba(0,212,170,0.1); border:1px solid rgba(0,212,170,0.25); border-radius:6px; color:var(--accent); font-family:'JetBrains Mono',monospace; font-size:9px; cursor:pointer; transition:all 0.2s; -webkit-text-fill-color:var(--accent); }
+  .copy-btn:hover { background:rgba(0,212,170,0.2); }
+  .copy-btn.copied { color:var(--yellow); -webkit-text-fill-color:var(--yellow); border-color:rgba(255,217,61,0.3); background:rgba(255,217,61,0.1); }
+
+  .profile-section { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:22px; margin-bottom:16px; }
+
+  .price-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:22px; position:relative; overflow:hidden; transition:all 0.2s; }
+  .price-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+  .price-card.p1::before { background:var(--accent); }
+  .price-card.p2::before { background:var(--yellow); }
+  .price-card.p3::before { background:var(--purple); }
+  .price-card.p4::before { background:var(--red); }
+  .price-card.p5::before { background:linear-gradient(90deg,var(--accent),var(--purple)); }
+  .price-card:hover { background:var(--card-hover); }
+  .price-num { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:2px; margin-bottom:6px; -webkit-text-fill-color:var(--muted); }
+  .price-name { font-size:17px; font-weight:800; margin-bottom:6px; }
+  .price-setup { font-family:'JetBrains Mono',monospace; font-size:18px; font-weight:700; color:var(--yellow); -webkit-text-fill-color:var(--yellow); margin-bottom:2px; }
+  .price-monthly { font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--accent); -webkit-text-fill-color:var(--accent); margin-bottom:12px; }
+  .price-desc { font-size:12px; color:var(--muted); line-height:1.55; margin-bottom:12px; -webkit-text-fill-color:var(--muted); }
+  .price-includes { list-style:none; }
+  .price-includes li { font-size:12px; padding:4px 0; display:flex; align-items:flex-start; gap:8px; }
+  .price-includes li::before { content:'→'; color:var(--accent); font-family:'JetBrains Mono',monospace; flex-shrink:0; -webkit-text-fill-color:var(--accent); }
+
+  .portfolio-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:20px; transition:all 0.2s; }
+  .portfolio-card:hover { background:var(--card-hover); transform:translateY(-2px); }
+  .portfolio-card-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; gap:12px; }
+  .portfolio-card-title { font-size:15px; font-weight:700; margin-bottom:4px; }
+  .portfolio-card-sub { font-size:11px; color:var(--muted); -webkit-text-fill-color:var(--muted); }
+  .portfolio-metrics { display:flex; gap:12px; margin-top:12px; flex-wrap:wrap; }
+  .metric { background:rgba(0,212,170,0.08); border:1px solid rgba(0,212,170,0.15); border-radius:8px; padding:6px 10px; }
+  .metric-val { font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:700; color:var(--accent); -webkit-text-fill-color:var(--accent); }
+  .metric-label { font-size:10px; color:var(--muted); margin-top:1px; -webkit-text-fill-color:var(--muted); }
+  .portfolio-stack { display:flex; gap:4px; flex-wrap:wrap; margin-top:12px; }
+  .stack-tag { font-family:'JetBrains Mono',monospace; font-size:9px; padding:2px 7px; background:rgba(124,92,252,0.1); color:var(--purple); border-radius:4px; -webkit-text-fill-color:var(--purple); }
+
+  .pub-table { width:100%; border-collapse:collapse; }
+  .pub-table th { background:var(--surface); padding:10px 14px; text-align:left; font-family:'JetBrains Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); border-bottom:1px solid var(--border); -webkit-text-fill-color:var(--muted); }
+  .pub-table td { padding:12px 14px; border-bottom:1px solid rgba(255,255,255,0.04); font-size:13px; vertical-align:top; }
+  .pub-table tr:last-child td { border-bottom:none; }
+  .pub-table tr:hover td { background:rgba(255,255,255,0.02); }
+
+  .niche-table { width:100%; border-collapse:collapse; font-size:12px; }
+  .niche-table th { background:rgba(0,212,170,0.08); padding:10px 12px; text-align:left; font-family:'JetBrains Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:1.5px; color:var(--accent); border-bottom:1px solid var(--border); -webkit-text-fill-color:var(--accent); }
+  .niche-table td { padding:10px 12px; border-bottom:1px solid rgba(255,255,255,0.04); vertical-align:middle; }
+  .niche-table tr:hover td { background:rgba(255,255,255,0.02); }
+  .niche-table tr.top-row td { background:rgba(255,217,61,0.04); }
+
+  .proposal-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:20px; margin-bottom:16px; }
+  .proposal-num { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--yellow); text-transform:uppercase; letter-spacing:2px; margin-bottom:8px; -webkit-text-fill-color:var(--yellow); }
+
+  .week-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:20px; }
+  .week-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; }
+  .week-num { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--accent); text-transform:uppercase; letter-spacing:2px; margin-bottom:6px; -webkit-text-fill-color:var(--accent); }
+  .week-goal { font-size:13px; font-weight:700; margin-bottom:8px; }
+  .week-tasks { list-style:none; }
+  .week-tasks li { font-size:11px; color:var(--muted); padding:3px 0; display:flex; gap:6px; -webkit-text-fill-color:var(--muted); }
+  .week-tasks li::before { content:'→'; color:var(--accent); flex-shrink:0; -webkit-text-fill-color:var(--accent); }
+
+  .fin-row { display:grid; grid-template-columns:120px 1fr 1fr 1fr; gap:12px; align-items:center; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:13px; }
+  .fin-row:last-child { border-bottom:none; }
+  .fin-month { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); -webkit-text-fill-color:var(--muted); }
+  .fin-amount { font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--yellow); -webkit-text-fill-color:var(--yellow); }
+
+  @media (max-width:768px) {
+    .main { padding:16px; }
+    .header { padding:24px 16px 20px; }
+    .nav { padding:0 8px; }
+    .nav-tab { padding:12px 10px; font-size:12px; }
+    .stats-bar { padding:12px 16px; gap:16px; }
+    .section-header h2 { font-size:22px; }
+    .grid-2,.grid-3 { grid-template-columns:1fr; }
+    .week-grid { grid-template-columns:1fr 1fr; }
+    .copy-block-text { font-size:12px; }
+    .niche-table { font-size:11px; }
+    .niche-table th,.niche-table td { padding:8px; }
+    .fin-row { grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-tag">// Sales HQ v2.0 — Единая стратегия — Артём 2026</div>
+  <h1>Деньги. Кейсы.<br><span>Публикации.</span></h1>
+  <p>Лучшее из анализа Grok + GPT · Единая стратегия · Строго следовать</p>
+  <div class="header-badges">
+    <span class="hbadge hbadge-yellow">💰 Цель: $3k/мес</span>
+    <span class="hbadge hbadge-green">AI Automation for Sales Teams</span>
+    <span class="hbadge hbadge-purple">EB-2 NIW Evidence</span>
+    <span class="hbadge hbadge-red">v2.0 — GPT+Grok анализ</span>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-label">Доход сейчас</div><div class="stat-value yellow" id="stat-income" onclick="editStat(this,'stat-income')">$0</div></div>
+  <div class="stat"><div class="stat-label">Цель месяца</div><div class="stat-value" id="stat-goal" onclick="editStat(this,'stat-goal')">$500</div></div>
+  <div class="stat"><div class="stat-label">Кейсов готово</div><div class="stat-value purple" id="stat-cases" onclick="editStat(this,'stat-cases')">0/2</div></div>
+  <div class="stat"><div class="stat-label">Proposals сегодня</div><div class="stat-value" id="stat-proposals" onclick="editStat(this,'stat-proposals')">0/15</div></div>
+  <div class="stat"><div class="stat-label">Отзывов</div><div class="stat-value red" id="stat-reviews" onclick="editStat(this,'stat-reviews')">0</div></div>
+  <div class="stat"><div class="stat-label">Статей Medium</div><div class="stat-value" id="stat-articles" onclick="editStat(this,'stat-articles')">0/12</div></div>
+</div>
+
+<div class="nav">
+  <button class="nav-tab active" data-section="strategy">🧠 Стратегия</button>
+  <button class="nav-tab" data-section="profiles">👤 Профили</button>
+  <button class="nav-tab" data-section="pricing">💰 Прайс</button>
+  <button class="nav-tab" data-section="portfolio">📁 Портфолио</button>
+  <button class="nav-tab" data-section="publications">📝 Публикации</button>
+  <button class="nav-tab" data-section="proposals">📨 Proposals</button>
+  <button class="nav-tab" data-section="start30">🚀 30 дней</button>
+  <button class="nav-tab" data-section="finance">📊 Финансы</button>
+  <button class="nav-tab" data-section="payments">💳 Оплата</button>
+</div>
+
+<div class="main">
+
+<!-- СТРАТЕГИЯ -->
+<div class="section active" id="strategy">
+  <div class="section-header">
+    <h2>Единая стратегия</h2>
+    <p>Лучшее из Grok + GPT · Строго следовать · Не менять без причины</p>
+  </div>
+
+  <div class="highlight-box yellow">
+    💡 <strong>Главный инсайт GPT:</strong> Клиенту всё равно на инструменты. Он покупает: больше лидов, меньше рутины, быстрее ответы, выше close rate. Продавай результат — не Make/Zapier/n8n.
+  </div>
+
+  <div style="margin-bottom:28px">
+    <div class="plabel">// Позиционирование — финальное</div>
+    <div class="copy-block">
+      <div class="copy-block-label">Главный оффер (везде одинаковый)</div>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="copy-block-text">AI Automation for Sales Teams | Chatbots, Lead Capture & Follow-Up Systems</div>
+    </div>
+    <div class="copy-block">
+      <div class="copy-block-label">Elevator pitch (30 сек)</div>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="copy-block-text">I build AI automation systems for sales teams that capture leads, qualify prospects, follow up automatically, and book more calls — without hiring extra staff.</div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:28px">
+    <div class="plabel">// Рейтинг ниш (GPT анализ) — строго по приоритету</div>
+    <div class="card" style="padding:0;overflow:hidden">
+      <table class="niche-table">
+        <thead><tr><th>Место</th><th>Ниша</th><th>Спрос</th><th>Старт чек</th><th>Опытный чек</th><th>Скорость денег</th><th>Retainer</th><th>Статус</th></tr></thead>
+        <tbody>
+          <tr class="top-row"><td><strong style="color:var(--yellow);-webkit-text-fill-color:var(--yellow)">🥇 1</strong></td><td><strong>AI Lead Qualifier Chatbot</strong></td><td style="color:var(--accent);-webkit-text-fill-color:var(--accent)">Очень высокий</td><td>$250–500</td><td>$800–2000</td><td style="color:var(--accent);-webkit-text-fill-color:var(--accent)">Быстрая</td><td>Высокий</td><td><span class="pill pill-top">ТОП</span></td></tr>
+          <tr class="top-row"><td><strong style="color:var(--yellow);-webkit-text-fill-color:var(--yellow)">🥈 2</strong></td><td><strong>Sales Workflow Automation</strong></td><td style="color:var(--accent);-webkit-text-fill-color:var(--accent)">Очень высокий</td><td>$400–800</td><td>$1500–5000</td><td>Средняя</td><td style="color:var(--accent);-webkit-text-fill-color:var(--accent)">Очень высокий</td><td><span class="pill pill-top">ТОП</span></td></tr>
+          <tr class="top-row"><td><strong style="color:var(--yellow);-webkit-text-fill-color:var(--yellow)">🥉 3</strong></td><td><strong>Appointment Booking Bots</strong></td><td style="color:var(--accent);-webkit-text-fill-color:var(--accent)">Высокий</td><td>$300–700</td><td>$1500+</td><td style="color:var(--accent);-webkit-text-fill-color:var(--accent)">Быстрая</td><td>Высокий</td><td><span class="pill pill-top">ТОП</span></td></tr>
+          <tr><td><strong>4</strong></td><td>Zapier/Make Quick Fixes</td><td style="color:var(--accent);-webkit-text-fill-color:var(--accent)">Очень высокий</td><td>$25–150</td><td>$300+</td><td style="color:var(--accent);-webkit-text-fill-color:var(--accent)">Очень быстрая</td><td>Низкий</td><td><span class="pill pill-live">Для отзывов</span></td></tr>
+          <tr><td><strong>5</strong></td><td>AI Cold Outreach System</td><td>Высокий</td><td>$300–700</td><td>$1000–3000</td><td>Средняя</td><td>Высокий</td><td><span class="pill pill-draft">Рост</span></td></tr>
+          <tr><td><strong>6</strong></td><td>AI Customer Support Bot</td><td>Высокий</td><td>$300–600</td><td>$900–2500</td><td style="color:var(--accent);-webkit-text-fill-color:var(--accent)">Быстрая</td><td>Средний</td><td><span class="pill pill-live">Сильная</span></td></tr>
+          <tr><td><strong>7</strong></td><td>Social Media Automation</td><td>Средний</td><td>$150–400</td><td>$700–1500</td><td style="color:var(--accent);-webkit-text-fill-color:var(--accent)">Быстрая</td><td>Средний</td><td><span class="pill pill-todo">Доп.</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:28px">
+    <div>
+      <div class="plabel">// Микроуслуги $10–25 (быстрые отзывы)</div>
+      <div class="card">
+        <div style="font-size:13px;line-height:1.9">
+          <div style="margin-bottom:10px"><strong style="color:var(--yellow);-webkit-text-fill-color:var(--yellow)">1. Zapier/Make Quick Fix — $19</strong><br><span style="color:var(--muted);font-size:12px;-webkit-text-fill-color:var(--muted)">300–500 покупок/мес · сложность 2/5 · 30–60 мин · масштабируемо шаблонами</span></div>
+          <div style="margin-bottom:10px"><strong style="color:var(--yellow);-webkit-text-fill-color:var(--yellow)">2. Calendly + CRM Setup — $25</strong><br><span style="color:var(--muted);font-size:12px;-webkit-text-fill-color:var(--muted)">Высокий спрос · простая интеграция · быстро закрывается</span></div>
+          <div><strong style="color:var(--yellow);-webkit-text-fill-color:var(--yellow)">3. AI Chatbot FAQ Update — $25</strong><br><span style="color:var(--muted);font-size:12px;-webkit-text-fill-color:var(--muted)">200–400 покупок/мес · 45 мин · масштабируемо</span></div>
+        </div>
+        <div style="margin-top:14px;padding:10px;background:rgba(0,212,170,0.06);border-radius:8px;font-size:12px;color:var(--muted);-webkit-text-fill-color:var(--muted)">🎯 Цель: не деньги, а отзывы. 5–10 отзывов за 1–2 недели.</div>
+      </div>
+    </div>
+    <div>
+      <div class="plabel">// Upwork vs Fiverr</div>
+      <div class="card">
+        <div style="margin-bottom:16px">
+          <div style="font-size:13px;font-weight:700;margin-bottom:6px;color:var(--accent);-webkit-text-fill-color:var(--accent)">Upwork — основной доход</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.7;-webkit-text-fill-color:var(--muted)">Средний чек: $300–1500<br>Скорость старта: средняя<br>Долгосрочный потенциал: очень высокий<br>→ Здесь строим бизнес</div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;margin-bottom:6px;color:var(--yellow);-webkit-text-fill-color:var(--yellow)">Fiverr — быстрые отзывы</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.7;-webkit-text-fill-color:var(--muted)">Средний чек: $50–500<br>Скорость старта: быстрая<br>Долгосрочный потенциал: средний<br>→ Здесь набираем историю</div>
+        </div>
+      </div>
+      <div class="plabel" style="margin-top:16px">// Чего избегать на старте</div>
+      <div class="card">
+        <div style="font-size:12px;color:var(--muted);line-height:1.9;-webkit-text-fill-color:var(--muted)">
+          ❌ Generic "AI Expert" — слишком размыто<br>
+          ❌ Full Custom SaaS AI — долго и сложно<br>
+          ❌ Enterprise проекты — длинный цикл сделки<br>
+          ❌ Клиенты без верификации оплаты<br>
+          ❌ Ставка $8–10/hr — выглядит как мусор<br>
+          ❌ Массовый спам proposals одним текстом
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="plabel">// Формула продажи (GPT)</div>
+    <div class="grid-3">
+      <div class="card" style="text-align:center">
+        <div style="font-size:28px;margin-bottom:8px">❌</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);-webkit-text-fill-color:var(--red);margin-bottom:6px">НЕ ПРОДАВАЙ</div>
+        <div style="font-size:13px;font-weight:600">"I use Make, Zapier, n8n, GPT"</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px;-webkit-text-fill-color:var(--muted)">Клиенту всё равно на инструменты</div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:28px;margin-bottom:8px">✅</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);-webkit-text-fill-color:var(--accent);margin-bottom:6px">ПРОДАВАЙ РЕЗУЛЬТАТ</div>
+        <div style="font-size:13px;font-weight:600">"More leads, booked calls, saved hours"</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px;-webkit-text-fill-color:var(--muted)">Клиент платит за это</div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:28px;margin-bottom:8px">🎯</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--yellow);-webkit-text-fill-color:var(--yellow);margin-bottom:6px">ФОРМУЛА</div>
+        <div style="font-size:13px;font-weight:600">Pain → Result → Process → ROI</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px;-webkit-text-fill-color:var(--muted)">Всегда такой порядок</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ПРОФИЛИ -->
+<div class="section" id="profiles">
+  <div class="section-header">
+    <h2>Профили на платформах</h2>
+    <p>Единая стратегия из Grok + GPT · нажми Copy и вставляй</p>
+  </div>
+
+  <div class="profile-section">
+    <div class="plabel">// Upwork — основная платформа <span class="pill pill-draft" style="margin-left:8px">Настроить сразу</span></div>
+
+    <div class="copy-block">
+      <div class="copy-block-label">Headline — финальный (GPT победил)</div>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="copy-block-text">AI Automation for Sales Teams | Chatbots, Lead Capture & Follow-Up Systems</div>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-block-label">Overview — полный текст (GPT структура + Grok метрики)</div>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="copy-block-text">Are leads slipping through the cracks because no one follows up fast enough?
+
+Most sales teams lose revenue not because of bad leads — but because of slow replies, manual tasks, missed follow-ups, and messy systems.
+
+That is where I help.
+
+I build AI automation systems for sales teams that help you capture leads, qualify prospects, follow up automatically, and book more calls — without hiring extra staff.
+
+What I can build for you:
+• AI Lead Qualification Chatbots (Chatbase + Voiceflow + Make)
+• CRM Follow-Up & Pipeline Automation
+• Appointment Booking Systems
+• Cold Outreach Infrastructure (Apollo + Instantly + OpenAI)
+• Email + SMS Sequences
+• GoHighLevel / HubSpot / Airtable Systems
+• Zapier / Make / n8n Workflows
+
+How it works:
+1. I review your current lead flow and find the leaks
+2. Build an automation system around your process
+3. Test and optimize with your real data
+4. Deliver clean documentation + Loom walkthrough + 30 days support
+
+Real results clients see:
+• 40–65% increase in qualified leads
+• 3–5x more booked meetings
+• 15–30 hours saved per week per rep
+• 85% reduction in manual data entry
+
+Why work with me?
+I focus on business results first, tools second. Anyone can connect apps — very few freelancers understand how automation should improve revenue and customer experience.
+
+Even with a brand-new profile, every client receives a free custom Loom audit of their current setup before paying anything.
+
+Send me a message with your current workflow and I'll suggest the fastest win.</div>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-block-label">Skills теги — приоритетный порядок (Grok список)</div>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="copy-block-text">Automation · Zapier · Make.com · Chatbot Development · Lead Generation · CRM Automation · HubSpot · OpenAI API · Airtable · Sales Funnel · n8n · Workflow Automation · Calendly · Email Automation · ManyChat · GoHighLevel · Apollo.io · Instantly.ai · Voiceflow · Chatbase</div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14px">
+      <div style="font-size:13px;color:var(--muted);-webkit-text-fill-color:var(--muted);line-height:1.8">
+        <strong style="color:var(--accent);-webkit-text-fill-color:var(--accent)">Hourly Rate стратегия (GPT):</strong><br>
+        Старт (0 отзывов): <strong style="color:var(--yellow);-webkit-text-fill-color:var(--yellow)">$18/hr</strong><br>
+        После 3–5 отзывов: <strong style="color:var(--yellow);-webkit-text-fill-color:var(--yellow)">$25/hr</strong><br>
+        После 10+ отзывов: <strong style="color:var(--yellow);-webkit-text-fill-color:var(--yellow)">$35/hr</strong><br>
+        После сильных кейсов: <strong style="color:var(--yellow);-webkit-text-fill-color:var(--yellow)">$50+/hr</strong>
+      </div>
+      <div style="font-size:13px;color:var(--muted);-webkit-text-fill-color:var(--muted);line-height:1.8">
+        <strong style="color:var(--accent);-webkit-text-fill-color:var(--accent)">Стартовые Fixed Offers:</strong><br>
+        Chatbot audit: <strong style="color:var(--yellow);-webkit-text-fill-color:var(--yellow)">$99</strong><br>
+        Quick automation: <strong style="color:var(--yellow);-webkit-text-fill-color:var(--yellow)">$149</strong><br>
+        Lead system: <strong style="color:var(--yellow);-webkit-text-fill-color:var(--yellow)">$399</strong><br>
+        <span style="font-size:11px">Предлагай Fixed вместо hourly на старте</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-section">
+    <div class="plabel yellow">// Fiverr — быстрые отзывы <span class="pill pill-draft" style="margin-left:8px">Настроить в день 1</span></div>
+
+    <div class="copy-block">
+      <div class="copy-block-label">Profile Description (Grok — SEO насыщенный)</div>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="copy-block-text">AI Automation Specialist | n8n, Make.com, Zapier Expert for Sales Teams. I build high-converting AI chatbots, lead qualification flows & automated sales workflows that save 20+ hours/week and boost revenue. Stack: Make, Zapier, n8n, Chatbase, Voiceflow, GHL, HubSpot, Apollo, Instantly, OpenAI. 100% delivery with Loom videos & documentation. Perfect for US agencies & SaaS wanting scalable automation without hiring devs. Let's turn your leads into revenue — message me for a free 5-min audit!</div>
+    </div>
+
+    <div style="margin-top:16px">
+      <div class="plabel muted">// 5 Gigs — запускать в этом порядке</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px">
+        <div class="card" style="text-align:center;padding:14px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--accent);-webkit-text-fill-color:var(--accent);margin-bottom:6px">GIG 1 · ПЕРВЫЙ</div>
+          <div style="font-size:12px;font-weight:600;margin-bottom:8px">AI Lead Chatbot</div>
+          <div style="font-size:11px;color:var(--yellow);-webkit-text-fill-color:var(--yellow)">$79/$249/$499</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:4px;-webkit-text-fill-color:var(--muted)">Самый понятный</div>
+        </div>
+        <div class="card" style="text-align:center;padding:14px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);-webkit-text-fill-color:var(--muted);margin-bottom:6px">GIG 2</div>
+          <div style="font-size:12px;font-weight:600;margin-bottom:8px">Sales Workflow</div>
+          <div style="font-size:11px;color:var(--yellow);-webkit-text-fill-color:var(--yellow)">$49/$199/$449</div>
+        </div>
+        <div class="card" style="text-align:center;padding:14px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);-webkit-text-fill-color:var(--muted);margin-bottom:6px">GIG 3</div>
+          <div style="font-size:12px;font-weight:600;margin-bottom:8px">Booking Bot</div>
+          <div style="font-size:11px;color:var(--yellow);-webkit-text-fill-color:var(--yellow)">$79/$249/$599</div>
+        </div>
+        <div class="card" style="text-align:center;padding:14px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);-webkit-text-fill-color:var(--muted);margin-bottom:6px">GIG 4</div>
+          <div style="font-size:12px;font-weight:600;margin-bottom:8px">Cold Outreach</div>
+          <div style="font-size:11px;color:var(--yellow);-webkit-text-fill-color:var(--yellow)">$99/$299/$699</div>
+        </div>
+        <div class="card" style="text-align:center;padding:14px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);-webkit-text-fill-color:var(--muted);margin-bottom:6px">GIG 5</div>
+          <div style="font-size:12px;font-weight:600;margin-bottom:8px">Monthly Support</div>
+          <div style="font-size:11px;color:var(--yellow);-webkit-text-fill-color:var(--yellow)">$99/$249/$499</div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--muted);-webkit-text-fill-color:var(--muted)">
+        🖼️ <strong style="color:var(--text);-webkit-text-fill-color:var(--text)">Gig обложки (GPT стратегия):</strong> Крупный текст + 1 promise + clean design + screenshot системы + trust colors (blue/white). Примеры: "24/7 AI Leads" · "Save 10+ Hours Weekly" · "Book More Calls Automatically"
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-section">
+    <div class="plabel muted">// Medium <span class="pill pill-planned" style="margin-left:8px">Июль 2026</span></div>
+    <div class="copy-block">
+      <div class="copy-block-label">Bio</div>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="copy-block-text">AI Automation Specialist. I write about building chatbots, workflow automation, and AI systems that save sales teams 10-20h/week. Case studies with real ROI metrics.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ПРАЙС -->
+<div class="section" id="pricing">
+  <div class="section-header">
+    <h2>Актуальный прайс</h2>
+    <p>Единые цены из анализа Grok + GPT · на 15–25% ниже рынка на старте</p>
+  </div>
+
+  <div class="highlight-box yellow">
+    💡 <strong>Ценовая стратегия:</strong> Старт — на 15–25% ниже конкурентов чтобы получить первые отзывы. После 5 отзывов — рыночная цена. После кейсов с ROI — на 20% выше рынка. Setup = разовый платёж. Maintenance = ретейнер. Всегда предлагай maintenance.
+  </div>
+
+  <div class="highlight-box red">
+    ⚠️ <strong>Снятие возражений для нулевого аккаунта:</strong> "You have no reviews" → "That's fair. I'm pricing competitively right now while building platform history, but I focus on quality and speed to earn long-term clients." | "Need proof" → "I can show a demo workflow and explain exactly how it will work for your business."
+  </div>
+
+  <div class="grid-3" style="margin-bottom:16px">
+    <div class="price-card p1">
+      <div class="price-num">// Услуга 1 · ТОП</div>
+      <div class="price-name">AI Lead Qualifier Chatbot</div>
+      <div class="price-setup">$299 – $750</div>
+      <div class="price-monthly">+ $150/мес maintenance</div>
+      <div class="price-desc">Stop wasting sales rep time on unqualified leads — let AI qualify them 24/7 and book meetings automatically.</div>
+      <ul class="price-includes">
+        <li>Chatbase / Voiceflow + Make/n8n</li>
+        <li>5–7 квалификационных вопросов под ICP</li>
+        <li>OpenAI lead scoring в реальном времени</li>
+        <li>Sync с HubSpot / Apollo / GoHighLevel</li>
+        <li>Calendly auto-booking</li>
+        <li>Loom handover + 30 дней support</li>
+        <li><strong>Гарантия: 15+ qualified leads в 30 дней или рефанд</strong></li>
+      </ul>
+    </div>
+    <div class="price-card p2">
+      <div class="price-num">// Услуга 2 · ТОП</div>
+      <div class="price-name">Sales Workflow Automation</div>
+      <div class="price-setup">$500 – $1450</div>
+      <div class="price-monthly">+ $250–450/мес maintenance</div>
+      <div class="price-desc">Turn your fragmented sales tools into one seamless revenue engine that runs 24/7 without manual work.</div>
+      <ul class="price-includes">
+        <li>Make / Zapier / n8n multi-step workflow</li>
+        <li>Lead capture → enrichment → scoring → outreach</li>
+        <li>CRM update → nurture sequences</li>
+        <li>Error handling + monitoring</li>
+        <li>Loom training + documentation</li>
+        <li><strong>Гарантия: 20+ часов/мес сэкономлено или рефанд</strong></li>
+      </ul>
+    </div>
+    <div class="price-card p3">
+      <div class="price-num">// Услуга 3 · ТОП</div>
+      <div class="price-name">AI Cold Outreach System</div>
+      <div class="price-setup">$400 – $950</div>
+      <div class="price-monthly">+ $200–350/мес maintenance</div>
+      <div class="price-desc">Scale personalized cold outreach without getting banned or burning out your team.</div>
+      <ul class="price-includes">
+        <li>Apollo.io + Instantly/Smartlead настройка</li>
+        <li>Domain warmup + deliverability</li>
+        <li>OpenAI персонализация писем</li>
+        <li>Ответы автоматически в CRM/Slack</li>
+        <li>A/B тест + аналитика</li>
+        <li><strong>Гарантия: reply rate 20%+ или оптимизация бесплатно</strong></li>
+      </ul>
+    </div>
+    <div class="price-card p4">
+      <div class="price-num">// Услуга 4</div>
+      <div class="price-name">AI Customer Support Bot</div>
+      <div class="price-setup">$350 – $850</div>
+      <div class="price-monthly">+ $120–280/мес maintenance</div>
+      <div class="price-desc">Handle 60–80% of customer questions automatically while your team focuses on high-value work.</div>
+      <ul class="price-includes">
+        <li>Voiceflow / Chatbase + OpenAI</li>
+        <li>Обучение на документации клиента</li>
+        <li>Сайт / Telegram / WhatsApp</li>
+        <li>Система эскалации к оператору</li>
+        <li><strong>Гарантия: 50% deflection в 30 дней или рефанд</strong></li>
+      </ul>
+    </div>
+    <div class="price-card p5">
+      <div class="price-num">// Услуга 5</div>
+      <div class="price-name">Social Media Automation</div>
+      <div class="price-setup">$200 – $580</div>
+      <div class="price-monthly">+ $120–220/мес maintenance</div>
+      <div class="price-desc">Post consistently, engage with leads and grow your audience on autopilot.</div>
+      <ul class="price-includes">
+        <li>ManyChat + Make/n8n + Airtable</li>
+        <li>AI адаптация контента (OpenAI)</li>
+        <li>Автопостинг LinkedIn / Twitter / IG</li>
+        <li>Keyword trigger воронки</li>
+        <li><strong>Гарантия: 20% рост social leads в 30 дней</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="plabel">// Стратегия апсела (GPT)</div>
+    <div class="grid-3">
+      <div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:6px;-webkit-text-fill-color:var(--muted)">Вход — первый проект</div>
+        <div style="font-size:14px;font-weight:600">Услуга 1 или микро $19–25</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:4px;-webkit-text-fill-color:var(--muted)">Низкий порог · быстрый результат · отзыв</div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:6px;-webkit-text-fill-color:var(--muted)">Апсел после первого проекта</div>
+        <div style="font-size:14px;font-weight:600">Услуга 2 или 3 — $500–1500</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:4px;-webkit-text-fill-color:var(--muted)">Показал результат → берёшь крупнее</div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:6px;-webkit-text-fill-color:var(--muted)">Ретейнер (после любого проекта)</div>
+        <div style="font-size:14px;font-weight:600">$150–450/мес × 3–4 клиента</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:4px;-webkit-text-fill-color:var(--muted)">"Now that the system is live, I can maintain it monthly..."</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ПОРТФОЛИО -->
+<div class="section" id="portfolio">
+  <div class="section-header">
+    <h2>Портфолио & Кейсы</h2>
+    <p>Каждый кейс = доход + evidence для EB-2 NIW · фиксируй ROI с цифрами</p>
+  </div>
+  <div class="highlight-box">
+    📌 <strong>Правило кейса (GPT+Grok):</strong> Инструменты · Проблема → Решение · Метрики с цифрами (часы/конверсия/ROI/$). Без цифр — не кейс, а описание. Каждый кейс → Loom видео на английском → Notion страница → Medium статья.
+  </div>
+  <div class="grid-2">
+    <div class="portfolio-card">
+      <div class="portfolio-card-top">
+        <div><div class="portfolio-card-title">🤖 AI Lead Qualifier Chatbot</div><div class="portfolio-card-sub">Демо-кейс #1 · Дедлайн: 15 мая 2026</div></div>
+        <span class="pill pill-planned">В работе</span>
+      </div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6;-webkit-text-fill-color:var(--muted)">Chatbase + Make + Calendly + Google Sheets. Бот квалифицирует 24/7, scores leads via OpenAI, books calls автоматически.</div>
+      <div class="portfolio-metrics">
+        <div class="metric"><div class="metric-val">52%</div><div class="metric-label">visitor → SQL</div></div>
+        <div class="metric"><div class="metric-val">32ч</div><div class="metric-label">saved/week</div></div>
+        <div class="metric"><div class="metric-val">4.2x</div><div class="metric-label">meetings booked</div></div>
+      </div>
+      <div class="portfolio-stack"><span class="stack-tag">Chatbase</span><span class="stack-tag">Make</span><span class="stack-tag">OpenAI</span><span class="stack-tag">Calendly</span><span class="stack-tag">HubSpot</span></div>
+      <div style="margin-top:12px;font-size:11px;color:var(--red);-webkit-text-fill-color:var(--red);cursor:pointer">▶ Loom видео — добавить ссылку</div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-card-top">
+        <div><div class="portfolio-card-title">📧 Cold Outreach Automation</div><div class="portfolio-card-sub">Демо-кейс #2 · Дедлайн: 22 мая 2026</div></div>
+        <span class="pill pill-planned">В работе</span>
+      </div>
+      <div style="font-size:13px;color:var(--muted);line-height:1.6;-webkit-text-fill-color:var(--muted)">Apollo → Make + OpenAI персонализация → Instantly → ответы в CRM/Slack автоматически.</div>
+      <div class="portfolio-metrics">
+        <div class="metric"><div class="metric-val">40%</div><div class="metric-label">open rate</div></div>
+        <div class="metric"><div class="metric-val">85%</div><div class="metric-label">less manual</div></div>
+        <div class="metric"><div class="metric-val">14</div><div class="metric-label">meetings/10 days</div></div>
+      </div>
+      <div class="portfolio-stack"><span class="stack-tag">Apollo.io</span><span class="stack-tag">OpenAI</span><span class="stack-tag">Instantly</span><span class="stack-tag">Make</span><span class="stack-tag">Slack</span></div>
+      <div style="margin-top:12px;font-size:11px;color:var(--red);-webkit-text-fill-color:var(--red);cursor:pointer">▶ Loom видео — добавить ссылку</div>
+    </div>
+    <div class="portfolio-card" style="border-style:dashed;opacity:0.5">
+      <div class="portfolio-card-top"><div><div class="portfolio-card-title">+ Кейс #3</div><div class="portfolio-card-sub">Pro-bono для стартапа · Июль 2026</div></div><span class="pill pill-todo">Запланирован</span></div>
+      <div style="font-size:13px;color:var(--muted);-webkit-text-fill-color:var(--muted)">С публичными метриками ROI для EB-2 NIW</div>
+    </div>
+    <div class="portfolio-card" style="border-style:dashed;opacity:0.5">
+      <div class="portfolio-card-top"><div><div class="portfolio-card-title">+ Кейс #4</div><div class="portfolio-card-sub">Реальный клиент · Август 2026</div></div><span class="pill pill-todo">Запланирован</span></div>
+      <div style="font-size:13px;color:var(--muted);-webkit-text-fill-color:var(--muted)">Sales Workflow или Booking Bot с измеримыми результатами</div>
+    </div>
+  </div>
+</div>
+
+<!-- ПУБЛИКАЦИИ -->
+<div class="section" id="publications">
+  <div class="section-header">
+    <h2>График публикаций</h2>
+    <p>LinkedIn · Medium · HARO · все даты и тексты в одном месте</p>
+  </div>
+
+  <div style="margin-bottom:28px">
+    <div class="plabel">// LinkedIn — 7 постов · 3 раза/нед · Лучшее время: 09:00–11:00 EST</div>
+
+    <div class="proposal-card">
+      <div class="proposal-num">Пост 1 · День 1 · Кейс</div>
+      <div class="copy-block" style="margin-bottom:0">
+        <div class="copy-block-label">Полный текст — готов к публикации (GPT)</div>
+        <button class="copy-btn" onclick="copyText(this)">Copy</button>
+        <div class="copy-block-text">We reduced lead response time from 2 hours to 2 minutes.
+
+Most businesses don't have a lead problem.
+They have a follow-up problem.
+
+I recently mapped a simple automation flow:
+• New lead comes in
+• AI qualifies inquiry instantly
+• Instant response sent
+• Meeting link delivered
+• CRM updated automatically
+
+Result:
+• Response time: 2h → 2 min
+• More booked calls
+• Zero manual admin
+
+Speed wins deals.
+
+#SalesAutomation #LeadGen #AI #MakeCom #Chatbots</div>
+      </div>
+    </div>
+
+    <div class="proposal-card">
+      <div class="proposal-num">Пост 2 · День 3 · How-to</div>
+      <div class="copy-block" style="margin-bottom:0">
+        <div class="copy-block-label">Полный текст (Grok) — 6-шаговый флоу</div>
+        <button class="copy-btn" onclick="copyText(this)">Copy</button>
+        <div class="copy-block-text">How I automated a full sales pipeline in Make.com in under 4 hours.
+
+Last week a client was losing 6 hours every day to manual lead handling. I replaced it with one Make.com scenario that now runs 24/7.
+
+Here is the exact 6-step flow I built:
+
+1. New form submission from their website (Typeform webhook trigger)
+2. Enrich lead with Apollo.io (company size, tech stack, decision-maker email)
+3. Score the lead with OpenAI based on their ICP (score 1-10 with custom prompt)
+4. If score ≥ 8 → create deal in HubSpot + send personalized cold email via Instantly.ai
+5. If no reply in 3 days → send LinkedIn connection request via Make
+6. Log every action in Airtable for real-time reporting
+
+The entire flow completes in 45 seconds per lead. In the first 10 days it booked 14 meetings and saved 38 hours of manual work.
+
+Want the exact blueprint + Loom walkthrough? Comment "PIPELINE" below.
+
+#MakeCom #SalesAutomation #AIAgents #HubSpot #LeadGeneration</div>
+      </div>
+    </div>
+
+    <div class="proposal-card">
+      <div class="proposal-num">Пост 3 · День 5 · Инсайт</div>
+      <div class="copy-block" style="margin-bottom:0">
+        <div class="copy-block-label">Полный текст (Grok данные + GPT структура)</div>
+        <button class="copy-btn" onclick="copyText(this)">Copy</button>
+        <div class="copy-block-text">The biggest mistake I see sales teams making with AI in 2026 is treating it as a magic button instead of infrastructure.
+
+According to Salesforce's 2026 State of Sales report, 87% of teams now use AI, but only 54% have moved to AI agents that actually execute end-to-end workflows.
+
+The teams winning right now connect AI to their existing CRM, calendar and outreach tools in one orchestrated flow. They don't just generate emails — they qualify, enrich, score, book and follow up automatically.
+
+The difference: top performers are 1.7x more likely to use AI agents and are closing deals 20% faster.
+
+If your AI tools are still creating more tabs and more copy-paste — you're not automating, you're digitizing chaos.
+
+Drop a comment with your current stack and I'll tell you the one change that will give you the biggest lift in 30 days.
+
+#AIAutomation #SalesTech #WorkflowAutomation</div>
+      </div>
+    </div>
+
+    <div class="proposal-card">
+      <div class="proposal-num">Пост 4 · День 7 · Сравнение</div>
+      <div class="copy-block" style="margin-bottom:0">
+        <div class="copy-block-label">Полный текст (Grok)</div>
+        <button class="copy-btn" onclick="copyText(this)">Copy</button>
+        <div class="copy-block-text">Chatbase vs Voiceflow vs Make.com: which one actually wins for sales chatbots in 2026?
+
+After building 40+ sales chatbots, here is my honest breakdown:
+
+Chatbase — Best for quick RAG chatbots trained on your docs. Fastest to launch (under 2 hours). Weak at complex multi-step qualification flows.
+
+Voiceflow — Best visual builder for complex conversation logic. Excellent for support + sales hybrid bots. Steeper learning curve.
+
+Make.com + OpenAI — My winner for sales teams. Full control over qualification logic, CRM sync, Calendly booking and follow-up sequences in one place. Highest ROI because it becomes part of your revenue infrastructure.
+
+For pure lead qualification and meeting booking I now default to Make.com + OpenAI 90% of the time.
+
+Which tool are you currently using? I'll tell you in 30 seconds whether you should switch.
+
+#Chatbase #Voiceflow #MakeCom #SalesChatbot #AIAgents</div>
+      </div>
+    </div>
+
+    <div class="proposal-card">
+      <div class="proposal-num">Пост 5 · День 9 · Ошибки</div>
+      <div class="copy-block" style="margin-bottom:0">
+        <div class="copy-block-label">Полный текст (Grok) — CTA "Comment AUDIT"</div>
+        <button class="copy-btn" onclick="copyText(this)">Copy</button>
+        <div class="copy-block-text">3 deadly chatbot mistakes that cost my clients $15k+ before they hired me.
+
+Mistake 1: Building the bot before defining qualification criteria. Result: beautiful chatbot that books meetings with tire-kickers.
+
+Mistake 2: No human handoff path. When the bot can't answer, the lead just leaves. Always have a "talk to human" button that creates a ticket with full context.
+
+Mistake 3: No measurement. They launch and never check conversion rates. I've seen bots with 8% conversion that the client thought was "working fine" until we added tracking.
+
+The fix: define your ICP and scoring rules first, build the bot around them, add clear escalation paths, and instrument everything from day one.
+
+One client went from 9% to 51% qualified meeting rate in 11 days after we fixed these three things.
+
+Comment "AUDIT" and I'll send you a free 5-minute Loom review of your current setup.
+
+#ChatbotMistakes #SalesAutomation #LeadQualification</div>
+      </div>
+    </div>
+
+    <div class="proposal-card">
+      <div class="proposal-num">Пост 6 · День 11 · Будущее</div>
+      <div class="copy-block" style="margin-bottom:0">
+        <div class="copy-block-label">Полный текст (Grok + GPT)</div>
+        <button class="copy-btn" onclick="copyText(this)">Copy</button>
+        <div class="copy-block-text">By 2027, 70% of routine sales tasks will be fully automated. Here's what that really means for US sales teams.
+
+Gartner predicts that by 2030, 70% of routine sales tasks will be automated. We're already seeing it in 2026: AI agents that research, qualify, book and follow up without a human touching the keyboard until the meeting.
+
+The winners will be reps and teams who become "AI orchestrators" — people who design, monitor and optimize the systems instead of doing the repetitive work themselves.
+
+The losers will be the ones who treat AI as a threat or a gimmick and keep doing everything manually.
+
+US companies that embrace this shift fastest will have a massive competitive advantage. The ones that don't will watch their CAC rise while competitors' CAC drops 30-40%.
+
+The question is not "will AI change sales?" — it already has. The question is whether you will be driving the change or reacting to it.
+
+What part of your sales process do you want to automate first?
+
+#FutureOfSales #AISales #SalesAutomation #Gartner</div>
+      </div>
+    </div>
+
+    <div class="proposal-card">
+      <div class="proposal-num">Пост 7 · День 13 · Личная история (EB-2 угол)</div>
+      <div class="copy-block" style="margin-bottom:0">
+        <div class="copy-block-label">Полный текст</div>
+        <button class="copy-btn" onclick="copyText(this)">Copy</button>
+        <div class="copy-block-text">Why I moved into automation.
+
+I realized many businesses lose money in invisible places:
+• Missed replies
+• Forgotten leads
+• Slow admin
+• Broken follow-up
+
+These aren't technology problems. They're system problems.
+
+The US sales teams I work with aren't failing because of bad products or weak markets. They're failing because their operational infrastructure hasn't caught up with their ambitions.
+
+AI automation fixes silent leaks. It's not about replacing people — it's about giving your best people leverage to do what only humans can do: build relationships and close deals.
+
+That's why I focus exclusively on systems that create measurable, trackable results for US businesses.
+
+If your team is losing deals in the gaps between tools — let's talk.
+
+#FounderJourney #Automation #AIinSales #SalesOps</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:28px">
+    <div class="plabel yellow">// Medium — 7 статей · EB-2 NIW совместимые · Старт: Июль 2026</div>
+    <div class="card" style="padding:0;overflow:hidden">
+      <table class="pub-table">
+        <thead><tr><th>#</th><th>Дата</th><th>Заголовок (GPT)</th><th>Тип</th><th>Объём</th><th>EB-2 угол</th><th>Статус</th></tr></thead>
+        <tbody>
+          <tr><td style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);-webkit-text-fill-color:var(--muted)">01</td><td style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--yellow);-webkit-text-fill-color:var(--yellow)">Июль 2026</td><td style="font-weight:600">How AI Lead Qualification Increased Booking Rates by 37%</td><td><span class="pill pill-planned">Кейс</span></td><td>1800 сл</td><td style="font-size:11px;color:var(--muted);-webkit-text-fill-color:var(--muted)">Measurable contribution to US productivity</td><td><span class="pill pill-todo">Не написана</span></td></tr>
+          <tr><td style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);-webkit-text-fill-color:var(--muted)">02</td><td style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--yellow);-webkit-text-fill-color:var(--yellow)">Август 2026</td><td style="font-weight:600">The 2026 AI Automation Market for Sales Teams: Trends, Risks, Opportunities</td><td><span class="pill pill-planned">Анализ</span></td><td>2200 сл</td><td style="font-size:11px;color:var(--muted);-webkit-text-fill-color:var(--muted)">Industry thought leadership</td><td><span class="pill pill-todo">Не написана</span></td></tr>
+          <tr><td style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);-webkit-text-fill-color:var(--muted)">03</td><td style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--yellow);-webkit-text-fill-color:var(--yellow)">Сентябрь 2026</td><td style="font-weight:600">How to Build a Lead Qualification System in Make.com (Step-by-Step)</td><td><span class="pill pill-planned">How-to</span></td><td>1600 сл</td><td style="font-size:11px;color:var(--muted);-webkit-text-fill-color:var(--muted)">Original technical contribution</td><td><span class="pill pill-todo">Не написана</span></td></tr>
+          <tr><td style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);-webkit-text-fill-color:var(--muted)">04</td><td style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--yellow);-webkit-text-fill-color:var(--yellow)">Октябрь 2026</td><td style="font-weight:600">Chatbase vs Voiceflow vs Custom GPT Bots: 2026 Benchmark</td><td><span class="pill pill-planned">Сравнение</span></td><td>2000 сл</td><td style="font-size:11px;color:var(--muted);-webkit-text-fill-color:var(--muted)">Independent comparative analysis</td><td><span class="pill pill-todo">Не написана</span></td></tr>
+          <tr><td style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);-webkit-text-fill-color:var(--muted)">05</td><td style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--yellow);-webkit-text-fill-color:var(--yellow)">Ноябрь 2026</td><td style="font-weight:600">Cold Outreach Automation Case Study: From Manual Chaos to Predictable Pipeline</td><td><span class="pill pill-planned">Кейс</span></td><td>1800 сл</td><td style="font-size:11px;color:var(--muted);-webkit-text-fill-color:var(--muted)">Measurable B2B impact</td><td><span class="pill pill-todo">Не написана</span></td></tr>
+          <tr><td style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);-webkit-text-fill-color:var(--muted)">06</td><td style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--yellow);-webkit-text-fill-color:var(--yellow)">Декабрь 2026</td><td style="font-weight:600">Survey: Where SMB Owners Lose Revenue Before They Notice It</td><td><span class="pill pill-planned">Исследование</span></td><td>2000 сл</td><td style="font-size:11px;color:var(--muted);-webkit-text-fill-color:var(--muted)">Original data = strong evidence</td><td><span class="pill pill-todo">Не написана</span></td></tr>
+          <tr><td style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);-webkit-text-fill-color:var(--muted)">07</td><td style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--yellow);-webkit-text-fill-color:var(--yellow)">Январь 2027</td><td style="font-weight:600">The Future of AI in Sales: My 5 Predictions for 2027</td><td><span class="pill pill-planned">Тренды</span></td><td>1800 сл</td><td style="font-size:11px;color:var(--muted);-webkit-text-fill-color:var(--muted)">Thought leadership + original thinking</td><td><span class="pill pill-todo">Не написана</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div>
+    <div class="plabel red">// HARO — 5 шаблонов (GPT — короче и острее) · Старт: Июль 2026</div>
+    <div class="grid-2">
+      <div>
+        <div class="copy-block">
+          <div class="copy-block-label">Шаблон 1 — AI for Small Business</div>
+          <button class="copy-btn" onclick="copyText(this)">Copy</button>
+          <div class="copy-block-text">AI gives small businesses leverage. The biggest win is not replacing people — it is eliminating repetitive admin work, missed leads, and delayed responses. Even a simple automation stack can save 5–10 hours weekly and improve lead conversion through faster follow-up. The most impactful starting point is automating lead qualification and first response — two areas where speed directly impacts revenue.</div>
+        </div>
+        <div class="copy-block">
+          <div class="copy-block-label">Шаблон 2 — Sales Technology Trends</div>
+          <button class="copy-btn" onclick="copyText(this)">Copy</button>
+          <div class="copy-block-text">Sales tech is shifting from dashboards to action systems. Businesses no longer want data only — they want systems that automatically respond, route, qualify, and schedule. The 2026 trend is agentic AI: systems that take action based on triggers, not just provide insights.</div>
+        </div>
+        <div class="copy-block">
+          <div class="copy-block-label">Шаблон 3 — Lead Generation with AI</div>
+          <button class="copy-btn" onclick="copyText(this)">Copy</button>
+          <div class="copy-block-text">The best use of AI in lead generation is qualification speed. Companies waste budget buying leads they never contact properly. An AI qualification system that responds in under 2 minutes and scores leads automatically can increase meeting booking rates by 40–65% without increasing headcount.</div>
+        </div>
+      </div>
+      <div>
+        <div class="copy-block">
+          <div class="copy-block-label">Шаблон 4 — Chatbot ROI</div>
+          <button class="copy-btn" onclick="copyText(this)">Copy</button>
+          <div class="copy-block-text">A chatbot ROI should be measured by booked calls, response speed, support deflection, and captured contacts — not vanity engagement metrics. The systems delivering the highest ROI combine qualification logic, CRM sync, and booking automation in one flow rather than isolated tools.</div>
+        </div>
+        <div class="copy-block">
+          <div class="copy-block-label">Шаблон 5 — Workflow Automation</div>
+          <button class="copy-btn" onclick="copyText(this)">Copy</button>
+          <div class="copy-block-text">Automation works best when it removes bottlenecks, not when it adds complexity. The rule I follow: simplify first, automate second. The most common mistake is automating a broken process — you just get broken results faster. Map the ideal flow first, then build automation around it.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROPOSALS -->
+<div class="section" id="proposals">
+  <div class="section-header">
+    <h2>Шаблоны Proposals</h2>
+    <p>Winning formula из GPT · персонализируй под каждый джоб · Loom обязателен</p>
+  </div>
+  <div class="highlight-box yellow">
+    💡 <strong>Winning Formula (GPT):</strong> 1) Mention pain. 2) Show mini-solution. 3) Reduce risk. 4) CTA с вопросом. Никаких "I am skilled". Loom увеличивает конверсию в 3–5x — делай для горячих лидов.
+  </div>
+  <div class="proposal-card">
+    <div class="proposal-num">Шаблон #1 — AI Chatbot / Lead Qualification</div>
+    <div class="copy-block" style="margin-bottom:0">
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="copy-block-text">Hi [Name],
+
+I noticed this sounds less like a tool problem and more like a workflow bottleneck.
+
+If leads are asking the same questions repeatedly, a chatbot can qualify them instantly and route serious prospects to booking — without manual intervention.
+
+I can build this fast and keep it simple for your team. Every delivery includes a Loom walkthrough so your team knows exactly how it works.
+
+[If hot lead: I reviewed your post and recorded a quick 60-sec Loom showing exactly how I'd solve this → LINK]
+
+Quick question: are you currently using any CRM or booking tool I should integrate with?
+
+[Your name]</div>
+    </div>
+  </div>
+  <div class="proposal-card">
+    <div class="proposal-num">Шаблон #2 — Sales Workflow / CRM Automation</div>
+    <div class="copy-block" style="margin-bottom:0">
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="copy-block-text">Hi [Name],
+
+Your posting caught my attention — [specific detail from their job post].
+
+I'd likely solve this by connecting your lead source, instant follow-up, and CRM update into one clean automated flow. Typical result: 85% less manual work, 3–4x faster pipeline movement.
+
+I work fast — typical delivery is 5–7 days with a full Loom training video + documentation.
+
+Even with a brand-new profile, I'm offering a free Loom audit of your current setup before you commit to anything.
+
+What does your current [process] look like right now?
+
+[Your name]</div>
+    </div>
+  </div>
+  <div class="proposal-card">
+    <div class="proposal-num">Шаблон #3 — Cold Outreach System</div>
+    <div class="copy-block" style="margin-bottom:0">
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="copy-block-text">Hi [Name],
+
+You need more qualified leads in your pipeline — without your team spending hours on manual outreach.
+
+I build systems that do exactly this: Apollo finds the right prospects → OpenAI writes personalized messages → Instantly sends them → replies land in your CRM automatically.
+
+Results from similar setups: 25–45% reply rates, 8–15 meetings/month from cold lists, 70%+ time saved on prospecting.
+
+If reply rate is below 20% in first 30 days — I optimize for free.
+
+Two questions: What's your target company size, and what tool do you use to track deals?
+
+[Your name]</div>
+    </div>
+  </div>
+  <div class="proposal-card">
+    <div class="proposal-num">Шаблон #4 — Микроуслуги ($19–25) — быстрые отзывы</div>
+    <div class="copy-block" style="margin-bottom:0">
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="copy-block-text">Hi [Name],
+
+This looks like a straightforward [Zapier/Make fix / Calendly integration / chatbot update] — I can solve this quickly and cleanly.
+
+I'll get it done fast, document everything clearly, and you'll know exactly what was changed and why.
+
+Delivery: [same day / 24 hours]. Any questions before we start?
+
+[Your name]</div>
+    </div>
+  </div>
+</div>
+
+<!-- 30 ДНЕЙ -->
+<div class="section" id="start30">
+  <div class="section-header">
+    <h2>Первые 30 дней</h2>
+    <p>Детальный план старта · GPT стратегия · реалистичная математика</p>
+  </div>
+  <div class="highlight-box">
+    🎯 <strong>Цели:</strong> Первый отзыв за 14 дней · $300–500 за первый месяц · Rising Talent path signals · Понять какие услуги заходят лучше всего
+  </div>
+
+  <div class="highlight-box yellow" style="margin-bottom:20px">
+    ⚡ <strong>Первые 24 часа:</strong> 1) Профиль 100% заполнен 2) Intro Video 30–45 сек 3) 3 демо кейса в портфолио 4) Минимум 10 proposals день 1 5) Fiverr Gig #1 запущен 6) LinkedIn пост #1
+  </div>
+
+  <div class="week-grid">
+    <div class="week-card">
+      <div class="week-num">// Неделя 1</div>
+      <div class="week-goal">🎯 Visibility</div>
+      <ul class="week-tasks">
+        <li>15 proposals/день</li>
+        <li>Профиль 100% заполнен</li>
+        <li>3 демо кейса live</li>
+        <li>Fiverr Gig #1 live</li>
+        <li>LinkedIn пост #1</li>
+        <li>Микро-услуги запущены</li>
+      </ul>
+    </div>
+    <div class="week-card">
+      <div class="week-num">// Неделя 2</div>
+      <div class="week-goal">🎯 First Win</div>
+      <ul class="week-tasks">
+        <li>Продолжать 15 proposals</li>
+        <li>2 Loom/день для горячих</li>
+        <li>Закрыть первый $100–250</li>
+        <li>Попросить отзыв</li>
+        <li>LinkedIn пост #2 и #3</li>
+      </ul>
+    </div>
+    <div class="week-card">
+      <div class="week-num">// Неделя 3</div>
+      <div class="week-goal">🎯 Stack Trust</div>
+      <ul class="week-tasks">
+        <li>Второй клиент</li>
+        <li>Предложить upsell support</li>
+        <li>10 proposals/день (quality)</li>
+        <li>Medium статья #1</li>
+        <li>LinkedIn посты 4–5</li>
+      </ul>
+    </div>
+    <div class="week-card">
+      <div class="week-num">// Неделя 4</div>
+      <div class="week-goal">🎯 $300–500</div>
+      <ul class="week-tasks">
+        <li>2–4 завершённых проекта</li>
+        <li>1 ретейнер предложен</li>
+        <li>Поднять confidence на proposals</li>
+        <li>LinkedIn посты 6–7</li>
+        <li>Анализ что зашло</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:20px">
+    <div>
+      <div class="plabel">// Приоритет заказов для старта</div>
+      <div class="card">
+        <div style="font-size:13px;font-weight:600;margin-bottom:10px;color:var(--accent);-webkit-text-fill-color:var(--accent)">Tier 1 — брать сразу</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.9;-webkit-text-fill-color:var(--muted)">→ Zapier / Make fixes ($19–50)<br>→ Chatbot setup ($79–250)<br>→ Calendly integration ($25–99)<br>→ Lead form automation ($99–200)<br>→ CRM cleanup ($100–300)</div>
+        <div style="font-size:13px;font-weight:600;margin:14px 0 10px;color:var(--yellow);-webkit-text-fill-color:var(--yellow)">Tier 2 — после первых отзывов</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.9;-webkit-text-fill-color:var(--muted)">→ Sales workflow rebuild ($400–800)<br>→ Support bot ($350–600)<br>→ Cold outreach setup ($400–700)</div>
+      </div>
+    </div>
+    <div>
+      <div class="plabel">// Реалистичная математика (GPT)</div>
+      <div class="card">
+        <div style="font-size:13px;line-height:1.9">
+          <div style="margin-bottom:8px">15 proposals/день × 14 дней = <strong style="color:var(--yellow);-webkit-text-fill-color:var(--yellow)">210 proposals</strong></div>
+          <div style="margin-bottom:8px">Reply rate (новичок): <strong>5–10%</strong> = 10–20 ответов</div>
+          <div style="margin-bottom:8px">Close rate: <strong>10–20%</strong> = <strong style="color:var(--accent);-webkit-text-fill-color:var(--accent)">1–4 клиента</strong></div>
+          <div style="margin-bottom:14px;padding:10px;background:rgba(0,212,170,0.06);border-radius:8px;font-size:12px">Это реально. Главное — не спам, а персонализация.</div>
+          <div style="font-size:12px;color:var(--muted);-webkit-text-fill-color:var(--muted)">
+            <strong style="color:var(--red);-webkit-text-fill-color:var(--red)">Rising Talent сигналы:</strong><br>
+            → Complete profile<br>
+            → Responsiveness (отвечать быстро)<br>
+            → Consistent proposals<br>
+            → 3+ completed jobs<br>
+            → 4.8+ rating
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ФИНАНСЫ -->
+<div class="section" id="finance">
+  <div class="section-header">
+    <h2>Финансовая модель</h2>
+    <p>Реалистичный путь к $3k+ · GPT модель · без сказок</p>
+  </div>
+
+  <div class="card" style="margin-bottom:20px">
+    <div class="plabel">// Доходовой путь по месяцам</div>
+    <div class="fin-row" style="font-weight:700;border-bottom:2px solid var(--border)">
+      <div class="fin-month">Месяц</div>
+      <div>Источники дохода</div>
+      <div>Часов/день</div>
+      <div class="fin-amount">Итого</div>
+    </div>
+    <div class="fin-row">
+      <div class="fin-month">Месяц 1–2</div>
+      <div style="font-size:12px;color:var(--muted);-webkit-text-fill-color:var(--muted)">Микро-задачи ($19–50) + 1–2 малых проекта ($100–250) + первые отзывы</div>
+      <div style="font-size:12px">2–4 ч/день</div>
+      <div class="fin-amount">$300–500</div>
+    </div>
+    <div class="fin-row">
+      <div class="fin-month">Месяц 3–4</div>
+      <div style="font-size:12px;color:var(--muted);-webkit-text-fill-color:var(--muted)">2 setup проекта ($500–700 each) + 2 ретейнера ($150–250/мес)</div>
+      <div style="font-size:12px">4–5 ч/день</div>
+      <div class="fin-amount">$1000–1500</div>
+    </div>
+    <div class="fin-row">
+      <div class="fin-month">Месяц 5–6</div>
+      <div style="font-size:12px;color:var(--muted);-webkit-text-fill-color:var(--muted)">3 setup × $800 + 3 ретейнера × $250/мес</div>
+      <div style="font-size:12px">5–7 ч/день</div>
+      <div class="fin-amount">$3150+</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <div class="plabel">// Целевая модель к месяцу 6</div>
+      <div class="card">
+        <div style="font-size:13px;margin-bottom:14px;padding:12px;background:rgba(255,217,61,0.06);border-radius:8px;border:1px solid rgba(255,217,61,0.2)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--yellow);-webkit-text-fill-color:var(--yellow);margin-bottom:8px">ИДЕАЛЬНАЯ СТРУКТУРА</div>
+          <div style="font-size:13px;line-height:1.8">
+            Setup проекты (3 × $800): <strong style="color:var(--yellow);-webkit-text-fill-color:var(--yellow)">$2400</strong><br>
+            Ретейнеры (3 × $250): <strong style="color:var(--accent);-webkit-text-fill-color:var(--accent)">$750</strong><br>
+            <div style="border-top:1px solid var(--border);margin-top:8px;padding-top:8px;font-weight:700;font-size:16px">Итого: <span style="color:var(--yellow);-webkit-text-fill-color:var(--yellow)">$3150</span></div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:var(--muted);-webkit-text-fill-color:var(--muted);line-height:1.8">
+          <strong style="color:var(--text);-webkit-text-fill-color:var(--text)">Ретейнер пакеты:</strong><br>
+          Package A: $150/мес — bug fixes + мониторинг<br>
+          Package B: $250/мес — оптимизация + support<br>
+          Package C: $400/мес — priority + новые workflows
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="plabel">// Что тормозит рост</div>
+      <div class="card">
+        <div style="font-size:12px;color:var(--muted);line-height:1.9;-webkit-text-fill-color:var(--muted)">
+          ❌ Только hourly jobs (нет стабильности)<br>
+          ❌ Только дешёвые заказы (не растёт чек)<br>
+          ❌ Нет повторных клиентов (нет ретейнеров)<br>
+          ❌ Нет специализации (всё подряд)<br>
+          ❌ Работа хаотично (можно застрять на $600)<br><br>
+          <strong style="color:var(--accent);-webkit-text-fill-color:var(--accent)">Что ускоряет рост:</strong><br>
+          ✅ Поднимать цену каждые 3 отзыва<br>
+          ✅ Upsell каждому клиенту<br>
+          ✅ Setup → Systems → Retainers<br>
+          ✅ Content = inbound leads (бесплатно)
+        </div>
+      </div>
+      <div class="plabel" style="margin-top:16px">// Как продавать ретейнер</div>
+      <div class="copy-block" style="margin-bottom:0">
+        <button class="copy-btn" onclick="copyText(this)">Copy</button>
+        <div class="copy-block-text">Now that the system is live, I can also maintain and optimize it monthly so performance stays strong. Would you be interested in a monthly support package?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ОПЛАТА -->
+<div class="section" id="payments">
+  <div class="section-header">
+    <h2>Форматы оплаты</h2>
+    <p>Как принимать деньги из России · по каждой платформе</p>
+  </div>
+  <div class="highlight-box">
+    💡 <strong>Главное:</strong> На старте работаешь через Upwork — они сами обрабатывают платёж. Тебе нужен только Payoneer или Wise для вывода. Прямые клиенты вне биржи — Фаза 3+.
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="plabel">// Upwork — основная биржа</div>
+      <div style="font-size:13px;line-height:1.8;color:var(--muted);-webkit-text-fill-color:var(--muted)">
+        <strong style="color:var(--text);-webkit-text-fill-color:var(--text)">Схема:</strong> Клиент → Upwork (10–20% комиссия) → тебе<br><br>
+        <strong style="color:var(--text);-webkit-text-fill-color:var(--text)">Вывод:</strong><br>
+        ✅ <strong style="color:var(--text);-webkit-text-fill-color:var(--text)">Payoneer</strong> — лучший для РФ, прямая интеграция<br>
+        ✅ <strong style="color:var(--text);-webkit-text-fill-color:var(--text)">Wise</strong> — работает с РФ, конвертация USD<br><br>
+        <strong style="color:var(--text);-webkit-text-fill-color:var(--text)">Контракты:</strong><br>
+        → Hourly: $18/ч старт → повышай по мере отзывов<br>
+        → Fixed Price: для setup проектов $99–1500
+      </div>
+    </div>
+    <div class="card">
+      <div class="plabel yellow">// Fiverr — вторая биржа</div>
+      <div style="font-size:13px;line-height:1.8;color:var(--muted);-webkit-text-fill-color:var(--muted)">
+        <strong style="color:var(--text);-webkit-text-fill-color:var(--text)">Схема:</strong> Fixed Price пакеты · Fiverr берёт 20%<br><br>
+        ✅ Payoneer — прямая интеграция<br>
+        ✅ Wise — поддерживается<br><br>
+        <strong style="color:var(--text);-webkit-text-fill-color:var(--text)">После получения отзыва:</strong><br>
+        If you're happy with the result, I'd truly appreciate your honest review — it helps a lot as a growing seller.
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(tab.dataset.section).classList.add('active');
+    tab.classList.add('active');
+  });
+});
+
+function copyText(btn) {
+  const text = btn.closest('.copy-block').querySelector('.copy-block-text').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Скопировано ✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function editStat(el, id) {
+  const val = prompt('Обновить значение:', el.textContent);
+  if (val !== null) {
+    el.textContent = val;
+    localStorage.setItem('stat_' + id, val);
+  }
+}
+
+// Load saved stats
+['stat-income','stat-goal','stat-cases','stat-proposals','stat-reviews','stat-articles'].forEach(id => {
+  const saved = localStorage.getItem('stat_' + id);
+  if (saved) document.getElementById(id).textContent = saved;
+});
+</script>
+</body>
+</html>
